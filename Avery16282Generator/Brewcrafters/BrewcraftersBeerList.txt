@@ -1,0 +1,27 @@
+Ale,Everyday Ale,,,2,false,true,
+Ale,Patch's,Pumpkin Ale,,5,false,true,Pumpkin.png
+Ale,Bombastic,Lambic,,5,false,true,Bomb.png
+Ale,Heartland,Golden Apple,,3,false,true,Apple.png
+Ale,Titania's,Apricot Pale Ale,,3,false,true,Fairy.png
+Ale,High Country,Belgian Quad,,8,false,true,Wheat.png
+Ale,Mars Needs IPA,,,4,false,true,RocketShip.png
+Ale,Auld Lang Syne,Barleywine,,7,false,true,MusicNote.png
+Stout,Simply Stout,,,2,true,false,
+Stout,Better Bitter,Coffee Stout,,2,true,false,CoffeeCup.png
+Stout,Sir Rosset's,Imperial Stout,,7,true,false,Sword.png
+Stout,Sweet Surrender,Blackberry Stout,,4,true,false,Berries.png
+Stout,Revered Bean,Chocolate,Espresso Stout,7,true,false,FlyingCoffeeBean.png
+Stout,Oat Soda Stout,,,4,true,false,BowlingBall.png
+Stout,Grim's Back Alley,Dark Stout,,7,true,false,Scythe.png
+Stout,Crimson,Hammer Russian,Imperial Stout,9,true,false,Star.png
+Porter,Pleasantly Porter,,,2,false,false,
+Porter,NOIR,Smoked Porter,,5,true,false,TheLetterN.png
+Porter,Secret Crush,Vanilla Porter,,5,true,false,Vanilla.png
+Porter,VivaJava,Coffee Porter,,5,true,false,CoffeeBean.png
+Porter,19968 Black,& Brue,,7,true,false,Rooster.png
+Porter,Old Chap English,Cherry Porter,,7,true,false,Cherries.png
+Porter,Sweet Clover,Honey Porter,,3,false,false,Bee.png
+Porter,Spitfire,Cinnamon Porter,,4,false,false,Fire.png
+Ale,ALE,,,0,false,false,
+Porter,PORTER,,,0,false,false,
+Stout,STOUT,,,0,false,false,
