@@ -24,7 +24,7 @@ namespace Avery16282Generator.Brewcrafters
 
                     contentByte.SetColorFill(labelBackground);
                     contentByte.SetColorStroke(labelBackground);
-                    DrawRectangle(contentByte, rectangle);
+                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
                     if (beer.Points > 0)
                     {
                         var pointsImage = Image.GetInstance("Brewcrafters\\Points.png");
@@ -72,7 +72,7 @@ namespace Avery16282Generator.Brewcrafters
                     var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
                     contentByte.SetColorFill(labelBackground);
                     contentByte.SetColorStroke(labelBackground);
-                    DrawRectangle(contentByte, rectangle);
+                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
                     var smallFontPadding = string.IsNullOrWhiteSpace(beer.Name3) ? 0 : 6;
                     if (beer.Points > 0)
                     {
@@ -117,39 +117,8 @@ namespace Avery16282Generator.Brewcrafters
                 },
             }).ToList();
 
-            //for (var i = 0; i < 55; i++)
-            //{
-            //    if (i < 25)
-            //    {
-            //        drawActionRectangles.Enqueue();
-            //        drawActionRectangles.Enqueue((contentByte, rectangle) =>
-            //        {
-            //            contentByte.SetColorFill(BaseColor.GREEN);
-            //            DrawRectangle(contentByte, rectangle);
-            //        });
-            //    }
-            //    else
-            //    {
-            //        drawActionRectangles.Enqueue((contentByte, rectangle) =>
-            //        {
-            //            contentByte.SetColorFill(BaseColor.RED);
-            //            DrawRectangle(contentByte, rectangle);
-            //        });
-            //        drawActionRectangles.Enqueue((contentByte, rectangle) =>
-            //        {
-            //            contentByte.SetColorFill(BaseColor.ORANGE);
-            //            DrawRectangle(contentByte, rectangle);
-            //        });
-            //    }
-            //}
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            PdfGenerator.DrawRectangles(drawActionRectangleQueue);
-        }
-
-        private static void DrawRectangle(PdfContentByte content, Rectangle rectangle)
-        {
-            content.Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, rectangle.Height);
-            content.FillStroke();
+            PdfGenerator.DrawRectangles(drawActionRectangleQueue, labelBackground, "BrewCrafters");
         }
 
         //private enum BeerType

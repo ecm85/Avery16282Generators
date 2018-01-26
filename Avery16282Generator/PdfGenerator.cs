@@ -9,7 +9,7 @@ namespace Avery16282Generator
 {
     class PdfGenerator
     {
-        public static void DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions)
+        public static void DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions, BaseColor backgroundColor, string filePrefix)
         {
             var pageWidth = Utilities.InchesToPoints(8.5f);
             var pageHeight = Utilities.InchesToPoints(11f);
@@ -17,30 +17,35 @@ namespace Avery16282Generator
             using (var document = new Document(documentRectangle))
             {
                 using (var fileStream =
-                    new FileStream($@"C:\Avery\Labels{DateTime.Now.ToFileTime()}.pdf",
+                    new FileStream($@"C:\Avery\{filePrefix}Labels{DateTime.Now.ToFileTime()}.pdf",
                         FileMode.Create))
                 {
                     using (var pdfWriter = PdfWriter.GetInstance(document, fileStream))
                     {
-                        document.Open();
-                        document.NewPage();
-                        var contentByte = pdfWriter.DirectContent;
-                        var topMargin = Utilities.InchesToPoints(.5f);
-                        var labelHeight = Utilities.InchesToPoints(1.75f);
-                        var labelWidth = Utilities.InchesToPoints(.5f);
-                        var leftMargin = Utilities.InchesToPoints(1f);
-                        var verticalSpace = Utilities.InchesToPoints(.3125f);
+                        
+                        var topMargin = Utilities.InchesToPoints(.48f);
+                        var labelHeight = Utilities.InchesToPoints(1.60f);
+                        var labelWidth = Utilities.InchesToPoints(.40f);
+                        var leftMargin = Utilities.InchesToPoints(1.03f);
+                        var verticalSpace = Utilities.InchesToPoints(.365f);
                         var horizontalSpace = Utilities.InchesToPoints(1f);
+                        var extraPadding = Utilities.InchesToPoints(.05f);
                         var rowIndex = 0;
                         var columnIndex = 0;
+                        document.Open();
+                        var contentByte = pdfWriter.DirectContent;
+
                         while (drawRectangleActions.Any())
                         {
-                            var lowerLeftX = leftMargin + columnIndex * (horizontalSpace + labelWidth * 2);
-                            var lowerLeftY = pageHeight - (topMargin + labelHeight + rowIndex * (verticalSpace + labelHeight) - 3);
+                            if (rowIndex == 0 && columnIndex == 0)
+                                AddPage(document, contentByte, documentRectangle, backgroundColor);
+
+                            var lowerLeftX = leftMargin + extraPadding + columnIndex * (horizontalSpace + labelWidth * 2 + extraPadding * 4);
+                            var lowerLeftY = pageHeight - (topMargin + labelHeight + extraPadding + rowIndex * (verticalSpace + labelHeight + extraPadding * 2));
                             var upperRightX = lowerLeftX + labelWidth;
                             var upperRightY = lowerLeftY + labelHeight;
                             var rectangle = new Rectangle(lowerLeftX, lowerLeftY, upperRightX, upperRightY);
-                            var reverseRectangle = new Rectangle(lowerLeftX + labelWidth, lowerLeftY, upperRightX + labelWidth, upperRightY);
+                            var reverseRectangle = new Rectangle(lowerLeftX + labelWidth + extraPadding * 2, lowerLeftY, upperRightX + labelWidth + extraPadding * 2, upperRightY);
                             var nextAction = drawRectangleActions.Dequeue();
                             nextAction(contentByte, rectangle);
                             var reverseAction = drawRectangleActions.Dequeue();
@@ -53,7 +58,6 @@ namespace Avery16282Generator
                                 if (columnIndex > 3)
                                 {
                                     columnIndex = 0;
-                                    document.NewPage();
                                 }
                             }
                         }
@@ -62,6 +66,14 @@ namespace Avery16282Generator
                     }
                 }
             }
+        }
+
+        private static void AddPage(Document document, PdfContentByte contentByte, Rectangle documentRectangle, BaseColor backgroundColor)
+        {
+            document.NewPage();
+            contentByte.SetColorStroke(backgroundColor);
+            contentByte.SetColorFill(backgroundColor);
+            TextSharpHelpers.DrawRectangle(contentByte, documentRectangle);
         }
     }
 }

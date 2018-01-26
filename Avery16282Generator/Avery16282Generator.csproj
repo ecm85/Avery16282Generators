@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brewcrafters\BrewcraftersLabels.cs" />
+    <Compile Include="TextSharpHelpers.cs" />
     <Compile Include="PdfGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
