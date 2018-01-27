@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Avery16282Generator.Brewcrafters;
+using Avery16282Generator.Dominion;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -10,8 +11,9 @@ namespace Avery16282Generator
     {
         static void Main()
         {
-            DrawPlainRectangleLabels();
-            BrewcraftersLabels.CreateLabels();
+            //DrawPlainRectangleLabels();
+            //BrewcraftersLabels.CreateLabels();
+            DominionLabels.CreateLabels();
         }
 
         private static void DrawPlainRectangleLabels()

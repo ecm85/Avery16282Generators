@@ -7,7 +7,7 @@ using iTextSharp.text.pdf;
 
 namespace Avery16282Generator.Brewcrafters
 {
-    class BrewcraftersLabels
+    public class BrewcraftersLabels
     {
         public static void CreateLabels()
         {
@@ -121,24 +121,6 @@ namespace Avery16282Generator.Brewcrafters
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, labelBackground, "BrewCrafters");
         }
 
-        //private enum BeerType
-        //{
-        //    Ale,
-        //    Stout,
-        //    Porter
-        //}
-
-        private class Beer
-        {
-            public string Name1 { get; set; }
-            public string Name2 { get; set; }
-            public string Name3 { get; set; }
-            public int Points { get; set; }
-            public bool Barrel { get; set; }
-            public bool Hops { get; set; }
-            public string ImageName { get; set; }
-        }
-
         private static IEnumerable<Beer> GetBeers()
         {
             var beerLines = File.ReadAllLines("Brewcrafters\\BrewcraftersBeerList.txt");
@@ -162,6 +144,13 @@ namespace Avery16282Generator.Brewcrafters
                 ImageName = tokens[7]
             };
         }
+
+        //private enum BeerType
+        //{
+        //    Ale,
+        //    Stout,
+        //    Porter
+        //}
 
         //private static BeerType ParseBeerType(string value)
         //{
