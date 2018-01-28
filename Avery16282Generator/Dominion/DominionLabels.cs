@@ -15,7 +15,7 @@ namespace Avery16282Generator.Dominion
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
-            var setsToPrint = new[] { "Intrigue 2nd Edition Upgrade", "Dominion 2nd Edition Upgrade", "Nocturne", "Empires", "Alchemy"};
+            var setsToPrint = new[] { "Intrigue 2nd Edition Upgrade", "Dominion 2nd Edition Upgrade", "Nocturne"};
             var cardFromSetsToPrint = cards
                 .Where(card => setsToPrint.Contains(card.Set.Set_name))
                 .ToList();
@@ -41,8 +41,8 @@ namespace Avery16282Generator.Dominion
             const float potionCostImageWidthOffset = 6f;
             const float debtCostImageWidthOffset = 5f;
             const float setImageHeight = 7f;
-            const float setImageWidthOffset = 4f;
-            const float setImageHeightOffset = 3f;
+            const float setImageWidthOffset = 7f;
+            const float setImageHeightOffset = 4.5f;
             const float textWidthOffset = 7f;
             const float textHeight = 8f;
             const float maxFontSize = 10f;
@@ -62,6 +62,7 @@ namespace Avery16282Generator.Dominion
                 (contentByte, rectangle) =>
                 {
                     const float rotationInRadians = 4.71239f;
+                    const int textRotation = 270;
 
                     var backgroundImage = CreateBackgroundImage(card.SuperType.Card_type_image, rotationInRadians, rectangle);
                     var backgroundImageBottom = rectangle.Bottom + (rectangle.Height - backgroundImage.ScaledHeight) / 2;
@@ -80,7 +81,7 @@ namespace Avery16282Generator.Dominion
                         contentByte.AddImage(coinImage);
 
                         var cost = card.Cost.Replace("*", "");
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cost, costFont), currentCostRectangle.Left + costTextWidthOffset, currentCostRectangle.Top - costTextHeightOffset, 270);
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cost, costFont), currentCostRectangle.Left + costTextWidthOffset, currentCostRectangle.Top - costTextHeightOffset, textRotation);
 
                     }
                     if (card.Potcost == 1)
@@ -102,12 +103,11 @@ namespace Avery16282Generator.Dominion
                         contentByte.AddImage(debtImage);
 
                         var debtCost = card.Debtcost.ToString();
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(debtCost, debtCostFont), currentCostRectangle.Left + debtCostTextWidthOffset, currentCostRectangle.Top - debtCostTextHeightOffset, 270);
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(debtCost, debtCostFont), currentCostRectangle.Left + debtCostTextWidthOffset, currentCostRectangle.Top - debtCostTextHeightOffset, textRotation);
                     }
 
 
                     var setImageRectangle = new Rectangle(rectangle.Left + setImageWidthOffset, backgroundImageBottom + setImageHeightOffset, rectangle.Right, backgroundImageBottom + setImageHeightOffset + setImageHeight);
-
                     var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
                     setImage.SetAbsolutePosition(setImageRectangle.Left, setImageRectangle.Bottom);
                     contentByte.AddImage(setImage);
@@ -115,23 +115,85 @@ namespace Avery16282Generator.Dominion
 
                     var cardName = card.GroupName ?? card.Name;
                     var textRectangle = new Rectangle(rectangle.Left + textWidthOffset, setImageRectangle.Top + textPadding, rectangle.Left + textWidthOffset + textHeight, currentCostBottom - textPadding);
-                    var rotatedRectangle = new Rectangle(textRectangle.Left, textRectangle.Bottom, textRectangle.Left + textRectangle.Height, textRectangle.Bottom + textRectangle.Width);
-                    var textFontSize = TextSharpHelpers.GetFontSize(contentByte, cardName, rotatedRectangle, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
-                    var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cardName, font), textRectangle.Left, textRectangle.Top, 270);
+                    var font = GetMainTextFont(textRectangle, contentByte, cardName, baseFont, maxFontSize, card);
+                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cardName, font), textRectangle.Left, textRectangle.Top, textRotation);
 
                     //TODO: Experiment with using the rotation on rectangle, in the rectangle generator
                 },
                 (contentByte, rectangle) =>
                 {
                     var rotationInRadians = 1.5708f;
+                    const int textRotation = 90;
+                    var backgroundImage = CreateBackgroundImage(card.SuperType.Card_type_image, rotationInRadians, rectangle);
+                    var backgroundImageBottom = rectangle.Bottom + (rectangle.Height - backgroundImage.ScaledHeight) / 2;
+                    backgroundImage.SetAbsolutePosition(rectangle.Left, backgroundImageBottom);
+                    contentByte.AddImage(backgroundImage);
 
-                    
+                    var currentCostTop = backgroundImageBottom + firstCostImageHeightOffset;
+                    Rectangle currentCostRectangle;
+                    if (!string.IsNullOrWhiteSpace(card.Cost) && (card.Cost != "0" || (card.Cost == "0" && card.Potcost != 1 && !card.Debtcost.HasValue)))
+                    {
+                        currentCostTop = currentCostTop + (coinCostRectangleHeight + costPadding);
+                        currentCostRectangle = new Rectangle(rectangle.Left, currentCostTop - coinCostRectangleHeight, rectangle.Right - coinCostImageWidthOffset, currentCostTop);
+                        var coinImage = CreateCoinImage(rotationInRadians, currentCostRectangle);
+                        coinImage.SetAbsolutePosition(currentCostRectangle.Right - coinImage.ScaledWidth, currentCostRectangle.Top - coinImage.ScaledHeight);
+                        contentByte.AddImage(coinImage);
+
+                        var cost = card.Cost.Replace("*", "");
+                        const float bestGuessAtCostTextWidth = 5.5f;
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cost, costFont), (currentCostRectangle.Right) - costTextWidthOffset, (currentCostRectangle.Top) - costTextHeightOffset - bestGuessAtCostTextWidth, textRotation);
+                    }
+                    if (card.Potcost == 1)
+                    {
+                        currentCostTop = currentCostTop + (potionCostRectangleHeight + costPadding);
+                        currentCostRectangle = new Rectangle(rectangle.Left, currentCostTop - potionCostRectangleHeight, rectangle.Right - potionCostImageWidthOffset, currentCostTop);
+
+                        var potionImage = CreatePotionImage(rotationInRadians, currentCostRectangle);
+                        potionImage.SetAbsolutePosition(currentCostRectangle.Right - potionImage.ScaledWidth, currentCostRectangle.Top - potionImage.ScaledHeight);
+                        contentByte.AddImage(potionImage);
+                    }
+                    if (card.Debtcost.HasValue)
+                    {
+                        currentCostTop = currentCostTop + (debtCostRectangleHeight + costPadding);
+                        currentCostRectangle = new Rectangle(rectangle.Left, currentCostTop - debtCostRectangleHeight, rectangle.Right - debtCostImageWidthOffset, currentCostTop);
+
+                        var debtImage = CreateDebtImage(rotationInRadians, currentCostRectangle);
+                        debtImage.SetAbsolutePosition(currentCostRectangle.Right - debtImage.ScaledWidth, currentCostRectangle.Top - debtImage.ScaledHeight);
+                        contentByte.AddImage(debtImage);
+
+                        var debtCost = card.Debtcost.ToString();
+                        const float bestGuessAtCostTextWidth = 5.5f;
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(debtCost, debtCostFont), (currentCostRectangle.Right) - debtCostTextWidthOffset, (currentCostRectangle.Top) - debtCostTextHeightOffset - bestGuessAtCostTextWidth, textRotation);
+                    }
+
+                    var setImageRectangle = new Rectangle(rectangle.Left, backgroundImageBottom + backgroundImage.ScaledHeight - setImageHeightOffset - setImageHeight, rectangle.Right - setImageWidthOffset, backgroundImageBottom + backgroundImage.ScaledHeight - setImageHeightOffset);
+                    var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
+                    setImage.SetAbsolutePosition(setImageRectangle.Right - setImage.ScaledWidth, setImageRectangle.Top - setImage.ScaledHeight);
+                    contentByte.AddImage(setImage);
+
+                    var cardName = card.GroupName ?? card.Name;
+                    var textRectangle = new Rectangle(rectangle.Right - textWidthOffset - textHeight, currentCostTop + textPadding, rectangle.Right - textWidthOffset, setImageRectangle.Bottom - textPadding);
+                    var font = GetMainTextFont(textRectangle, contentByte, cardName, baseFont, maxFontSize, card);
+                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cardName, font), textRectangle.Right, textRectangle.Bottom, textRotation);
 
                 },
             }).ToList();
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Dominion");
+        }
+
+        private static Font GetMainTextFont(Rectangle textRectangle, PdfContentByte contentByte, string cardName,
+            BaseFont baseFont, float maxFontSize, DominionCard card)
+        {
+            var rotatedRectangle = new Rectangle(textRectangle.Left, textRectangle.Bottom,
+                textRectangle.Left + textRectangle.Height, textRectangle.Bottom + textRectangle.Width);
+            var textFontSize = TextSharpHelpers.GetFontSize(contentByte, cardName, rotatedRectangle, baseFont, maxFontSize,
+                Element.ALIGN_LEFT, Font.NORMAL);
+            var fontColor = card.SuperType.Card_type_image == "night_nc.png"
+                ? BaseColor.WHITE
+                : BaseColor.BLACK;
+            var font = new Font(baseFont, textFontSize, Font.NORMAL, fontColor);
+            return font;
         }
 
         private static Image CreateSetImage(string imageName, Rectangle setImageRectangle, float rotationInRadians)
