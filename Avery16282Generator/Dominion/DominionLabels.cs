@@ -15,17 +15,22 @@ namespace Avery16282Generator.Dominion
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
-            var setsToPrint = new[] { "Intrigue 2nd Edition Upgrade", "Dominion 2nd Edition Upgrade", "Nocturne"};
+            var setsToNotPrint = new[] { "Dominion 2nd Edition", "Intrigue 2nd Edition", "Animals"};
+            var bannedKeywords = new[] { "Extras"};
+            var setsToPrint = cardSets.Values
+                .Where(cardSet => !setsToNotPrint.Contains(cardSet.Set_name))
+                .Where(cardSet => bannedKeywords.All(bannedKeyword => !cardSet.Set_name.Contains(bannedKeyword)))
+                .Select(setToNotPrint => setToNotPrint.Set_name);
             var cardFromSetsToPrint = cards
                 .Where(card => setsToPrint.Contains(card.Set.Set_name))
                 .ToList();
+
             var groupedCards = cardFromSetsToPrint.Where(card => !string.IsNullOrWhiteSpace(card.Group_tag)).ToList();
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
             var groupedCardsToPrint = groupedCards.GroupBy(card => card.Group_tag)
                 .Select(group => group.SingleOrDefault(card => card.Group_top) ?? group.First())
                 .ToList();
             var cardsToPrint = nonGroupedCards.Concat(groupedCardsToPrint).ToList();
-
             var minionProRegular = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Regular.otf");
             var minionProBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Bold.otf");
             var baseFont = BaseFont.CreateFont(minionProRegular, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -108,10 +113,12 @@ namespace Avery16282Generator.Dominion
 
 
                     var setImageRectangle = new Rectangle(rectangle.Left + setImageWidthOffset, backgroundImageBottom + setImageHeightOffset, rectangle.Right, backgroundImageBottom + setImageHeightOffset + setImageHeight);
-                    var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
-                    setImage.SetAbsolutePosition(setImageRectangle.Left, setImageRectangle.Bottom);
-                    contentByte.AddImage(setImage);
-
+                    if (!string.IsNullOrWhiteSpace(card.Set.Image))
+                    {
+                        var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
+                        setImage.SetAbsolutePosition(setImageRectangle.Left, setImageRectangle.Bottom);
+                        contentByte.AddImage(setImage);
+                    }
 
                     var cardName = card.GroupName ?? card.Name;
                     var textRectangle = new Rectangle(rectangle.Left + textWidthOffset, setImageRectangle.Top + textPadding, rectangle.Left + textWidthOffset + textHeight, currentCostBottom - textPadding);
@@ -167,10 +174,12 @@ namespace Avery16282Generator.Dominion
                     }
 
                     var setImageRectangle = new Rectangle(rectangle.Left, backgroundImageBottom + backgroundImage.ScaledHeight - setImageHeightOffset - setImageHeight, rectangle.Right - setImageWidthOffset, backgroundImageBottom + backgroundImage.ScaledHeight - setImageHeightOffset);
-                    var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
-                    setImage.SetAbsolutePosition(setImageRectangle.Right - setImage.ScaledWidth, setImageRectangle.Top - setImage.ScaledHeight);
-                    contentByte.AddImage(setImage);
-
+                    if (!string.IsNullOrWhiteSpace(card.Set.Image))
+                    {
+                        var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
+                        setImage.SetAbsolutePosition(setImageRectangle.Right - setImage.ScaledWidth, setImageRectangle.Top - setImage.ScaledHeight);
+                        contentByte.AddImage(setImage);
+                    }
                     var cardName = card.GroupName ?? card.Name;
                     var textRectangle = new Rectangle(rectangle.Right - textWidthOffset - textHeight, currentCostTop + textPadding, rectangle.Right - textWidthOffset, setImageRectangle.Bottom - textPadding);
                     var font = GetMainTextFont(textRectangle, contentByte, cardName, baseFont, maxFontSize, card);
