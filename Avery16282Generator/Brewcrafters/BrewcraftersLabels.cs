@@ -22,9 +22,7 @@ namespace Avery16282Generator.Brewcrafters
                     var fontSize = string.IsNullOrWhiteSpace(beer.Name2) ? 10 : string.IsNullOrWhiteSpace(beer.Name3) ? 10 : 8;
                     var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
 
-                    contentByte.SetColorFill(labelBackground);
-                    contentByte.SetColorStroke(labelBackground);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
+                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, labelBackground);
                     if (beer.Points > 0)
                     {
                         var pointsImage = Image.GetInstance("Brewcrafters\\Points.png");
@@ -70,9 +68,7 @@ namespace Avery16282Generator.Brewcrafters
                 {
                     var fontSize = string.IsNullOrWhiteSpace(beer.Name2) ? 9 : string.IsNullOrWhiteSpace(beer.Name3) ? 10 : 8;
                     var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
-                    contentByte.SetColorFill(labelBackground);
-                    contentByte.SetColorStroke(labelBackground);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
+                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, labelBackground);
                     var smallFontPadding = string.IsNullOrWhiteSpace(beer.Name3) ? 0 : 6;
                     if (beer.Points > 0)
                     {

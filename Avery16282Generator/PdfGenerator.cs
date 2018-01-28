@@ -71,9 +71,7 @@ namespace Avery16282Generator
         private static void AddPage(Document document, PdfContentByte contentByte, Rectangle documentRectangle, BaseColor backgroundColor)
         {
             document.NewPage();
-            contentByte.SetColorStroke(backgroundColor);
-            contentByte.SetColorFill(backgroundColor);
-            TextSharpHelpers.DrawRectangle(contentByte, documentRectangle);
+            TextSharpHelpers.DrawRectangle(contentByte, documentRectangle, backgroundColor);
         }
     }
 }

@@ -12,8 +12,8 @@ namespace Avery16282Generator.Dominion
         public bool Group_top { get; set; }
         public IEnumerable<string> Types { get; set; }
         public string Name { get; set; }
-        public string Potcost { get; set; }
-        public IEnumerable<CardSet> Sets { get; set; }
+        public int? Potcost { get; set; }
+        public CardSet Set { get; set; }
         public CardSuperType SuperType { get; set; }
         public string GroupName { get; set; }
     }

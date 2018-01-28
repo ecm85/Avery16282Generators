@@ -23,15 +23,11 @@ namespace Avery16282Generator
             {
                 drawActionRectangles.Enqueue((contentByte, rectangle) =>
                 {
-                    contentByte.SetColorStroke(BaseColor.BLUE);
-                    contentByte.SetColorFill(BaseColor.BLUE);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
+                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, BaseColor.BLUE);
                 });
                 drawActionRectangles.Enqueue((contentByte, rectangle) =>
                 {
-                    contentByte.SetColorStroke(BaseColor.RED);
-                    contentByte.SetColorFill(BaseColor.RED);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
+                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, BaseColor.RED);
                 });
             }
             PdfGenerator.DrawRectangles(drawActionRectangles, BaseColor.CYAN, "Test");

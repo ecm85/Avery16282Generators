@@ -8,17 +8,16 @@ using Newtonsoft.Json;
 
 namespace Avery16282Generator.Dominion
 {
-    public class DominionLabels
+    public static class DominionLabels
     {
         public static void CreateLabels()
         {
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
-            var setNamesToPrint = new[] { "Intrigue 2nd Edition Upgrade", "Dominion 2nd Edition Upgrade", "Nocturne" };
-            var setsToPrint = cardSets.Values.Where(cardSet => setNamesToPrint.Contains(cardSet.Set_name));
+            var setsToPrint = new[] { "Intrigue 2nd Edition Upgrade", "Dominion 2nd Edition Upgrade", "Nocturne", "Empires", "Alchemy"};
             var cardFromSetsToPrint = cards
-                .Where(card => card.Sets.Any(cardSet => setsToPrint.Contains(cardSet)))
+                .Where(card => setsToPrint.Contains(card.Set.Set_name))
                 .ToList();
             var groupedCards = cardFromSetsToPrint.Where(card => !string.IsNullOrWhiteSpace(card.Group_tag)).ToList();
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
@@ -27,119 +26,153 @@ namespace Avery16282Generator.Dominion
                 .ToList();
             var cardsToPrint = nonGroupedCards.Concat(groupedCardsToPrint).ToList();
 
-            //TODO: background image (based on type)
-            //TODO: Cost (coin/potion/debt)
-            //TODO: Set image
-            //TODO: Scale text
-            //TODO: Font
+            var minionProRegular = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Regular.otf");
+            var minionProBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Bold.otf");
+            var baseFont = BaseFont.CreateFont(minionProRegular, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var boldBaseFont = BaseFont.CreateFont(minionProBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
-            var segoeUi = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "seguisym.ttf");
-            var baseFont = BaseFont.CreateFont(segoeUi, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            var fontSize = 10;
-            var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
+            const float coinCostRectangleHeight = 13f;
+            const float potionCostRectangleHeight = 6f;
+            const float debtCostRectangleHeight = 13f;
+            const float costPadding = 1f;
+            const float textPadding = 2f;
+            const float firstCostImageHeightOffset = 1.5f;
+            const float coinCostImageWidthOffset = 5f;
+            const float potionCostImageWidthOffset = 6f;
+            const float debtCostImageWidthOffset = 5f;
+            const float setImageHeight = 7f;
+            const float setImageWidthOffset = 4f;
+            const float setImageHeightOffset = 3f;
+            const float textWidthOffset = 7f;
+            const float textHeight = 8f;
+            const float maxFontSize = 10f;
+
+            const float costFontSize = 7.5f;
+            var costFont = new Font(boldBaseFont, costFontSize, Font.BOLD, BaseColor.BLACK);
+            const float costTextWidthOffset = 3.5f;
+            const float costTextHeightOffset = 3.5f;
+
+            const float debtCostFontSize = 7.5f;
+            var debtCostFont = new Font(boldBaseFont, debtCostFontSize, Font.BOLD, BaseColor.BLACK);
+            const float debtCostTextWidthOffset = 3.5f;
+            const float debtCostTextHeightOffset = 4f;
 
             var drawActionRectangles = cardsToPrint.SelectMany(card => new List<Action<PdfContentByte, Rectangle>>
             {
                 (contentByte, rectangle) =>
                 {
+                    const float rotationInRadians = 4.71239f;
 
-                    contentByte.SetColorFill(BaseColor.CYAN);
-                    contentByte.SetColorStroke(BaseColor.CYAN);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
-                    //if (beer.Points > 0)
-                    //{
-                    //    var pointsImage = Image.GetInstance("Brewcrafters\\Points.png");
-                    //    pointsImage.ScalePercent(7f);
-                    //    pointsImage.Rotation = 4.71239f;
-                    //    pointsImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 3);
-                    //    contentByte.AddImage(pointsImage);
-                    //}
+                    var backgroundImage = CreateBackgroundImage(card.SuperType.Card_type_image, rotationInRadians, rectangle);
+                    var backgroundImageBottom = rectangle.Bottom + (rectangle.Height - backgroundImage.ScaledHeight) / 2;
+                    backgroundImage.SetAbsolutePosition(rectangle.Left, backgroundImageBottom);
+                    contentByte.AddImage(backgroundImage);
 
-                    //var smallFontPadding = string.IsNullOrWhiteSpace(beer.Name3) ? 0 : 6;
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(card.GroupName ?? card.Name, font), rectangle.Left + fontSize * 2 + 2, rectangle.Top - 3, 270);
-                    //ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name2, font), smallFontPadding + rectangle.Left + fontSize + 1, rectangle.Top - 3, 270);
-                    //ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name3, font), smallFontPadding + rectangle.Left + 0, rectangle.Top - 3, 270);
-                    //if (beer.Points > 0)
-                    //    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Points.ToString(), font), rectangle.Left + 15, rectangle.Bottom + 12, 270);
-                    //if (!string.IsNullOrEmpty(beer.ImageName))
-                    //{
-                    //    var beerImage = Image.GetInstance("Brewcrafters\\" + beer.ImageName);
-                    //    beerImage.SetAbsolutePosition(rectangle.Left + 10, rectangle.Bottom + 16);
-                    //    beerImage.Rotation = 4.71239f;
-                    //    //beerImage.Rotation = 1.5708f;
-                    //    beerImage.ScalePercent(9f);
-                    //    contentByte.AddImage(beerImage);
-                    //}
-                    //if (beer.Barrel)
-                    //{
-                    //    var barrelImage = Image.GetInstance("Brewcrafters\\Barrel.png");
-                    //    barrelImage.Rotation = 4.71239f;
-                    //    barrelImage.ScalePercent(20f);
-                    //    barrelImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 34);
-                    //    contentByte.AddImage(barrelImage);
-                    //}
-                    //if (beer.Hops)
-                    //{
-                    //    var hopsImage = Image.GetInstance("Brewcrafters\\Hops.png");
-                    //    hopsImage.Rotation = 4.71239f;
-                    //    hopsImage.ScalePercent(15f);
-                    //    hopsImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 34);
-                    //    contentByte.AddImage(hopsImage);
-                    //}
+                    var currentCostBottom = backgroundImageBottom + backgroundImage.ScaledHeight - firstCostImageHeightOffset;
+                    Rectangle currentCostRectangle;
+                    if (!string.IsNullOrWhiteSpace(card.Cost) && (card.Cost != "0" || (card.Cost == "0" && card.Potcost != 1 && !card.Debtcost.HasValue)))
+                    {
+                        currentCostBottom = currentCostBottom - (coinCostRectangleHeight + costPadding);
+                        currentCostRectangle = new Rectangle(rectangle.Left + coinCostImageWidthOffset, currentCostBottom, rectangle.Right, currentCostBottom + coinCostRectangleHeight);
+
+                        var coinImage = CreateCoinImage(rotationInRadians, currentCostRectangle);
+                        coinImage.SetAbsolutePosition(currentCostRectangle.Left, currentCostRectangle.Bottom);
+                        contentByte.AddImage(coinImage);
+
+                        var cost = card.Cost.Replace("*", "");
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cost, costFont), currentCostRectangle.Left + costTextWidthOffset, currentCostRectangle.Top - costTextHeightOffset, 270);
+
+                    }
+                    if (card.Potcost == 1)
+                    {
+                        currentCostBottom = currentCostBottom - (potionCostRectangleHeight + costPadding);
+                        currentCostRectangle = new Rectangle(rectangle.Left + potionCostImageWidthOffset, currentCostBottom, rectangle.Right, currentCostBottom + potionCostRectangleHeight);
+
+                        var potionImage = CreatePotionImage(rotationInRadians, currentCostRectangle);
+                        potionImage.SetAbsolutePosition(currentCostRectangle.Left, currentCostRectangle.Bottom);
+                        contentByte.AddImage(potionImage);
+                    }
+                    if (card.Debtcost.HasValue)
+                    {
+                        currentCostBottom = currentCostBottom - (debtCostRectangleHeight + costPadding);
+                        currentCostRectangle = new Rectangle(rectangle.Left + debtCostImageWidthOffset, currentCostBottom, rectangle.Right, currentCostBottom + debtCostRectangleHeight);
+
+                        var debtImage = CreateDebtImage(rotationInRadians, currentCostRectangle);
+                        debtImage.SetAbsolutePosition(currentCostRectangle.Left, currentCostRectangle.Bottom);
+                        contentByte.AddImage(debtImage);
+
+                        var debtCost = card.Debtcost.ToString();
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(debtCost, debtCostFont), currentCostRectangle.Left + debtCostTextWidthOffset, currentCostRectangle.Top - debtCostTextHeightOffset, 270);
+                    }
+
+
+                    var setImageRectangle = new Rectangle(rectangle.Left + setImageWidthOffset, backgroundImageBottom + setImageHeightOffset, rectangle.Right, backgroundImageBottom + setImageHeightOffset + setImageHeight);
+
+                    var setImage = CreateSetImage(card.Set.Image, setImageRectangle, rotationInRadians);
+                    setImage.SetAbsolutePosition(setImageRectangle.Left, setImageRectangle.Bottom);
+                    contentByte.AddImage(setImage);
+
+
+                    var cardName = card.GroupName ?? card.Name;
+                    var textRectangle = new Rectangle(rectangle.Left + textWidthOffset, setImageRectangle.Top + textPadding, rectangle.Left + textWidthOffset + textHeight, currentCostBottom - textPadding);
+                    var rotatedRectangle = new Rectangle(textRectangle.Left, textRectangle.Bottom, textRectangle.Left + textRectangle.Height, textRectangle.Bottom + textRectangle.Width);
+                    var textFontSize = TextSharpHelpers.GetFontSize(contentByte, cardName, rotatedRectangle, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
+                    var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
+                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cardName, font), textRectangle.Left, textRectangle.Top, 270);
+
+                    //TODO: Experiment with using the rotation on rectangle, in the rectangle generator
                 },
                 (contentByte, rectangle) =>
                 {
-                    //var fontSize = string.IsNullOrWhiteSpace(beer.Name2) ? 9 : string.IsNullOrWhiteSpace(beer.Name3) ? 10 : 8;
-                    //var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
-                    contentByte.SetColorFill(BaseColor.CYAN);
-                    contentByte.SetColorStroke(BaseColor.CYAN);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle);
-                    //var smallFontPadding = string.IsNullOrWhiteSpace(beer.Name3) ? 0 : 6;
-                    //if (beer.Points > 0)
-                    //{
-                    //    var pointsImage = Image.GetInstance("Brewcrafters\\Points.png");
-                    //    pointsImage.ScalePercent(7f);
-                    //    pointsImage.Rotation = 1.5708f;
-                    //    pointsImage.SetAbsolutePosition(rectangle.Right - (12 + pointsImage.ScaledWidth),
-                    //        rectangle.Top - (3 + pointsImage.ScaledHeight));
-                    //    contentByte.AddImage(pointsImage);
-                    //}
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(card.GroupName ?? card.Name, font), rectangle.Right - (fontSize * 2 + 2), rectangle.Bottom + 3, 90);
+                    var rotationInRadians = 1.5708f;
 
-                    //ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name2, font), rectangle.Right - (smallFontPadding + fontSize + 1), rectangle.Bottom + 3, 90);
-                    //ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name3, font), rectangle.Right  - smallFontPadding, rectangle.Bottom + 3, 90);
-                    //if (beer.Points > 0)
-                    //    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Points.ToString(), font), rectangle.Right - 15, rectangle.Top - 12, 90);
-                    //if (!string.IsNullOrEmpty(beer.ImageName))
-                    //{
-                    //    var beerImage = Image.GetInstance("Brewcrafters\\" + beer.ImageName);
-                    //    beerImage.ScalePercent(9f);
-                    //    beerImage.SetAbsolutePosition(rectangle.Right - (beerImage.ScaledWidth + 10), rectangle.Top - (beerImage.ScaledHeight + 16));
-                    //    beerImage.Rotation = 1.5708f;
-                    //    contentByte.AddImage(beerImage);
-                    //}
-
-                    //if (beer.Barrel)
-                    //{
-                    //    var barrelImage = Image.GetInstance("Brewcrafters\\Barrel.png");
-                    //    barrelImage.Rotation = 1.5708f;
-                    //    barrelImage.ScalePercent(20f);
-                    //    barrelImage.SetAbsolutePosition(rectangle.Right - (barrelImage.ScaledWidth + 12), rectangle.Top - (barrelImage.ScaledHeight + 34));
-                    //    contentByte.AddImage(barrelImage);
-                    //}
-                    //if (beer.Hops)
-                    //{
-                    //    var hopsImage = Image.GetInstance("Brewcrafters\\Hops.png");
-                    //    hopsImage.Rotation = 1.5708f;
-                    //    hopsImage.ScalePercent(15f);
-                    //    hopsImage.SetAbsolutePosition(rectangle.Right - (hopsImage.ScaledWidth + 12), rectangle.Top - (hopsImage.ScaledHeight + 34));
-                    //    contentByte.AddImage(hopsImage);
-                    //}
+                    
 
                 },
             }).ToList();
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Dominion");
+        }
+
+        private static Image CreateSetImage(string imageName, Rectangle setImageRectangle, float rotationInRadians)
+        {
+            var setImage = Image.GetInstance($@"Dominion\{imageName}");
+            setImage.ScaleToFit(setImageRectangle);
+            setImage.Rotation = rotationInRadians;
+            return setImage;
+        }
+
+        private static Image CreateDebtImage(float rotationInRadians, Rectangle currentCostRectangle)
+        {
+            var debtImage = Image.GetInstance(@"Dominion\debt.png");
+            debtImage.Rotation = rotationInRadians;
+            debtImage.ScaleToFit(currentCostRectangle);
+            return debtImage;
+        }
+
+        private static Image CreatePotionImage(float rotationInRadians, Rectangle currentCostRectangle)
+        {
+            var potionImage = Image.GetInstance(@"Dominion\potion.png");
+            potionImage.Rotation = rotationInRadians;
+            potionImage.ScaleToFit(currentCostRectangle);
+            return potionImage;
+        }
+
+        private static Image CreateCoinImage(float rotationInRadians, Rectangle currentCostRectangle)
+        {
+            var coinImage = Image.GetInstance(@"Dominion\coin_small.png");
+            coinImage.Rotation = rotationInRadians;
+            coinImage.ScaleToFit(currentCostRectangle);
+            return coinImage;
+        }
+
+        private static Image CreateBackgroundImage(string baseImageName, float rotationInRadians, Rectangle rectangle)
+        {
+            var imageNameTokens = baseImageName.Split('.');
+            var backgroundImage = Image.GetInstance($@"Dominion\{imageNameTokens[0]}_nc.{imageNameTokens[1]}");
+            backgroundImage.Rotation = rotationInRadians;
+            backgroundImage.ScaleToFit(rectangle);
+            return backgroundImage;
         }
 
         private static IEnumerable<DominionCard> GetCards(IDictionary<string, CardSet> cardSets, IList<CardSuperType> cardSuperTypes)
@@ -162,15 +195,26 @@ namespace Avery16282Generator.Dominion
                 englishCards = serializer.Deserialize<IDictionary<string, DominionCard>>(jsonTextReader);
             }
 
-            foreach (var card in cards)
-            {
-                card.Name = englishCards[card.Card_tag].Name;
-                card.Sets = card.Cardset_tags.Select(setTag => cardSets[setTag]);
-                card.SuperType = cardSuperTypes.Single(cardSuperType => cardSuperType.Card_type.OrderBy(i => i).SequenceEqual(card.Types.OrderBy(i => i)));
-                if (!string.IsNullOrWhiteSpace(card.Group_tag))
-                    card.GroupName = englishCards[card.Group_tag].Name;
-            }
-            return cards;
+            return cardSets.Keys
+                .SelectMany(key => 
+                    cards
+                        .Where(card => card.Cardset_tags.Contains(key))
+                        .Select(card => new DominionCard
+                        {
+                            Group_tag = card.Group_tag,
+                            Types = card.Types,
+                            Name = englishCards[card.Card_tag].Name,
+                            Card_tag = card.Card_tag,
+                            Cardset_tags = card.Cardset_tags,
+                            GroupName = string.IsNullOrWhiteSpace(card.Group_tag) ? null : englishCards[card.Group_tag].Name,
+                            Group_top = card.Group_top,
+                            Cost = card.Cost,
+                            Debtcost = card.Debtcost,
+                            Potcost = card.Potcost,
+                            Set = cardSets[key],
+                            SuperType = cardSuperTypes.Single(cardSuperType => cardSuperType.Card_type.OrderBy(i => i).SequenceEqual(card.Types.OrderBy(i => i)))
+                        })
+                        .ToList());
         }
 
         private static IDictionary<string, CardSet> GetCardSets()
