@@ -21,7 +21,7 @@ namespace Avery16282Generator.Dominion
             
             var whiteList = new string[] { "Dominion 2nd Edition Upgrade", "Intrigue 2nd Edition Upgrade", "Nocturne" };
 
-            var useWhiteList = true;
+            var useWhiteList = false;
 
             var setsExcludingBlacklist = cardSets.Values
                 .Where(cardSet => !setsToNotPrint.Contains(cardSet.Set_name))
@@ -55,7 +55,7 @@ namespace Avery16282Generator.Dominion
             const float setImageHeight = 7f;
             const float setImageWidthOffset = 7f;
             const float setImageHeightOffset = 4.5f;
-            const float textWidthOffset = 7f;
+            const float textWidthOffset = 9f;
             const float textHeight = 8f;
             const float maxFontSize = 10f;
 
