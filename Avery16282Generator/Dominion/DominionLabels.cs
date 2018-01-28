@@ -15,14 +15,21 @@ namespace Avery16282Generator.Dominion
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
-            var setsToNotPrint = new[] { "Dominion 2nd Edition", "Intrigue 2nd Edition", "Animals"};
-            var bannedKeywords = new[] { "Extras"};
-            var setsToPrint = cardSets.Values
+
+            var setsToNotPrint = new[] { "Dominion 2nd Edition", "Intrigue 2nd Edition", "Animals" };
+            var bannedKeywords = new[] { "Extras" };
+            
+            var whiteList = new string[] { "Dominion 2nd Edition Upgrade", "Intrigue 2nd Edition Upgrade", "Nocturne" };
+
+            var useWhiteList = true;
+
+            var setsExcludingBlacklist = cardSets.Values
                 .Where(cardSet => !setsToNotPrint.Contains(cardSet.Set_name))
                 .Where(cardSet => bannedKeywords.All(bannedKeyword => !cardSet.Set_name.Contains(bannedKeyword)))
                 .Select(setToNotPrint => setToNotPrint.Set_name);
+
             var cardFromSetsToPrint = cards
-                .Where(card => setsToPrint.Contains(card.Set.Set_name))
+                .Where(card => (useWhiteList ? whiteList : setsExcludingBlacklist ).Contains(card.Set.Set_name))
                 .ToList();
 
             var groupedCards = cardFromSetsToPrint.Where(card => !string.IsNullOrWhiteSpace(card.Group_tag)).ToList();
