@@ -21,7 +21,7 @@ namespace Avery16282Generator.Dominion
             
             var whiteList = new string[] { "Dominion 2nd Edition Upgrade", "Intrigue 2nd Edition Upgrade", "Nocturne" };
 
-            var useWhiteList = false;
+            var useWhiteList = true;
 
             var setsExcludingBlacklist = cardSets.Values
                 .Where(cardSet => !setsToNotPrint.Contains(cardSet.Set_name))
@@ -92,8 +92,7 @@ namespace Avery16282Generator.Dominion
                         coinImage.SetAbsolutePosition(currentCostRectangle.Left, currentCostRectangle.Bottom);
                         contentByte.AddImage(coinImage);
 
-                        var cost = card.Cost.Replace("*", "");
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cost, costFont), currentCostRectangle.Left + costTextWidthOffset, currentCostRectangle.Top - costTextHeightOffset, textRotation);
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(card.Cost, costFont), currentCostRectangle.Left + costTextWidthOffset, currentCostRectangle.Top - costTextHeightOffset, textRotation);
 
                     }
                     if (card.Potcost == 1)
@@ -138,6 +137,8 @@ namespace Avery16282Generator.Dominion
                 {
                     var rotationInRadians = 1.5708f;
                     const int textRotation = 90;
+                    const float bestGuessAtCostTextWidth = 5.5f;
+                    const float bestGuessAtDebtTextWidth = 5.5f;
                     var backgroundImage = CreateBackgroundImage(card.SuperType.Card_type_image, rotationInRadians, rectangle);
                     var backgroundImageBottom = rectangle.Bottom + (rectangle.Height - backgroundImage.ScaledHeight) / 2;
                     backgroundImage.SetAbsolutePosition(rectangle.Left, backgroundImageBottom);
@@ -153,9 +154,8 @@ namespace Avery16282Generator.Dominion
                         coinImage.SetAbsolutePosition(currentCostRectangle.Right - coinImage.ScaledWidth, currentCostRectangle.Top - coinImage.ScaledHeight);
                         contentByte.AddImage(coinImage);
 
-                        var cost = card.Cost.Replace("*", "");
-                        const float bestGuessAtCostTextWidth = 5.5f;
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(cost, costFont), (currentCostRectangle.Right) - costTextWidthOffset, (currentCostRectangle.Top) - costTextHeightOffset - bestGuessAtCostTextWidth, textRotation);
+                        
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(card.Cost, costFont), (currentCostRectangle.Right) - costTextWidthOffset, (currentCostRectangle.Top) - costTextHeightOffset - bestGuessAtCostTextWidth, textRotation);
                     }
                     if (card.Potcost == 1)
                     {
@@ -176,8 +176,7 @@ namespace Avery16282Generator.Dominion
                         contentByte.AddImage(debtImage);
 
                         var debtCost = card.Debtcost.ToString();
-                        const float bestGuessAtCostTextWidth = 5.5f;
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(debtCost, debtCostFont), (currentCostRectangle.Right) - debtCostTextWidthOffset, (currentCostRectangle.Top) - debtCostTextHeightOffset - bestGuessAtCostTextWidth, textRotation);
+                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(debtCost, debtCostFont), (currentCostRectangle.Right) - debtCostTextWidthOffset, (currentCostRectangle.Top) - debtCostTextHeightOffset - bestGuessAtDebtTextWidth, textRotation);
                     }
 
                     var setImageRectangle = new Rectangle(rectangle.Left, backgroundImageBottom + backgroundImage.ScaledHeight - setImageHeightOffset - setImageHeight, rectangle.Right - setImageWidthOffset, backgroundImageBottom + backgroundImage.ScaledHeight - setImageHeightOffset);
