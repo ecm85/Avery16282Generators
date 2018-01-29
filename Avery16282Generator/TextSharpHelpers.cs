@@ -38,5 +38,27 @@ namespace Avery16282Generator
                 nextAttemptFontSize -= .2f;
             }
         }
+
+        public static Image DrawImage(Rectangle rectangle, PdfContentByte canvas, string imagePath, float imageRotationInRadians, bool scaleAbsolute, bool center)
+        {
+            var image = Image.GetInstance(imagePath);
+            image.Rotation = imageRotationInRadians;
+            if (scaleAbsolute)
+                image.ScaleAbsolute(rectangle.Rotate());
+            else
+                image.ScaleToFit(rectangle);
+            var imageBottom = center ? rectangle.Bottom + (rectangle.Height - image.ScaledHeight) / 2 : rectangle.Bottom;
+            image.SetAbsolutePosition(rectangle.Left, imageBottom);
+            canvas.AddImage(image);
+            return image;
+        }
+
+        public static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle, float textWidthOffset,
+            float textHeightOffset, Font font, int textRotation)
+        {
+            ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(text, font),
+                rectangle.Left + textWidthOffset, rectangle.Top - textHeightOffset,
+                textRotation);
+        }
     }
 }

@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,7 +52,13 @@
     <Compile Include="Dominion\CardSet.cs" />
     <Compile Include="Dominion\CardType.cs" />
     <Compile Include="Dominion\DominionCard.cs" />
+    <Compile Include="Dominion\DominionLabelDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="TextSharpHelpers.cs" />
     <Compile Include="PdfGenerator.cs" />
     <Compile Include="Program.cs" />
@@ -76,7 +83,12 @@
     <Content Include="Dominion\sets_en_us.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Brewcrafters\Apple.png">

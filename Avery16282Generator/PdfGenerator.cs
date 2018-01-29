@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using iTextSharp.awt.geom;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -11,9 +12,10 @@ namespace Avery16282Generator
     {
         public static void DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions, BaseColor backgroundColor, string filePrefix)
         {
-            var pageWidth = Utilities.InchesToPoints(8.5f);
-            var pageHeight = Utilities.InchesToPoints(11f);
-            var documentRectangle = new Rectangle(0, 0, pageWidth, pageHeight);
+            const int maxColumnIndex = 3;
+            const int maxRowIndex = 4;
+
+            var documentRectangle = new Rectangle(0, 0, PageWidth, PageHeight);
             using (var document = new Document(documentRectangle))
             {
                 using (var fileStream =
@@ -41,21 +43,26 @@ namespace Avery16282Generator
                                 AddPage(document, contentByte, documentRectangle, backgroundColor);
 
                             var lowerLeftX = leftMargin + extraPadding + columnIndex * (horizontalSpace + labelWidth * 2 + extraPadding * 4);
-                            var lowerLeftY = pageHeight - (topMargin + labelHeight + extraPadding + rowIndex * (verticalSpace + labelHeight + extraPadding * 2));
+                            var lowerLeftY = PageHeight - (topMargin + labelHeight + extraPadding + rowIndex * (verticalSpace + labelHeight + extraPadding * 2));
                             var upperRightX = lowerLeftX + labelWidth;
                             var upperRightY = lowerLeftY + labelHeight;
                             var rectangle = new Rectangle(lowerLeftX, lowerLeftY, upperRightX, upperRightY);
-                            var reverseRectangle = new Rectangle(lowerLeftX + labelWidth + extraPadding * 2, lowerLeftY, upperRightX + labelWidth + extraPadding * 2, upperRightY);
                             var nextAction = drawRectangleActions.Dequeue();
                             nextAction(contentByte, rectangle);
-                            var reverseAction = drawRectangleActions.Dequeue();
-                            reverseAction(contentByte, reverseRectangle);
+                            RotateCanvas180(contentByte);
+                            var reverseLowerLeftX = PageWidth - (upperRightX + labelWidth + extraPadding * 2);
+                            var reverseLowerLeftY = PageHeight - upperRightY;
+                            var reverseUpperRightX = PageWidth - (lowerLeftX + labelWidth + extraPadding * 2);
+                            var reverseUpperRightY = PageHeight - lowerLeftY;
+                            var reverseRectangle = new Rectangle(reverseLowerLeftX, reverseLowerLeftY, reverseUpperRightX, reverseUpperRightY);
+                            nextAction(contentByte, reverseRectangle);
+                            RotateCanvas180(contentByte);
                             rowIndex++;
-                            if (rowIndex > 4)
+                            if (rowIndex > maxRowIndex)
                             {
                                 rowIndex = 0;
                                 columnIndex++;
-                                if (columnIndex > 3)
+                                if (columnIndex > maxColumnIndex)
                                 {
                                     columnIndex = 0;
                                 }
@@ -68,7 +75,16 @@ namespace Avery16282Generator
             }
         }
 
-        private static void AddPage(Document document, PdfContentByte contentByte, Rectangle documentRectangle, BaseColor backgroundColor)
+        private static void RotateCanvas180(PdfContentByte contentByte)
+        {
+            contentByte.Transform(AffineTransform.GetRotateInstance(3.14159, PageWidth / 2, PageHeight / 2));
+        }
+
+        private static float PageHeight => Utilities.InchesToPoints(11f);
+
+        private static float PageWidth => Utilities.InchesToPoints(8.5f);
+
+        private static void AddPage(IDocListener document, PdfContentByte contentByte, Rectangle documentRectangle, BaseColor backgroundColor)
         {
             document.NewPage();
             TextSharpHelpers.DrawRectangle(contentByte, documentRectangle, backgroundColor);
