@@ -25,9 +25,10 @@ namespace Avery16282Generator
             return !ColumnText.HasMoreText(result);
         }
 
-        public static float GetFontSize(PdfContentByte contentByte, string text, Rectangle rectangle, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
+        public static float GetFontSize(PdfContentByte contentByte, string text, float width, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
         {
             var nextAttemptFontSize = maxFontSize;
+            var rectangle = new Rectangle(0, 0, width, nextAttemptFontSize * 1.2f);
             while (true)
             {
                 var font = new Font(baseFont, nextAttemptFontSize, fontStyle, BaseColor.BLACK);
@@ -36,6 +37,7 @@ namespace Avery16282Generator
                     return nextAttemptFontSize;
                 }
                 nextAttemptFontSize -= .2f;
+                rectangle = new Rectangle(0, 0, width, nextAttemptFontSize * 1.2f);
             }
         }
 

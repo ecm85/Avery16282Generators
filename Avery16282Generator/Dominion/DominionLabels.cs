@@ -40,16 +40,17 @@ namespace Avery16282Generator.Dominion
             PdfContentByte canvas, string cardName, BaseFont baseFont, CardSuperType cardSuperType)
         {
             const float textPadding = 2f;
-            const float textWidthOffset = 9f;
-            const float textHeight = 8f;
+            const float textHeight = 12f;
             const float maxFontSize = 10f;
-
+            var textRectangleHeight = currentCostBottom - setImageTop - textPadding * 2;
+            var textFontSize = TextSharpHelpers.GetFontSize(canvas, cardName, textRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
+            var font = GetMainTextFont(baseFont, textFontSize, cardSuperType);
+            var textWidthOffset = 8 + (maxFontSize - font.Size) * .35f;
             var textRectangle = new Rectangle(
                 rectangle.Left + textWidthOffset,
                 setImageTop + textPadding,
                 rectangle.Left + textWidthOffset + textHeight,
                 currentCostBottom - textPadding);
-            var font = GetMainTextFont(textRectangle, canvas, cardName, baseFont, maxFontSize, cardSuperType);
             DrawText(canvas, cardName, textRectangle, 0, 0, font);
         }
 
@@ -63,7 +64,7 @@ namespace Avery16282Generator.Dominion
         private static float DrawCostsAndReturnBottom(BaseFont boldBaseFont, DominionCard card, Rectangle rectangle,
             PdfContentByte canvas, float backgroundImageTop)
         {
-            const float firstCostImageHeightOffset = 1.5f;
+            const float firstCostImageHeightOffset = 3f;
             var currentCostBottom = backgroundImageTop - firstCostImageHeightOffset;
             const float costPadding = 1f;
 
@@ -80,10 +81,10 @@ namespace Avery16282Generator.Dominion
         private static float DrawCost(BaseFont boldBaseFont, Rectangle rectangle, PdfContentByte canvas, float currentCostBottom, string cardCost, float costPadding)
         {
             const float costFontSize = 7.5f;
-            const float costTextWidthOffset = 3.5f;
-            const float coinCostImageWidthOffset = 5f;
-            const float costTextHeightOffset = 3.5f;
-            const float coinCostRectangleHeight = 13f;
+            const float costTextWidthOffset = 4.5f;
+            const float coinCostImageWidthOffset = 4.5f;
+            const float costTextHeightOffset = 4.5f;
+            const float coinCostRectangleHeight = 14.5f;
             currentCostBottom = currentCostBottom - (coinCostRectangleHeight + costPadding);
             var currentCostRectangle = new Rectangle(rectangle.Left + coinCostImageWidthOffset, currentCostBottom,
                 rectangle.Right, currentCostBottom + coinCostRectangleHeight);
@@ -128,7 +129,7 @@ namespace Avery16282Generator.Dominion
         {
             const float setImageHeight = 7f;
             const float setImageWidthOffset = 7f;
-            const float setImageHeightOffset = 4.5f;
+            const float setImageHeightOffset = 7f;
             var setImageRectangle = new Rectangle(rectangle.Left + setImageWidthOffset,
                 backgroundImageBottom + setImageHeightOffset,
                 rectangle.Right,
@@ -151,17 +152,12 @@ namespace Avery16282Generator.Dominion
             return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, center);
         }
 
-        private static Font GetMainTextFont(Rectangle textRectangle, PdfContentByte canvas, string cardName,
-            BaseFont baseFont, float maxFontSize, CardSuperType superType)
+        private static Font GetMainTextFont(BaseFont baseFont, float fontSize, CardSuperType superType)
         {
-            var rotatedRectangle = new Rectangle(textRectangle.Left, textRectangle.Bottom,
-                textRectangle.Left + textRectangle.Height, textRectangle.Bottom + textRectangle.Width);
-            var textFontSize = TextSharpHelpers.GetFontSize(canvas, cardName, rotatedRectangle, baseFont, maxFontSize,
-                Element.ALIGN_LEFT, Font.NORMAL);
             var fontColor = superType.Card_type_image == "night.png"
                 ? BaseColor.WHITE
                 : BaseColor.BLACK;
-            var font = new Font(baseFont, textFontSize, Font.NORMAL, fontColor);
+            var font = new Font(baseFont, fontSize, Font.NORMAL, fontColor);
             return font;
         }
     }
