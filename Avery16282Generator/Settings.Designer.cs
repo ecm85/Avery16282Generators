@@ -73,7 +73,7 @@ namespace Avery16282Generator {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool UseWhiteList {
             get {
                 return ((bool)(this["UseWhiteList"]));
@@ -85,7 +85,7 @@ namespace Avery16282Generator {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UseBlackList {
             get {
                 return ((bool)(this["UseBlackList"]));

@@ -11,7 +11,7 @@ namespace Avery16282Generator.Dominion
     {
         public static void CreateLabels()
         {
-            var cardsToPrint = DominionLabelDataAccess.GetCardsToPrint();
+            var cardsToPrint = DominionCardDataAccess.GetCardsToPrint();
 
             var minionProRegular = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Regular.otf");
             var minionProBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Bold.otf");

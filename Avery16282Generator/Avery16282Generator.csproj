@@ -52,7 +52,7 @@
     <Compile Include="Dominion\CardSet.cs" />
     <Compile Include="Dominion\CardType.cs" />
     <Compile Include="Dominion\DominionCard.cs" />
-    <Compile Include="Dominion\DominionLabelDataAccess.cs" />
+    <Compile Include="Dominion\DominionCardDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Avery16282Generator.Dominion
 {
-    public class DominionLabelDataAccess
+    public static class DominionCardDataAccess
     {
         public static IEnumerable<DominionCard> GetCardsToPrint()
         {
@@ -28,7 +28,7 @@ namespace Avery16282Generator.Dominion
                     .Where(
                         setToPrint => Settings.Default.BannedKeywords
                             .Cast<string>()
-                            .All(bannedKeyword => !setsToPrint.Contains(bannedKeyword)))
+                            .All(bannedKeyword => !setToPrint.Contains(bannedKeyword)))
                     .ToList();
             }
 
