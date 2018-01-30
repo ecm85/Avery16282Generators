@@ -25,10 +25,10 @@ namespace Avery16282Generator
                     using (var pdfWriter = PdfWriter.GetInstance(document, fileStream))
                     {
                         
-                        var topMargin = Utilities.InchesToPoints(.48f);
+                        var topMargin = Utilities.InchesToPoints(.50f);
                         var labelHeight = Utilities.InchesToPoints(1.60f);
                         var labelWidth = Utilities.InchesToPoints(.40f);
-                        var leftMargin = Utilities.InchesToPoints(1.03f);
+                        var leftMargin = Utilities.InchesToPoints(1f);
                         var verticalSpace = Utilities.InchesToPoints(.365f);
                         var horizontalSpace = Utilities.InchesToPoints(1f);
                         var extraPadding = Utilities.InchesToPoints(.05f);
