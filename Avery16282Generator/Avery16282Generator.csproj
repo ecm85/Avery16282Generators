@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Brewcrafters\Beer.cs" />
     <Compile Include="Brewcrafters\BrewcraftersLabels.cs" />
+    <Compile Include="Cursor.cs" />
     <Compile Include="Dominion\CardSet.cs" />
     <Compile Include="Dominion\CardType.cs" />
     <Compile Include="Dominion\DominionCard.cs" />
