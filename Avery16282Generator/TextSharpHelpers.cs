@@ -41,7 +41,7 @@ namespace Avery16282Generator
             }
         }
 
-        public static Image DrawImage(Rectangle rectangle, PdfContentByte canvas, string imagePath, float imageRotationInRadians, bool scaleAbsolute, bool center)
+        public static Image DrawImage(Rectangle rectangle, PdfContentByte canvas, string imagePath, float imageRotationInRadians, bool scaleAbsolute, bool centerVertically, bool centerHorizontally)
         {
             var image = Image.GetInstance(imagePath);
             image.Rotation = imageRotationInRadians;
@@ -49,8 +49,9 @@ namespace Avery16282Generator
                 image.ScaleAbsolute(rectangle.Rotate());
             else
                 image.ScaleToFit(rectangle);
-            var imageBottom = center ? rectangle.Bottom + (rectangle.Height - image.ScaledHeight) / 2 : rectangle.Bottom;
-            image.SetAbsolutePosition(rectangle.Left, imageBottom);
+            var imageBottom = centerVertically ? rectangle.Bottom + (rectangle.Height - image.ScaledHeight) / 2 : rectangle.Bottom;
+            var imageLeft = centerHorizontally ? rectangle.Left + (rectangle.Width - image.ScaledWidth) / 2 : rectangle.Left;
+            image.SetAbsolutePosition(imageLeft, imageBottom);
             canvas.AddImage(image);
             return image;
         }

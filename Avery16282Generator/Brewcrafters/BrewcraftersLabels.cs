@@ -11,110 +11,107 @@ namespace Avery16282Generator.Brewcrafters
     {
         public static void CreateLabels()
         {
-            var segoeUi = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "seguisym.ttf");
-            var baseFont = BaseFont.CreateFont(segoeUi, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
+            var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
+            var baseFont = BaseFont.CreateFont(garamond, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var boldBaseFont = BaseFont.CreateFont(garamondBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
             var beers = GetBeers();
             var labelBackground = new CMYKColor(0, 8, 26, 0);
             var drawActionRectangles = beers.SelectMany(beer => new List<Action<PdfContentByte, Rectangle>>
             {
-                (contentByte, rectangle) =>
+                (canvas, rectangle) =>
                 {
-                    var fontSize = string.IsNullOrWhiteSpace(beer.Name2) ? 10 : string.IsNullOrWhiteSpace(beer.Name3) ? 10 : 8;
-                    var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
-
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, labelBackground);
+                    TextSharpHelpers.DrawRectangle(canvas, rectangle, labelBackground);
+                    //points
+                    //name
+                    //hops
+                    //barrel
+                    //gold label
+                    const float startOfLabelOffset = 4f;
+                    var topOfText = rectangle.Top - startOfLabelOffset;
                     if (beer.Points > 0)
                     {
-                        var pointsImage = Image.GetInstance("Brewcrafters\\Points.png");
-                        pointsImage.ScalePercent(7f);
-                        pointsImage.Rotation = 4.71239f;
-                        pointsImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 3);
-                        contentByte.AddImage(pointsImage);
+                        topOfText = DrawCostAndReturnTop(rectangle, startOfLabelOffset, canvas, topOfText, beer, boldBaseFont);
                     }
+                    Console.WriteLine(topOfText);
+                    //var usesLine2 = string.IsNullOrWhiteSpace(beer.Name2);
+                    //var usesLine3 = string.IsNullOrWhiteSpace(beer.Name3);
 
-                    var smallFontPadding = string.IsNullOrWhiteSpace(beer.Name3) ? 0 : 6;
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name1, font), smallFontPadding + rectangle.Left + fontSize * 2 + 2, rectangle.Top - 3, 270);
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name2, font), smallFontPadding + rectangle.Left + fontSize + 1, rectangle.Top - 3, 270);
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name3, font), smallFontPadding + rectangle.Left + 0, rectangle.Top - 3, 270);
-                    if (beer.Points > 0)
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Points.ToString(), font), rectangle.Left + 15, rectangle.Bottom + 12, 270);
-                    if (!string.IsNullOrEmpty(beer.ImageName))
-                    {
-                        var beerImage = Image.GetInstance("Brewcrafters\\" + beer.ImageName);
-                        beerImage.SetAbsolutePosition(rectangle.Left + 10, rectangle.Bottom + 16);
-                        beerImage.Rotation = 4.71239f;
-                        //beerImage.Rotation = 1.5708f;
-                        beerImage.ScalePercent(9f);
-                        contentByte.AddImage(beerImage);
-                    }
-                    if (beer.Barrel)
-                    {
-                        var barrelImage = Image.GetInstance("Brewcrafters\\Barrel.png");
-                        barrelImage.Rotation = 4.71239f;
-                        barrelImage.ScalePercent(20f);
-                        barrelImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 34);
-                        contentByte.AddImage(barrelImage);
-                    }
-                    if (beer.Hops)
-                    {
-                        var hopsImage = Image.GetInstance("Brewcrafters\\Hops.png");
-                        hopsImage.Rotation = 4.71239f;
-                        hopsImage.ScalePercent(15f);
-                        hopsImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 34);
-                        contentByte.AddImage(hopsImage);
-                    }
-                },
-                (contentByte, rectangle) =>
-                {
-                    var fontSize = string.IsNullOrWhiteSpace(beer.Name2) ? 9 : string.IsNullOrWhiteSpace(beer.Name3) ? 10 : 8;
-                    var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, labelBackground);
-                    var smallFontPadding = string.IsNullOrWhiteSpace(beer.Name3) ? 0 : 6;
-                    if (beer.Points > 0)
-                    {
-                        var pointsImage = Image.GetInstance("Brewcrafters\\Points.png");
-                        pointsImage.ScalePercent(7f);
-                        pointsImage.Rotation = 1.5708f;
-                        pointsImage.SetAbsolutePosition(rectangle.Right - (12 + pointsImage.ScaledWidth),
-                            rectangle.Top - (3 + pointsImage.ScaledHeight));
-                        contentByte.AddImage(pointsImage);
-                    }
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name1, font), rectangle.Right - (smallFontPadding + fontSize * 2 + 2), rectangle.Bottom + 3, 90);
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name2, font), rectangle.Right - (smallFontPadding + fontSize + 1), rectangle.Bottom + 3, 90);
-                    ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Name3, font), rectangle.Right  - smallFontPadding, rectangle.Bottom + 3, 90);
-                    if (beer.Points > 0)
-                        ColumnText.ShowTextAligned(contentByte, Element.ALIGN_LEFT, new Phrase(beer.Points.ToString(), font), rectangle.Right - 15, rectangle.Top - 12, 90);
-                    if (!string.IsNullOrEmpty(beer.ImageName))
-                    {
-                        var beerImage = Image.GetInstance("Brewcrafters\\" + beer.ImageName);
-                        beerImage.ScalePercent(9f);
-                        beerImage.SetAbsolutePosition(rectangle.Right - (beerImage.ScaledWidth + 10), rectangle.Top - (beerImage.ScaledHeight + 16));
-                        beerImage.Rotation = 1.5708f;
-                        contentByte.AddImage(beerImage);
-                    }
-
-                    if (beer.Barrel)
-                    {
-                        var barrelImage = Image.GetInstance("Brewcrafters\\Barrel.png");
-                        barrelImage.Rotation = 1.5708f;
-                        barrelImage.ScalePercent(20f);
-                        barrelImage.SetAbsolutePosition(rectangle.Right - (barrelImage.ScaledWidth + 12), rectangle.Top - (barrelImage.ScaledHeight + 34));
-                        contentByte.AddImage(barrelImage);
-                    }
-                    if (beer.Hops)
-                    {
-                        var hopsImage = Image.GetInstance("Brewcrafters\\Hops.png");
-                        hopsImage.Rotation = 1.5708f;
-                        hopsImage.ScalePercent(15f);
-                        hopsImage.SetAbsolutePosition(rectangle.Right - (hopsImage.ScaledWidth + 12), rectangle.Top - (hopsImage.ScaledHeight + 34));
-                        contentByte.AddImage(hopsImage);
-                    }
-
-                },
+                    //var line1FontSize = TextSharpHelpers.GetFontSize(canvas, beer.Name1, rectangle.Height - 65, baseFont, 12, Element.ALIGN_LEFT, Font.NORMAL);
+                    //var line2FontSize = usesLine2 ? (float?) null : TextSharpHelpers.GetFontSize(canvas, beer.Name2, rectangle.Height - 45, baseFont, 12, Element.ALIGN_LEFT, Font.NORMAL);
+                    //var line3FontSize = usesLine3 ? (float?) null : TextSharpHelpers.GetFontSize(canvas, beer.Name3, rectangle.Height - 45, baseFont, 12, Element.ALIGN_LEFT, Font.NORMAL);
+                    //var scaledFontSize = Math.Min(line1FontSize, Math.Min(line2FontSize ?? float.MaxValue, line3FontSize ?? float.MaxValue));
+                    //var font = new Font(baseFont, scaledFontSize, Font.NORMAL, BaseColor.BLACK);
+                    //ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(beer.Name1, font), rectangle.Left + scaledFontSize * 2 + 2, rectangle.Top - 3, 270);
+                    //ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(beer.Name2, font), rectangle.Left + scaledFontSize + 1, rectangle.Top - 3, 270);
+                    //ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(beer.Name3, font), rectangle.Left + 0, rectangle.Top - 3, 270);
+                    //if (!string.IsNullOrEmpty(beer.ImageName))
+                    //{
+                    //    var beerImage = Image.GetInstance("Brewcrafters\\" + beer.ImageName);
+                    //    beerImage.SetAbsolutePosition(rectangle.Left + 10, rectangle.Bottom + 16);
+                    //    beerImage.Rotation = 4.71239f;
+                    //    //beerImage.Rotation = 1.5708f;
+                    //    beerImage.ScalePercent(9f);
+                    //    canvas.AddImage(beerImage);
+                    //}
+                    //if (beer.Barrel)
+                    //{
+                    //    var barrelImage = Image.GetInstance("Brewcrafters\\Barrel.png");
+                    //    barrelImage.Rotation = 4.71239f;
+                    //    barrelImage.ScalePercent(20f);
+                    //    barrelImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 34);
+                    //    canvas.AddImage(barrelImage);
+                    //}
+                    //if (beer.Hops)
+                    //{
+                    //    var hopsImage = Image.GetInstance("Brewcrafters\\Hops.png");
+                    //    hopsImage.Rotation = 4.71239f;
+                    //    hopsImage.ScalePercent(15f);
+                    //    hopsImage.SetAbsolutePosition(rectangle.Left + 12, rectangle.Bottom + 34);
+                    //    canvas.AddImage(hopsImage);
+                    //}
+                }
             }).ToList();
 
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            PdfGenerator.DrawRectangles(drawActionRectangleQueue, labelBackground, "BrewCrafters");
+            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "BrewCrafters");
+        }
+
+        private static float DrawCostAndReturnTop(Rectangle rectangle, float startOfLabelOffset, PdfContentByte canvas,
+            float topOfText, Beer beer, BaseFont boldBaseFont)
+        {
+            const float pointsImageHeight = 16f;
+            var pointsRectangle = new Rectangle(rectangle.Left, rectangle.Top - (pointsImageHeight + startOfLabelOffset * 2),
+                rectangle.Right, rectangle.Top - startOfLabelOffset);
+            DrawImage(pointsRectangle, canvas, "Brewcrafters\\Points.png", centerHorizontally: true);
+            topOfText -= pointsRectangle.Height;
+            const float pointsTextWidthOffset = 11.5f;
+            const float pointsTextHeightOffset = 7.5f;
+            const float pointsFontSize = 10f;
+            var pointsText = beer.Points.ToString();
+            var font = new Font(boldBaseFont, pointsFontSize, Font.BOLD, BaseColor.BLACK);
+            DrawText(canvas, pointsText, pointsRectangle, pointsTextWidthOffset, pointsTextHeightOffset, font);
+            return topOfText;
+        }
+
+        private static Image DrawImage(
+            Rectangle rectangle,
+            PdfContentByte canvas,
+            string imagePath,
+            bool scaleAbsolute = false,
+            bool centerVertically = false,
+            bool centerHorizontally = false)
+        {
+            const float imageRotationInRadians = 4.71239f;
+            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
+        }
+
+        private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle,
+            float textWidthOffset, float textHeightOffset, Font font)
+        {
+            const int textRotation = 270;
+            TextSharpHelpers.DrawText(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
         }
 
         private static IEnumerable<Beer> GetBeers()

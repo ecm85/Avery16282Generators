@@ -146,10 +146,16 @@ namespace Avery16282Generator.Dominion
             TextSharpHelpers.DrawText(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
         }
 
-        private static Image DrawImage(Rectangle rectangle, PdfContentByte canvas, string imagePath, bool scaleAbsolute = false, bool center = false)
+        private static Image DrawImage(
+            Rectangle rectangle,
+            PdfContentByte canvas,
+            string imagePath,
+            bool scaleAbsolute = false,
+            bool centerVertically = false,
+            bool centerHorizontally = false)
         {
             const float imageRotationInRadians = 4.71239f;
-            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, center);
+            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
         }
 
         private static Font GetMainTextFont(BaseFont baseFont, float fontSize, CardSuperType superType)
