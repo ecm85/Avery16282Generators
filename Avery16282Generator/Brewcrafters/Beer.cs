@@ -8,6 +8,19 @@
         public int Points { get; set; }
         public bool Barrel { get; set; }
         public bool Hops { get; set; }
-        public string ImageName { get; set; }
+        public string GoldLabelImageName { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                var name = Name1;
+                if (!string.IsNullOrWhiteSpace(Name2))
+                    name += " " + Name2;
+                if (!string.IsNullOrWhiteSpace(Name3))
+                    name += " " + Name3;
+                return name;
+            }
+        }
     }
 }
