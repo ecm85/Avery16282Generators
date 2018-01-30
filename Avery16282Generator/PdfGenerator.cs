@@ -35,12 +35,12 @@ namespace Avery16282Generator
                         var rowIndex = 0;
                         var columnIndex = 0;
                         document.Open();
-                        var contentByte = pdfWriter.DirectContent;
+                        var canvas = pdfWriter.DirectContent;
 
                         while (drawRectangleActions.Any())
                         {
                             if (rowIndex == 0 && columnIndex == 0)
-                                AddPage(document, contentByte, documentRectangle, backgroundColor);
+                                AddPage(document, canvas, documentRectangle, backgroundColor);
 
                             var lowerLeftX = leftMargin + extraPadding + columnIndex * (horizontalSpace + labelWidth * 2 + extraPadding * 4);
                             var lowerLeftY = PageHeight - (topMargin + labelHeight + extraPadding + rowIndex * (verticalSpace + labelHeight + extraPadding * 2));
@@ -48,15 +48,15 @@ namespace Avery16282Generator
                             var upperRightY = lowerLeftY + labelHeight;
                             var rectangle = new Rectangle(lowerLeftX, lowerLeftY, upperRightX, upperRightY);
                             var nextAction = drawRectangleActions.Dequeue();
-                            nextAction(contentByte, rectangle);
-                            RotateCanvas180(contentByte);
+                            nextAction(canvas, rectangle);
+                            RotateCanvas180(canvas);
                             var reverseLowerLeftX = PageWidth - (upperRightX + labelWidth + extraPadding * 2);
                             var reverseLowerLeftY = PageHeight - upperRightY;
                             var reverseUpperRightX = PageWidth - (lowerLeftX + labelWidth + extraPadding * 2);
                             var reverseUpperRightY = PageHeight - lowerLeftY;
                             var reverseRectangle = new Rectangle(reverseLowerLeftX, reverseLowerLeftY, reverseUpperRightX, reverseUpperRightY);
-                            nextAction(contentByte, reverseRectangle);
-                            RotateCanvas180(contentByte);
+                            nextAction(canvas, reverseRectangle);
+                            RotateCanvas180(canvas);
                             rowIndex++;
                             if (rowIndex > maxRowIndex)
                             {
@@ -75,19 +75,19 @@ namespace Avery16282Generator
             }
         }
 
-        private static void RotateCanvas180(PdfContentByte contentByte)
+        private static void RotateCanvas180(PdfContentByte canvas)
         {
-            contentByte.Transform(AffineTransform.GetRotateInstance(3.14159, PageWidth / 2, PageHeight / 2));
+            canvas.Transform(AffineTransform.GetRotateInstance(3.14159, PageWidth / 2, PageHeight / 2));
         }
 
         private static float PageHeight => Utilities.InchesToPoints(11f);
 
         private static float PageWidth => Utilities.InchesToPoints(8.5f);
 
-        private static void AddPage(IDocListener document, PdfContentByte contentByte, Rectangle documentRectangle, BaseColor backgroundColor)
+        private static void AddPage(IDocListener document, PdfContentByte canvas, Rectangle documentRectangle, BaseColor backgroundColor)
         {
             document.NewPage();
-            TextSharpHelpers.DrawRectangle(contentByte, documentRectangle, backgroundColor);
+            TextSharpHelpers.DrawRectangle(canvas, documentRectangle, backgroundColor);
         }
     }
 }

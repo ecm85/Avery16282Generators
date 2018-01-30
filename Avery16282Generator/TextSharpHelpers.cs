@@ -12,11 +12,11 @@ namespace Avery16282Generator
             content.Fill();
         }
 
-        private static bool WriteTextInRectangle(PdfContentByte contentByte, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
+        private static bool WriteTextInRectangle(PdfContentByte canvas, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
         {
             var phrase = new Phrase(text, font);
 
-            var columnText = new ColumnText(contentByte)
+            var columnText = new ColumnText(canvas)
             {
                 Alignment = alignment
             };
@@ -25,14 +25,14 @@ namespace Avery16282Generator
             return !ColumnText.HasMoreText(result);
         }
 
-        public static float GetFontSize(PdfContentByte contentByte, string text, float width, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
+        public static float GetFontSize(PdfContentByte canvas, string text, float width, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
         {
             var nextAttemptFontSize = maxFontSize;
             var rectangle = new Rectangle(0, 0, width, nextAttemptFontSize * 1.2f);
             while (true)
             {
                 var font = new Font(baseFont, nextAttemptFontSize, fontStyle, BaseColor.BLACK);
-                if (WriteTextInRectangle(contentByte, text, font, rectangle, alignment, true))
+                if (WriteTextInRectangle(canvas, text, font, rectangle, alignment, true))
                 {
                     return nextAttemptFontSize;
                 }

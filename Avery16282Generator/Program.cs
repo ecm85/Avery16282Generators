@@ -12,8 +12,8 @@ namespace Avery16282Generator
         static void Main()
         {
             //DrawPlainRectangleLabels();
-            //BrewcraftersLabels.CreateLabels();
-            DominionLabels.CreateLabels();
+            BrewcraftersLabels.CreateLabels();
+            //DominionLabels.CreateLabels();
         }
 
         private static void DrawPlainRectangleLabels()
@@ -21,13 +21,13 @@ namespace Avery16282Generator
             var drawActionRectangles = new Queue<Action<PdfContentByte, Rectangle>>();
             for (var i = 0; i < 20; i++)
             {
-                drawActionRectangles.Enqueue((contentByte, rectangle) =>
+                drawActionRectangles.Enqueue((canvas, rectangle) =>
                 {
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, BaseColor.BLUE);
+                    TextSharpHelpers.DrawRectangle(canvas, rectangle, BaseColor.BLUE);
                 });
-                drawActionRectangles.Enqueue((contentByte, rectangle) =>
+                drawActionRectangles.Enqueue((canvas, rectangle) =>
                 {
-                    TextSharpHelpers.DrawRectangle(contentByte, rectangle, BaseColor.RED);
+                    TextSharpHelpers.DrawRectangle(canvas, rectangle, BaseColor.RED);
                 });
             }
             PdfGenerator.DrawRectangles(drawActionRectangles, BaseColor.CYAN, "Test");
