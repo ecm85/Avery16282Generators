@@ -12,7 +12,7 @@ namespace Avery16282Generator
             canvas.Fill();
         }
 
-        private static bool WriteTextInRectangle(PdfContentByte canvas, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
+        private static bool WriteWrappingTextInRectangle(PdfContentByte canvas, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
         {
             var phrase = new Phrase(text, font);
 
@@ -32,7 +32,7 @@ namespace Avery16282Generator
             while (true)
             {
                 var font = new Font(baseFont, nextAttemptFontSize, fontStyle, BaseColor.BLACK);
-                if (WriteTextInRectangle(canvas, text, font, rectangle, alignment, true))
+                if (WriteWrappingTextInRectangle(canvas, text, font, rectangle, alignment, true))
                 {
                     return nextAttemptFontSize;
                 }
@@ -56,7 +56,7 @@ namespace Avery16282Generator
             return image;
         }
 
-        public static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle, float textWidthOffset,
+        public static void WriteNonWrappingTextInRectangle(PdfContentByte canvas, string text, Rectangle rectangle, float textWidthOffset,
             float textHeightOffset, Font font, int textRotation)
         {
             ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(text, font),
