@@ -12,8 +12,8 @@ namespace Avery16282Generator
         static void Main()
         {
             //DrawPlainRectangleLabels();
-            //BrewcraftersLabels.CreateLabels();
-            DominionLabels.CreateLabels();
+            BrewcraftersLabels.CreateLabels();
+            //DominionLabels.CreateLabels();
         }
 
         private static void DrawPlainRectangleLabels()
