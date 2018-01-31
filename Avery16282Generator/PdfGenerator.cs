@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using iTextSharp.awt.geom;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
 namespace Avery16282Generator
 {
-    class PdfGenerator
+    public static class PdfGenerator
     {
         public static void DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions, BaseColor backgroundColor, string filePrefix)
         {
@@ -47,16 +46,22 @@ namespace Avery16282Generator
                             var upperRightX = lowerLeftX + labelWidth;
                             var upperRightY = lowerLeftY + labelHeight;
                             var rectangle = new Rectangle(lowerLeftX, lowerLeftY, upperRightX, upperRightY);
-                            var nextAction = drawRectangleActions.Dequeue();
-                            nextAction(canvas, rectangle);
-                            RotateCanvas180(canvas);
-                            var reverseLowerLeftX = PageWidth - (upperRightX + labelWidth + extraPadding * 2);
-                            var reverseLowerLeftY = PageHeight - upperRightY;
-                            var reverseUpperRightX = PageWidth - (lowerLeftX + labelWidth + extraPadding * 2);
-                            var reverseUpperRightY = PageHeight - lowerLeftY;
+                            var reverseLowerLeftX = lowerLeftX + labelWidth + extraPadding * 2;
+                            var reverseLowerLeftY = lowerLeftY;
+                            var reverseUpperRightX = upperRightX + labelWidth + extraPadding * 2; 
+                            var reverseUpperRightY = upperRightY;
                             var reverseRectangle = new Rectangle(reverseLowerLeftX, reverseLowerLeftY, reverseUpperRightX, reverseUpperRightY);
-                            nextAction(canvas, reverseRectangle);
-                            RotateCanvas180(canvas);
+                            var templateRectangle = new Rectangle(rectangle.Width, rectangle.Height);
+
+                            var template = canvas.CreateTemplate(rectangle.Width, rectangle.Height);
+                            var nextAction = drawRectangleActions.Dequeue();
+                            nextAction(template, templateRectangle);
+                            canvas.AddTemplate(template, rectangle.Left, rectangle.Bottom);
+                            const double angle = Math.PI;
+                            canvas.AddTemplate(template,
+                                (float)Math.Cos(angle), -(float)Math.Sin(angle),
+                                (float)Math.Sin(angle), (float)Math.Cos(angle),
+                                reverseRectangle.Right, reverseRectangle.Top);
                             rowIndex++;
                             if (rowIndex > maxRowIndex)
                             {
@@ -73,11 +78,6 @@ namespace Avery16282Generator
                     }
                 }
             }
-        }
-
-        private static void RotateCanvas180(PdfContentByte canvas)
-        {
-            canvas.Transform(AffineTransform.GetRotateInstance(3.14159, PageWidth / 2, PageHeight / 2));
         }
 
         private static float PageHeight => Utilities.InchesToPoints(11f);
