@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using iTextSharp.awt.geom;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -125,7 +124,7 @@ namespace Avery16282Generator.Brewcrafters
             topCursor.AdvanceCursor(-(goldLabelRectangle.Height + goldLabelImageHeightPadding));
         }
 
-        private static Image DrawImage(
+        private static void DrawImage(
             Rectangle rectangle,
             PdfContentByte canvas,
             string imagePath,
@@ -134,7 +133,7 @@ namespace Avery16282Generator.Brewcrafters
             bool centerHorizontally = false)
         {
             const float imageRotationInRadians = 4.71239f;
-            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
+            TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
         }
 
         private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle,
