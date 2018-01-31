@@ -157,10 +157,14 @@ namespace Avery16282Generator.Dominion
 
         private static Font GetMainTextFont(BaseFont baseFont, float fontSize, CardSuperType superType)
         {
-            var fontColor = superType.Card_type_image == "night.png"
+            var hasBlackBackground = superType.Card_type_image == "night.png";
+            var fontColor = hasBlackBackground
                 ? BaseColor.WHITE
                 : BaseColor.BLACK;
-            var font = new Font(baseFont, fontSize, Font.NORMAL, fontColor);
+            var fontStyle = hasBlackBackground
+                ? Font.BOLD
+                : Font.NORMAL;
+            var font = new Font(baseFont, fontSize, fontStyle, fontColor);
             return font;
         }
     }

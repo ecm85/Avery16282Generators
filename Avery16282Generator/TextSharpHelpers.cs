@@ -26,7 +26,20 @@ namespace Avery16282Generator
             return !ColumnText.HasMoreText(result);
         }
 
-        public static float GetMultiLineFontSize(PdfContentByte canvas, string text, Rectangle rectangle, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
+        private static bool WriteNonWrappingTextInRectangle(PdfContentByte canvas, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
+        {
+            var phrase = new Phrase(text, font);
+
+            var columnText = new ColumnText(canvas)
+            {
+                Alignment = alignment
+            };
+            columnText.SetSimpleColumn(phrase, rectangle.Left, rectangle.Bottom, rectangle.Right, rectangle.Top, font.Size, alignment);
+            var result = columnText.Go(simulation);
+            return !ColumnText.HasMoreText(result);
+        }
+
+            public static float GetMultiLineFontSize(PdfContentByte canvas, string text, Rectangle rectangle, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
         {
             var nextAttemptFontSize = maxFontSize;
             while (true)
@@ -47,7 +60,7 @@ namespace Avery16282Generator
             while (true)
             {
                 var font = new Font(baseFont, nextAttemptFontSize, fontStyle, BaseColor.BLACK);
-                if (WriteWrappingTextInRectangle(canvas, text, font, rectangle, alignment, true))
+                if (WriteNonWrappingTextInRectangle(canvas, text, font, rectangle, alignment, true))
                 {
                     return nextAttemptFontSize;
                 }
