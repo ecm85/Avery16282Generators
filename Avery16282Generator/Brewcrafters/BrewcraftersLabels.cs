@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using iTextSharp.awt.geom;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -37,18 +38,7 @@ namespace Avery16282Generator.Brewcrafters
                     if (!string.IsNullOrEmpty(beer.GoldLabelImageName))
                         DrawGoldLabel(rectangle, topCursor, canvas, beer);
 
-
-                    //var usesLine2 = string.IsNullOrWhiteSpace(beer.Name2);
-                    //var usesLine3 = string.IsNullOrWhiteSpace(beer.Name3);
-
-                    //var line1FontSize = TextSharpHelpers.GetFontSize(canvas, beer.Name1, rectangle.Height - 65, baseFont, 12, Element.ALIGN_LEFT, Font.NORMAL);
-                    //var line2FontSize = usesLine2 ? (float?) null : TextSharpHelpers.GetFontSize(canvas, beer.Name2, rectangle.Height - 45, baseFont, 12, Element.ALIGN_LEFT, Font.NORMAL);
-                    //var line3FontSize = usesLine3 ? (float?) null : TextSharpHelpers.GetFontSize(canvas, beer.Name3, rectangle.Height - 45, baseFont, 12, Element.ALIGN_LEFT, Font.NORMAL);
-                    //var scaledFontSize = Math.Min(line1FontSize, Math.Min(line2FontSize ?? float.MaxValue, line3FontSize ?? float.MaxValue));
-                    //var font = new Font(baseFont, scaledFontSize, Font.NORMAL, BaseColor.BLACK);
-                    //ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(beer.Name1, font), rectangle.Left + scaledFontSize * 2 + 2, rectangle.Top - 3, 270);
-                    //ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(beer.Name2, font), rectangle.Left + scaledFontSize + 1, rectangle.Top - 3, 270);
-                    //ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(beer.Name3, font), rectangle.Left + 0, rectangle.Top - 3, 270);
+                    DrawBeerName(rectangle, topCursor, canvas, beer, baseFont);
                 }
             }).ToList();
 
@@ -56,9 +46,27 @@ namespace Avery16282Generator.Brewcrafters
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "BrewCrafters");
         }
 
+        private static void DrawBeerName(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer,
+            BaseFont baseFont)
+        {
+            var textRectangle = new Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Right, topCursor.GetCurrent());
+            var templateTextRectangle = new Rectangle(textRectangle.Height, textRectangle.Width);
+            var template = canvas.CreateTemplate(templateTextRectangle.Width, templateTextRectangle.Height);
+            var fontSize = TextSharpHelpers.GetMultiLineFontSize(canvas, beer.FullName, templateTextRectangle, baseFont, 12,
+                               Element.ALIGN_LEFT, Font.NORMAL) - .5f;
+            var textFont = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
+            TextSharpHelpers.WriteWrappingTextInRectangle(template, beer.FullName, textFont, templateTextRectangle,
+                Element.ALIGN_LEFT);
+            var angle = Math.PI / 2;
+            canvas.AddTemplate(template,
+                (float) Math.Cos(angle), -(float) Math.Sin(angle),
+                (float) Math.Sin(angle), (float) Math.Cos(angle),
+                textRectangle.Left, textRectangle.Top);
+        }
+
         private static void DrawBarrel(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas)
         {
-            const float barrelImageHeight = 15f;
+            const float barrelImageHeight = 12f;
             const float barrelImageHeightPadding = 3f;
             var barrelRectangle = new Rectangle(
                 rectangle.Left,
@@ -86,7 +94,7 @@ namespace Avery16282Generator.Brewcrafters
 
         private static void DrawPoints(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer, BaseFont boldBaseFont)
         {
-            const float pointsImageHeight = 15f;
+            const float pointsImageHeight = 12f;
             const float pointsImageHeightPadding = 3f;
             var pointsRectangle = new Rectangle(
                 rectangle.Left,
@@ -96,7 +104,7 @@ namespace Avery16282Generator.Brewcrafters
             DrawImage(pointsRectangle, canvas, "Brewcrafters\\Points.png", centerHorizontally: true);
             topCursor.AdvanceCursor(-(pointsRectangle.Height + pointsImageHeightPadding));
             const float pointsTextWidthOffset = 11.5f;
-            const float pointsTextHeightOffset = 5f;
+            const float pointsTextHeightOffset = 3.5f;
             const float pointsFontSize = 10f;
             var pointsText = beer.Points.ToString();
             var font = new Font(boldBaseFont, pointsFontSize, Font.BOLD, BaseColor.BLACK);
@@ -105,7 +113,7 @@ namespace Avery16282Generator.Brewcrafters
 
         private static void DrawGoldLabel(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer)
         {
-            const float goldLabelImageHeight = 15f;
+            const float goldLabelImageHeight = 12f;
             const float goldLabelImageHeightPadding = 3f;
             var goldLabelRectangle = new Rectangle(
                 rectangle.Left,

@@ -12,7 +12,7 @@ namespace Avery16282Generator
             canvas.Fill();
         }
 
-        private static bool WriteWrappingTextInRectangle(PdfContentByte canvas, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
+        public static bool WriteWrappingTextInRectangle(PdfContentByte canvas, string text, Font font, Rectangle rectangle, int alignment, bool simulation = false)
         {
             var phrase = new Phrase(text, font);
 
@@ -20,9 +20,24 @@ namespace Avery16282Generator
             {
                 Alignment = alignment
             };
-            columnText.SetSimpleColumn(phrase, rectangle.Left, rectangle.Bottom, rectangle.Right, rectangle.Top, font.Size, alignment);
+            columnText.SetSimpleColumn(rectangle);
+            columnText.AddElement(phrase);
             var result = columnText.Go(simulation);
             return !ColumnText.HasMoreText(result);
+        }
+
+        public static float GetMultiLineFontSize(PdfContentByte canvas, string text, Rectangle rectangle, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
+        {
+            var nextAttemptFontSize = maxFontSize;
+            while (true)
+            {
+                var font = new Font(baseFont, nextAttemptFontSize, fontStyle, BaseColor.BLACK);
+                if (WriteWrappingTextInRectangle(canvas, text, font, rectangle, alignment, true))
+                {
+                    return nextAttemptFontSize;
+                }
+                nextAttemptFontSize -= .2f;
+            }
         }
 
         public static float GetFontSize(PdfContentByte canvas, string text, float width, BaseFont baseFont, float maxFontSize, int alignment, int fontStyle)
