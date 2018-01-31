@@ -9,6 +9,7 @@
         public bool Barrel { get; set; }
         public bool Hops { get; set; }
         public string GoldLabelImageName { get; set; }
+        public int TokenCount { get; set; }
 
         public string FullName
         {
@@ -19,6 +20,8 @@
                     name += " " + Name2;
                 if (!string.IsNullOrWhiteSpace(Name3))
                     name += " " + Name3;
+                if (TokenCount > 0)
+                    name += $" - {TokenCount} Tokens";
                 return name;
             }
         }

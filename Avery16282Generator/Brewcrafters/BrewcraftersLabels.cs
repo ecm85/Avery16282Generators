@@ -164,7 +164,8 @@ namespace Avery16282Generator.Brewcrafters
                 Points = int.Parse(tokens[4]),
                 Barrel = bool.Parse(tokens[5]),
                 Hops = bool.Parse(tokens[6]),
-                GoldLabelImageName = tokens[7]
+                GoldLabelImageName = tokens[7],
+                TokenCount = int.Parse(tokens[8])
             };
         }
 
