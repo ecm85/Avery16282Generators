@@ -35,23 +35,6 @@ namespace Avery16282Generator.AeonsEnd
                             topCursor.AdvanceCursor(dummyCostPadding);
                         DrawExpansionLogo(canvas, rectangle, divider.Expansion, boldBaseFont, bottomCursor);
                         DrawName(canvas, rectangle, divider.Name, baseFont, topCursor, bottomCursor);
-                        //TODO: Name
-
-                        //TODO: Font and font size
-
-                        //const float startOfLabelOffset = 4f;
-                        //var topCursor = new Cursor();
-                        //topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
-                        //if (divider.Points > 0)
-                        //    DrawPoints(rectangle, topCursor, canvas, divider, boldBaseFont);
-                        //if (divider.Barrel)
-                        //    DrawBarrel(rectangle, topCursor, canvas);
-                        //if (divider.Hops)
-                        //    DrawHops(rectangle, topCursor, canvas);
-                        //if (!string.IsNullOrEmpty(divider.GoldLabelImageName))
-                        //    DrawGoldLabel(rectangle, topCursor, canvas, divider);
-
-                        //DrawBeerName(rectangle, topCursor, canvas, divider, baseFont);
                     }
                 })
                 .ToList();
