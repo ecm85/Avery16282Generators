@@ -140,7 +140,7 @@ namespace Avery16282Generator.Dominion
             float textWidthOffset, float textHeightOffset, Font font)
         {
             const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation, Element.ALIGN_LEFT);
         }
 
         private static Image DrawImage(
