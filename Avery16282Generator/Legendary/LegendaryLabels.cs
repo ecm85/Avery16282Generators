@@ -52,26 +52,40 @@ namespace Avery16282Generator.Legendary
                 DrawFaction(rectangle, canvas, topCursor, faction);
             }
 
-            foreach (var card in hero.Cards)
+            var leftHalfRectangle = new Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Left + rectangle.Width/2, rectangle.Top);
+            var rightHalfRectangle = new Rectangle(rectangle.Left + rectangle.Width/2, rectangle.Bottom, rectangle.Right, rectangle.Top);
+            var secondaryBottomCursor = new Cursor();
+            secondaryBottomCursor.AdvanceCursor(bottomCursor.GetCurrent());
+            for (var i = 0; i < hero.Cards.Count; i++)
             {
+                var card = hero.Cards[i];
+                var halfRectangleToUse = i % 2 != 0 ? leftHalfRectangle : rightHalfRectangle;
+                var cursorToUse = i % 2 != 0 ? bottomCursor : secondaryBottomCursor;
                 var cardTypes = card.HeroCardSection1.HeroCardTypes;
                 if (card.HeroCardSection2 != null)
                     cardTypes = cardTypes.Concat(card.HeroCardSection2.HeroCardTypes).ToList();
                 if (cardTypes.Count == 1)
-                    DrawSingleCardType(cardTypes.Single(), rectangle, canvas, bottomCursor);
+                    DrawSingleCardType(cardTypes.Single(), halfRectangleToUse, canvas, cursorToUse);
                 else
                 {
-                    DrawCompositeType(cardTypes, rectangle, canvas, bottomCursor);
+                    DrawCompositeType(cardTypes, halfRectangleToUse, canvas, cursorToUse);
                 }
             }
         }
 
         private static void DrawCompositeType(IList<HeroCardType> heroCardTypes, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
         {
-            //TODO
+
         }
 
         private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
+        {
+            var imagePath = $"Legendary\\Images\\Types\\{heroCardType}.png";
+
+            DrawCardType(rectangle, canvas, bottomCursor, imagePath);
+        }
+
+        private static void DrawCardType(Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor, string imagePath)
         {
             const float cardImageHeight = 10f;
             const float cardImageHeightPadding = 3f;
@@ -80,7 +94,7 @@ namespace Avery16282Generator.Legendary
                 bottomCursor.GetCurrent(),
                 rectangle.Right,
                 bottomCursor.GetCurrent() + cardImageHeight);
-            DrawImage(cardRectangle, canvas, $"Legendary\\Images\\Types\\{heroCardType}.png",
+            DrawImage(cardRectangle, canvas, imagePath,
                 centerHorizontally: true);
 
             bottomCursor.AdvanceCursor(cardRectangle.Height + cardImageHeightPadding);
