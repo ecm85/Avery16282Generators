@@ -26,42 +26,84 @@ namespace Avery16282Generator.Legendary
                 (canvas, rectangle) =>
                 {
                     var topCursor = new Cursor();
+                    var bottomCursor = new Cursor();
                     const float startOfLabelOffset = 4f;
                     topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
+                    bottomCursor.AdvanceCursor(rectangle.Bottom);
                     TextSharpHelpers.DrawRectangle(canvas, rectangle, BaseColor.CYAN);
 
                     //DrawBackgroundImage(card.SuperType, rectangle, canvas, topCursor, bottomCursor);
-                    DrawFactionAndTypes(hero, rectangle, canvas, topCursor);
+                    DrawFactionsAndTypes(hero, rectangle, canvas, topCursor, bottomCursor);
                     //DrawSetImageAndReturnTop(rectangle, bottomCursor, card.Set.Image, canvas);
 
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
-                    DrawCardText(rectangle, topCursor, canvas, hero.Name, baseFont);
+                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, hero.Name, baseFont);
                 }
             }).ToList();
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
         }
 
-        private static void DrawFactionAndTypes(Hero hero, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor)
+        private static void DrawFactionsAndTypes(Hero hero, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, Cursor bottomCursor)
         {
-            const float barrelImageHeight = 12f;
-            const float barrelImageHeightPadding = 3f;
-            var barrelRectangle = new Rectangle(
-                rectangle.Left,
-                topCursor.GetCurrent() - barrelImageHeight,
-                rectangle.Right,
-                topCursor.GetCurrent());
-            //TODO: Don't just draw the first faction
-            //TODO: Draw types
-            //TODO: Remove this check and get valid iamges for these factions
-            var heroFaction = hero.Factions.First();
-            if (!(heroFaction == HeroFaction.Unaffiliated || heroFaction == HeroFaction.Champions || heroFaction == HeroFaction.MercsForMoney))
+            foreach (var faction in hero.Factions)
             {
-                DrawImage(barrelRectangle, canvas, $"Legendary\\Images\\Factions\\{heroFaction}.png", centerHorizontally: true);
+                DrawFaction(rectangle, canvas, topCursor, faction);
             }
 
-            topCursor.AdvanceCursor(-(barrelRectangle.Height + barrelImageHeightPadding));
+            foreach (var card in hero.Cards)
+            {
+                var cardTypes = card.HeroCardSection1.HeroCardTypes;
+                if (card.HeroCardSection2 != null)
+                    cardTypes = cardTypes.Concat(card.HeroCardSection2.HeroCardTypes).ToList();
+                if (cardTypes.Count == 1)
+                    DrawSingleCardType(cardTypes.Single(), rectangle, canvas, bottomCursor);
+                else
+                {
+                    DrawCompositeType(cardTypes, rectangle, canvas, bottomCursor);
+                }
+            }
+        }
+
+        private static void DrawCompositeType(IList<HeroCardType> heroCardTypes, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
+        {
+            //TODO
+        }
+
+        private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
+        {
+            const float cardImageHeight = 10f;
+            const float cardImageHeightPadding = 3f;
+            var cardRectangle = new Rectangle(
+                rectangle.Left,
+                bottomCursor.GetCurrent(),
+                rectangle.Right,
+                bottomCursor.GetCurrent() + cardImageHeight);
+            DrawImage(cardRectangle, canvas, $"Legendary\\Images\\Types\\{heroCardType}.png",
+                centerHorizontally: true);
+
+            bottomCursor.AdvanceCursor(cardRectangle.Height + cardImageHeightPadding);
+        }
+
+        private static void DrawFaction(Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, HeroFaction heroFaction)
+        {
+            const float factionImageHeight = 10f;
+            const float factionImageHeightPadding = 3f;
+            var factionRectangle = new Rectangle(
+                rectangle.Left,
+                topCursor.GetCurrent() - factionImageHeight,
+                rectangle.Right,
+                topCursor.GetCurrent());
+            //TODO: Remove this check and get valid iamges for these factions
+            if (!(heroFaction == HeroFaction.Unaffiliated || heroFaction == HeroFaction.Champions ||
+                  heroFaction == HeroFaction.MercsForMoney))
+            {
+                DrawImage(factionRectangle, canvas, $"Legendary\\Images\\Factions\\{heroFaction}.png",
+                    centerHorizontally: true);
+            }
+
+            topCursor.AdvanceCursor(-(factionRectangle.Height + factionImageHeightPadding));
         }
 
         private static void DrawImage(
@@ -76,22 +118,28 @@ namespace Avery16282Generator.Legendary
             TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
         }
 
-        private static void DrawCardText(Rectangle rectangle, Cursor topCursor, 
-            PdfContentByte canvas, string heroName, BaseFont baseFont)
+        private static void DrawCardText(
+            Rectangle rectangle,
+            Cursor topCursor,
+            Cursor bottomCursor, 
+            PdfContentByte canvas,
+            string heroName,
+            BaseFont baseFont)
         {
-            const float textPadding = 2f;
-            const float textHeight = 12f;
+            const float textPadding = 0f;
             const float maxFontSize = 10f;
-            var textRectangleHeight = topCursor.GetCurrent() - textPadding * 2;
-            var textFontSize = TextSharpHelpers.GetFontSize(canvas, heroName, textRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
+            var potentialTextRectangleHeight = topCursor.GetCurrent() - bottomCursor.GetCurrent(); // - textPadding * 2
+            var textFontSize = TextSharpHelpers.GetFontSize(canvas, heroName, potentialTextRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
             var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
-            
-            var textWidthOffset = 8 + (maxFontSize - font.Size) * .35f;
+            var textRectangleHeight = textFontSize * .9f;
+            var textWidthOffset = rectangle.Width/2.0f - textRectangleHeight / 2.0f;
+            //var textWidthOffset = 8 + (maxFontSize - font.Size) * .35f;
             var textRectangle = new Rectangle(
                 rectangle.Left + textWidthOffset,
-                textPadding,
-                rectangle.Left + textWidthOffset + textHeight,
+                bottomCursor.GetCurrent() + textPadding,
+                rectangle.Left + textWidthOffset + textRectangleHeight,
                 topCursor.GetCurrent() - textPadding);
+            //TextSharpHelpers.DrawRectangle(canvas, textRectangle, BaseColor.GREEN);
             DrawText(canvas, heroName, textRectangle, 0, 0, font);
         }
 

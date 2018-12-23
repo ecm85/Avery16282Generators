@@ -66,7 +66,7 @@ namespace Avery16282Generator.Legendary
                         {
 
                             Name = allLines[currentLineIndex + 2],
-                            HeroCardType = ParseHeroCardType(allLines[currentLineIndex + 3])
+                            HeroCardTypes = ParseHeroCardTypes(allLines[currentLineIndex + 3]).ToList()
                         };
                         currentCard = new HeroCard
                         {
@@ -81,7 +81,7 @@ namespace Avery16282Generator.Legendary
                         {
 
                             Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(")),
-                            HeroCardType = ParseHeroCardType(allLines[currentLineIndex + 1])
+                            HeroCardTypes = ParseHeroCardTypes(allLines[currentLineIndex + 1]).ToList()
                         };
                         currentCard = new HeroCard
                         {
@@ -98,7 +98,7 @@ namespace Avery16282Generator.Legendary
                         heroCardSection = new HeroCardSection
                         {
                             Name = allLines[currentLineIndex + 1],
-                            HeroCardType = ParseHeroCardType(allLines[currentLineIndex + 2])
+                            HeroCardTypes = ParseHeroCardTypes(allLines[currentLineIndex + 2]).ToList()
                         };
                         currentCard.HeroCardSection2 = heroCardSection;
                         currentLineIndex += 2;
@@ -116,9 +116,19 @@ namespace Avery16282Generator.Legendary
             return allSets;
         }
 
+        private static IEnumerable<HeroCardType> ParseHeroCardTypes(string heroCardTypeText)
+        {
+            var heroCardTypes = heroCardTypeText.Split(',');
+            foreach (var cardType in heroCardTypes)
+            {
+                yield return ParseHeroCardType(cardType);
+            }
+        }
+
         private static HeroCardType ParseHeroCardType(string heroCardTypeText)
         {
             var successfullyHeroCardType = Enum.TryParse(heroCardTypeText, true, out HeroCardType heroCardType);
+
             if (!successfullyHeroCardType)
                 throw new InvalidOperationException($"Could not parse {heroCardTypeText} into a hero card type");
             return heroCardType;
