@@ -28,10 +28,10 @@ namespace Avery16282Generator.Legendary
                     var topCursor = new Cursor();
                     const float startOfLabelOffset = 4f;
                     topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
-                    //TextSharpHelpers.DrawRectangle(canvas, rectangle, labelBackground);
+                    TextSharpHelpers.DrawRectangle(canvas, rectangle, BaseColor.CYAN);
 
                     //DrawBackgroundImage(card.SuperType, rectangle, canvas, topCursor, bottomCursor);
-                    //DrawCosts(boldBaseFont, card, rectangle, canvas, topCursor);
+                    DrawFactionAndTypes(hero, rectangle, canvas, topCursor);
                     //DrawSetImageAndReturnTop(rectangle, bottomCursor, card.Set.Image, canvas);
 
                     //var cardName = card.GroupName ?? card.Name;
@@ -41,6 +41,39 @@ namespace Avery16282Generator.Legendary
             }).ToList();
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
+        }
+
+        private static void DrawFactionAndTypes(Hero hero, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor)
+        {
+            const float barrelImageHeight = 12f;
+            const float barrelImageHeightPadding = 3f;
+            var barrelRectangle = new Rectangle(
+                rectangle.Left,
+                topCursor.GetCurrent() - barrelImageHeight,
+                rectangle.Right,
+                topCursor.GetCurrent());
+            //TODO: Don't just draw the first faction
+            //TODO: Draw types
+            //TODO: Remove this check and get valid iamges for these factions
+            var heroFaction = hero.Factions.First();
+            if (!(heroFaction == HeroFaction.Unaffiliated || heroFaction == HeroFaction.Champions || heroFaction == HeroFaction.MercsForMoney))
+            {
+                DrawImage(barrelRectangle, canvas, $"Legendary\\Images\\Factions\\{heroFaction}.png", centerHorizontally: true);
+            }
+
+            topCursor.AdvanceCursor(-(barrelRectangle.Height + barrelImageHeightPadding));
+        }
+
+        private static void DrawImage(
+            Rectangle rectangle,
+            PdfContentByte canvas,
+            string imagePath,
+            bool scaleAbsolute = false,
+            bool centerVertically = false,
+            bool centerHorizontally = false)
+        {
+            const float imageRotationInRadians = 4.71239f;
+            TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
         }
 
         private static void DrawCardText(Rectangle rectangle, Cursor topCursor, 
