@@ -65,6 +65,7 @@
     <Compile Include="Legendary\HeroCardSection.cs" />
     <Compile Include="Legendary\HeroCardType.cs" />
     <Compile Include="Legendary\HeroFaction.cs" />
+    <Compile Include="Legendary\LegendaryLabels.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
