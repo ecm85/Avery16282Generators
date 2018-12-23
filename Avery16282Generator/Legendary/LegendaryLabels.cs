@@ -29,7 +29,7 @@ namespace Avery16282Generator.Legendary
                     var bottomCursor = new Cursor();
                     const float startOfLabelOffset = 4f;
                     topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
-                    bottomCursor.AdvanceCursor(rectangle.Bottom);
+                    bottomCursor.AdvanceCursor(rectangle.Bottom + startOfLabelOffset);
                     TextSharpHelpers.DrawRoundedRectangle(canvas, rectangle, new BaseColor(168,255,247));
 
                     //DrawBackgroundImage(card.SuperType, rectangle, canvas, topCursor, bottomCursor);
