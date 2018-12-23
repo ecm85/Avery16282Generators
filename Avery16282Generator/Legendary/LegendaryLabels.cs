@@ -113,9 +113,7 @@ namespace Avery16282Generator.Legendary
                 topCursor.GetCurrent() - factionImageHeight,
                 rectangle.Right,
                 topCursor.GetCurrent());
-            //TODO: Remove this check and get valid iamges for these factions
-            if (!(heroFaction == HeroFaction.Unaffiliated || heroFaction == HeroFaction.Champions ||
-                  heroFaction == HeroFaction.MercsForMoney))
+            if (heroFaction != HeroFaction.Unaffiliated)
             {
                 DrawImage(factionRectangle, canvas, $"Legendary\\Images\\Factions\\{heroFaction}.png",
                     centerHorizontally: true);

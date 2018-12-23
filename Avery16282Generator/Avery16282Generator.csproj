@@ -125,6 +125,9 @@
     <Content Include="Legendary\images\Factions\Cabal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Legendary\images\Factions\Champions.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Legendary\images\Factions\CrimeSyndicate.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -144,6 +147,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Legendary\images\Factions\MarvelKnights.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\MercsForMoney.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Legendary\images\Factions\NewWarriors.png">

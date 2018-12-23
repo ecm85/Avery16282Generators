@@ -17,7 +17,8 @@ namespace Avery16282Generator
             //BrewcraftersLabels.CreateLabels();
             //DominionLabels.CreateLabels();
             //AeonsEndLabels.CreateLabels();
-                LegendaryLabels.CreateLabels();
+            LegendaryLabels.CreateLabels();
+
 
             //var directory = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
             //foreach (var file in Directory.EnumerateFiles(directory))

@@ -7,7 +7,6 @@ namespace Avery16282Generator.Legendary
 {
     public class DataAccess
     {
-        //TODO: Civil-war double cards
         public static IEnumerable<CardSet> GetCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\HeroesAndAllies");

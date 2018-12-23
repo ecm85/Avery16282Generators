@@ -23,8 +23,8 @@ namespace Avery16282Generator.Legendary
         SpiderFriends,
         XForce,
         XMen,
-        Unaffiliated, //TODO: Get image
-        MercsForMoney, //TODO: Get image
-        Champions //TODO: Get image
+        Unaffiliated,
+        MercsForMoney,
+        Champions
     }
 }
