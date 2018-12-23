@@ -5,6 +5,14 @@ namespace Avery16282Generator
 {
     public static class TextSharpHelpers
     {
+        public static void DrawRoundedRectangle(PdfContentByte canvas, Rectangle rectangle, BaseColor baseColor)
+        {
+            canvas.SetColorFill(baseColor);
+            canvas.SetColorStroke(BaseColor.BLACK);
+            canvas.RoundRectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, rectangle.Height, 5f);
+            canvas.FillStroke();
+        }
+
         public static void DrawRectangle(PdfContentByte canvas, Rectangle rectangle, BaseColor baseColor)
         {
             canvas.SetColorFill(baseColor);

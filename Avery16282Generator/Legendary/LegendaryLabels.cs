@@ -30,7 +30,7 @@ namespace Avery16282Generator.Legendary
                     const float startOfLabelOffset = 4f;
                     topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
                     bottomCursor.AdvanceCursor(rectangle.Bottom);
-                    TextSharpHelpers.DrawRectangle(canvas, rectangle, BaseColor.CYAN);
+                    TextSharpHelpers.DrawRoundedRectangle(canvas, rectangle, new BaseColor(168,255,247));
 
                     //DrawBackgroundImage(card.SuperType, rectangle, canvas, topCursor, bottomCursor);
                     DrawFactionsAndTypes(hero, rectangle, canvas, topCursor, bottomCursor);
@@ -75,7 +75,11 @@ namespace Avery16282Generator.Legendary
 
         private static void DrawCompositeType(IList<HeroCardType> heroCardTypes, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
         {
-
+            if (heroCardTypes.Count != 2)
+                throw new InvalidOperationException("Cannot have more than two card types for a single card.");
+            var orderedTypes = heroCardTypes.OrderBy(type => type).ToList();
+            var imagePath = $"Legendary\\Images\\Types\\{orderedTypes[0]}-{orderedTypes[1]}.png";
+            DrawCardType(rectangle, canvas, bottomCursor, imagePath);
         }
 
         private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
