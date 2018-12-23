@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Avery16282Generator.AeonsEnd;
-using Avery16282Generator.Brewcrafters;
-using Avery16282Generator.Dominion;
+using System.Linq;
+using Avery16282Generator.Legendary;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -15,7 +14,17 @@ namespace Avery16282Generator
             //DrawPlainRectangleLabels();
             //BrewcraftersLabels.CreateLabels();
             //DominionLabels.CreateLabels();
-            AeonsEndLabels.CreateLabels();
+            //AeonsEndLabels.CreateLabels();
+            foreach (var card in DataAccess.GetCardSets().SelectMany(cardSet => cardSet.Heroes).SelectMany(hero => hero.Cards))
+            {
+                if (card.HeroCardSection2 == null)
+                    Console.WriteLine(card.HeroCardSection1.Name + " - " + card.HeroCardSection1.HeroCardType);
+                else
+                    Console.WriteLine(card.HeroCardSection1.Name + " - " + card.HeroCardSection1.HeroCardType + 
+                                      "   ---------   " +
+                                      card.HeroCardSection2.Name + " - " + card.HeroCardSection2.HeroCardType);
+            }
+            Console.WriteLine(DataAccess.GetCardSets().SelectMany(cardSet => cardSet.Heroes).SelectMany(hero => hero.Cards).Where(card => card.HeroCardSection2 != null).Count());
         }
 
         private static void DrawPlainRectangleLabels()

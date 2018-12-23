@@ -58,6 +58,13 @@
     <Compile Include="Dominion\DominionCard.cs" />
     <Compile Include="Dominion\DominionCardDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
+    <Compile Include="Legendary\CardSet.cs" />
+    <Compile Include="Legendary\DataAccess.cs" />
+    <Compile Include="Legendary\Hero.cs" />
+    <Compile Include="Legendary\HeroCard.cs" />
+    <Compile Include="Legendary\HeroCardSection.cs" />
+    <Compile Include="Legendary\HeroCardType.cs" />
+    <Compile Include="Legendary\HeroFaction.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -108,7 +115,74 @@
     <Content Include="AeonsEnd\CardList">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Legendary\images\Factions\avengers.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\Brotherhood.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\Cabal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\CrimeSyndicate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\FantasticFour.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\FoesOfAsgard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\GuardiansOfTheGalaxy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\Hydra.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\Illuminati.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\MarvelKnights.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\NewWarriors.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\SinisterSix.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\spiderfriends.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\xforce.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Factions\xmen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Types\covert.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Types\instinct.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Types\ranged.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Types\strength.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\images\Types\tech.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="app.config" />
+    <Content Include="Legendary\Data\HeroesAndAllies">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Legendary\Data\HeroesAndAlliesOriginal" />
     <None Include="packages.config" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
