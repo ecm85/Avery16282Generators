@@ -1,7 +1,6 @@
 == Legendary ==
 
 Dr. Doom
-
 Always Leads: Doombot Legion
 Master Strike: Each player with exactly 6 cards in hand reveals a Tech Hero or puts 2 cards from their hand on top of their deck.
 Attack: 9
@@ -21,7 +20,6 @@ Fight: When you draw a new hand of cards at the end of this turn, draw three ext
 
 
 Loki
-
 Always Leads: Enemies of Asgard
 Master Strike: Each player reveals a Strength Hero or gains a Wound
 Attack: 10
@@ -41,7 +39,6 @@ Fight: Each other player KOs two Bystanders from their Victory Pile.
 
 
 Magneto
-
 Always Leads: Brotherhood
 Master Strike: Each player reveals an X-Men Hero or discards down to four cards.
 Attack: 8
@@ -61,7 +58,6 @@ Fight: For each of your X-Men Heroes, rescue a Bystander.
 
 
 Red Skull
-
 Always Leads: HYDRA
 Master Strike: Each player KOs a Hero from their hand.
 Attack: 7
@@ -84,7 +80,6 @@ Fight: Look at the top three cards of your deck. KO one, discard one and put one
 == Dark City ==
 
 Apocalypse
-
 Always Leads: Four Horsemen
 Four Horsemen Villains get +2 Attack
 Apocalypse Wins: When Famine, Pestilence, War, and Death have escaped
@@ -106,7 +101,6 @@ Fight: If this is not the final Tactic, rescue six Bystanders and shuffle this T
 
 
 Kingpin
-
 Always Leads: Streets of New York
 Bribe
 Master Strike: Each player reveals a Marvel Knights Hero or discards their hand and draws 5 cards.
@@ -127,7 +121,6 @@ Fight: Each other player plays a Henchman Villain from their Victory Pile as if 
 
 
 Mephisto
-
 Always Leads: Underworld
 Whenever a player gains a Wound, put it on top of that player's deck.
 Master Strike: Each player reveals a Marvel Knights Hero or gains a Wound.
@@ -148,7 +141,6 @@ Fight: Each other player without a Mastermind Tactic in their Victory Pile gains
 
 
 Mr. Sinister
-
 Always Leads: Marauders
 Mr. Sinister gets +1 Attack for each Bystander he has.
 Master Strike: Mr. Sinister captures a Bystander. Then each player with exactly 6 cards reveals a Covert Hero or discards cards equal to the number of Bystanders Mr. Sinister has.
@@ -169,7 +161,6 @@ Fight: Mr. Sinister captures a Bystander from each other player's Victory Pile.
 
 
 Stryfe
-
 Always Leads: MLF
 Master Strike: Stack this Master Strike next to Stryfe.
 Stryfe gets +1 Attack for each Master Strike stacked next to him. Each player reveals an X-Force Hero or discards a card at random.
@@ -193,7 +184,6 @@ Fight: Each other player reveals an X-Force Hero or gains a Wound.
 == Fantastic Four ==
 
 Galactus
-
 Always Leads: Heralds of Galactus
 Cosmic Threat: Strength Instinct Covert Tech Ranged
 Master Strike: Destroy the city space closest to Galactus. Any Villain there escapes. Put this Master Strike there.
@@ -215,7 +205,6 @@ Fight: Each other player KOs all Heroes from their discard pile with the same ca
 
 
 Mole Man
-
 Always Leads: Subterranea
 Mole Man gets +1 Attack for each Subterranea Villain that has escaped.
 Master Strike: All Subterranea Villains in the city escape. If any Villains escaped this way, each player gains a Wound.
@@ -239,7 +228,6 @@ Fight: You get +6 Recruit usable only to recruit Heroes in the HQ space under th
 == Paint the Town Red ==
 
 Carnage
-
 Always Leads: Maximum Carnage
 Master Strike: Feast on each player. Whenever this Master Strike feasts on a player's 0-cost Hero, that player gains a Wound.
 Attack: 9
@@ -262,7 +250,6 @@ If Carnage feasts on a 0-cost Hero this way, each other player KOs a Bystander f
 
 
 Mysterio
-
 Always Leads: Sinister Six
 Master Strike: Shuffle this Master Strike into Mysterio's face down Mastermind Tactics. That card becomes a Mastermind Tactic worth 6 VP.
 Attack: 8
@@ -285,7 +272,6 @@ Fight: If this is not the final Tactic, reveal the top five cards of the Villain
 == Villains ==
 
 Dr. Strange
-
 Always Leads: Defenders.
 Command Strike: Reveal the top three cards of the Adversary Deck. Put the Adversary you revealed with the highest printed Attack on top of that deck. Then play a Plot Twist from among the cards you revealed. Then put the rest of those cards on the bottom of that deck in random order.
 Attack: 8
@@ -305,7 +291,6 @@ Fight: After you draw a new hand of cards at the end of this turn, each player s
 
 
 Nick Fury
-
 Always Leads: Avengers.
 Command Strike: Stack this Strike next to Nick Fury. Then demolish each player once for each Strike stacked here.
 Attack: 9
@@ -325,7 +310,6 @@ Fight: Defeat an Adversary whose Attack is less than the number of Hydra Allies 
 
 
 Odin
-
 Always Leads: Asgardian Warriors.
 Odin gets +1 Attack for each Asgardian Warrior in the city and in the Overrun Pile.
 Command Strike: Each player puts an Asgardian Warrior from their Victory Pile into an empty city space. Any player who cannot do so gains a Bindings.
@@ -346,7 +330,6 @@ Fight: Each other player reveals a Foes of Asgard Ally or discards a card for ea
 
 
 Professor X
-
 Always Leads: X-men First Class.
 Command Strike: Choose the two highest-cost Allies in the Lair. Stack them next to Professor X as "Telepathic Pawns." Professor X gets +1 Attack for each Ally stacked next to him. Players can recrut the top Ally in the stack next to Professor X.
 Attack: 8
@@ -369,7 +352,6 @@ Fight: Each other player reveals a Brotherhood Ally or gains a Bindings.
 == Guardians of the Galaxy ==
 
 Supreme Intelligence of the Kree
-
 Always Leads: Kree Starforce
 Master Strike: The Supreme Intelligence gains a Shard. Then each player reveals their hand and discards each with cost equal to, and cost one higher than, the number of Shards on the Supreme Intelligence.
 Attack: 9
@@ -389,7 +371,6 @@ Fight: The Supreme Intelligence and Kree Villains in the city each gain a Shard.
 
 
 Thanos
-
 Always Leads: Infinity Gems
 Thanos gets -2 Attack for each Infinity Gem Artifact card controlled by any player.
 Master Strike: Each player reveals their hand and puts one of their non-grey Heroes next to Thanos in a "Bound Souls" pile.
@@ -413,7 +394,6 @@ Fight: Each other player reveals their hand and discards all cards with the same
 == Fear Itself ==
 
 Uru-Enchanted Iron Man
-
 Always Leads: The Mighty.
 Command Strike: Demolish each player. Then stack this Strike next to Iron Man. Uru-Enchanted Iron Man has an Uru-Enchanted Weapon for each Strike stacked here.
 Attack: 7*
@@ -436,7 +416,6 @@ Fight: Each other player reveals a Tech ally or gains a Bindings.
 == Secret Wars Volume 1 ==
 
 Madelyne Pryor, Goblin Queen
-
 Always Leads: Limbo
 Bystanders captured by Madelyne are "Demon Goblin" Villains with 2 Attack. You can fight them to rescue them as Bystanders. You can't fight her while she has any Demon Goblins.
 Master Strike: Madelyne captures 4 Bystanders. If she already had any Bystanders before that, then each player gains a Wound.
@@ -457,7 +436,6 @@ Fight: For each Limbo Villain in the city and/or Escape Pile, Madelyne captures 
 
 
 Nimrod, Super Sentinel
-
 Always Leads: Sentinel Territories
 You can't fight Nimrod unless you made at least 6 Recruit this turn.
 Master Strike: Each player who does not reveal a Tech Hero must choose Recruit or Attack, then discard all their cards with that icon.
@@ -478,7 +456,6 @@ Fight: Choose Recruit or Attack. Then, reveal the top card of that Hero Deck. If
 
 
 Wasteland Hulk
-
 Always Leads: Wasteland
 Wasteland Hulk gets +3 Attack for each of his Mastermind Tactics among all players' Victory Piles.
 Master Strike: Cross-Dimensional Hulk Rampage
@@ -499,7 +476,6 @@ Fight: You gain a Tech Hero from the HQ for free.
 
 
 Zombie Green Goblin
-
 Always Leads: The Deadlands
 Zombie Green Goblin gets +1 Attack for each Hero in the KO pile that costs 7 or more.
 Master Strike: Rise of the Living Dead. KO each Hero in the HQ that costs 7 or more. Then, each player discards a card for each Hero in the KO pile that costs 7 or more.
@@ -523,7 +499,6 @@ Fight: Rise of the Living Dead (this effect never makes Mastermind Tactics retur
 == Secret Wars Volume 2 ==
 
 Immortal Emperor Zheng-Zhu
-
 Always Leads: K'un-Lun
 7th Circle of Kung-Fu
 Master Strike: Each player reveals a Hero that costs 7 or more, or they discard down to 3 cards.
@@ -544,7 +519,6 @@ Fight: Choose any number of Heroes from the HQ. Put them on the bottom of the He
 
 
 King Hyperion
-
 Always Leads: Utopolis
 Master Strike: King Hyperion enters the city if he was not already there. Then, he charges three spaces.
 Escape: Each player gains a wound. Put King Hyperion on the Mastermind space.
@@ -565,7 +539,6 @@ Fight: If King Hyperion is in the city, put him back on the Mastermind space and
 
 
 Shiklah, the Demon Bride
-
 Always Leads: Monster Metropolis
 Master Strike: Reveal the top three cards of the Villain Deck. Put all the Scheme Twists you revealed on top of the Villain Deck. Put the rest on the bottom of that deck in random order.
 Attack: 9
@@ -590,7 +563,6 @@ Fight: Fateful Resurrection. If she resurrects, draw two cards.
 
 
 Spider-Queen
-
 Always Leads: Spider-Infected
 Spider-Queen gets +1 Attack for each Bystander in the Escape pile.
 Master Strike: Each player puts a Spider-Infected from their Victory Pile into an empty city space. Any player who cannot do so gains a Wound.
@@ -614,7 +586,6 @@ Fight: Each other player reveals a Spider-Friend Hero or puts a Bystander from t
 == Captain America 75th Anniversary ==
 
 Arnim Zola
-
 Always Leads: Zola's Creations
 Ultimate Abomination
 Master Strike: For each Hero in the HQ that has less than 2 printed Attack, put that Hero on the bottom of the Hero Deck, and each player discards a card of that Hero's cost.
@@ -635,7 +606,6 @@ Fight: KO up to two of your Heroes that have less than 2 printed Attack.
 
 
 Baron Heinrich Zemo
-
 Always Leads: Masters of Evil (WWII)
 Whenever you fight a Villain, you may use 2 Recruit to rescue a Bystander. Baron Zemo gets +9 Attack unless you are a Savior.
 Master Strike: Each player KOs a Bystander from their Victory Pile. Any player who cannot do so gains a Wound.
@@ -659,7 +629,6 @@ Fight: Each other player reveals an Avengers Hero or chooses a Bystander from th
 == Civil War ==
 
 Authoritarian Iron Man
-
 Always Leads: Superhuman Registration Act
 Master Strike: Authoritarian Iron Man fortifies the next city space to his right, starting with the Bridge. You can't fight him while there's a Villain in that space.
 Villains in that space get +3 Attack.
@@ -680,7 +649,6 @@ Fight: The Villain with the highest printed Attack in the Escape Pile enters the
 
 
 Baron Helmut Zemo
-
 Always Leads: Thunderbolts
 Baron Zemo gets -1 Attack for each Villain in your Victory Pile.
 Master Strike: Each player KOs a Villain from their Victory Pile. Any player who cannot do so gains a Wound.
@@ -701,7 +669,6 @@ Fight: Each other player reveals their hand. Each player who revealed an Avenger
 
 
 Maria Hill, Director of S.H.I.E.L.D.
-
 Always Leads: S.H.I.E.L.D. Elite.
 Double S.H.I.E.L.D. Clearance. You can't fight Maria Hill while there are any S.H.I.E.L.D. Elite or Officers in the city.
 Master Strike: Two S.H.I.E.L.D. Officers enter the city as 3 Attack Villains. When you fight them, gain them as Heroes.
@@ -722,7 +689,6 @@ Fight: Two S.H.I.E.L.D. Officers enter the city as 3 Attack Villains. When you f
 
 
 Misty Knight
-
 Always Leads: Heroes for Hire
 Bribe
 Master Strike: Each player reveals 4 cards with Recruit icons or gains a Wound.
@@ -743,7 +709,6 @@ Fight: Each other player reveals a Marvel Knight Hero or gains a Wound.
 
 
 Ragnarok
-
 Always Leads: Registration Enforcers
 Ragnarok gets +2 Attack for each Hero Class among Heroes in the HQ.
 Master Strike: Each player says "zero" or "not zero." Then, each player discards all their cards with that cost.
@@ -766,8 +731,8 @@ Fight: Put all Heroes from the HQ on the bottom of the Hero Deck in random order
 
 == Deadpool ==
 
-Always Leads: Evil Deadpool Corpse
 Evil Deadpool
+Always Leads: Evil Deadpool Corpse
 Revenge for Mastermind Tactics
 Master Strike: Without talking, each player simultaneously discards a card. Whoever discards the lowest-costing card (or tied for lowest) gains a Wound.
 Attack: 11+
@@ -787,7 +752,6 @@ Fight: Each other player discards the top card of their deck. Whoever discards t
 
 
 Macho Gomez
-
 Always Leads: Deadpool's "Friends"
 Revenge for Deadpool's "Friends"
 Master Strike: Put this Strike in front of you as a "Bounty on Your Head." Then, each player gains a Wound for each Bounty on them. Any number of times during your turn, you may pay 1 Recruit to move a Bounty from you to the player on your left.
@@ -811,7 +775,6 @@ Fight: Rescue a Bystander for each "Bounty on Your Head" on other players.
 == Noir ==
 
 Charles Xavier
-
 Always Leads: X-Men Noir
 Charles Xavier gets +1 Attack for each Bystander in the HQ and city.
 Master Strike: Four Heroes in the HQ capture Hidden Witnesses.
@@ -831,9 +794,7 @@ Corrupt Weak Minds
 Fight: Each other player puts a random Bystander from their Victory Pile onto a Hero in the HQ as a Hidden Witness.
 
 
-
 The Goblin, Underworld Boss
-
 Always Leads: Goblin's Freak Show
 Start of Game: The Goblin captures 2 Hidden Witnesses.
 Master Strike: Two random Bystanders from each player's Victory Pile become Hidden Witnesses held by The Goblin. Any player who didn't have two Bystanders gains a Wound instead.
@@ -857,7 +818,6 @@ Fight: Investigate the Villain Deck for a Goblin's Freak Show Villain and put it
 == X-Men ==
 
 Arcade
-
 Always Leads: Murderworld
 Start of Game: Arcard captures 5 Human Shields.
 Master Strike: Arcade captures a random Bystander from each player's Victory Pile as a Human Shield. Each player who didn't have a Bystander gains a Wound instead.
@@ -882,9 +842,7 @@ Welcome to my Theme Park!
 Fight: Arcade and each Murderworld Villain in the city capture two Human Shields.
 
 
-
 Dark Phoenix
-
 Always Leads: Hellfire Club
 Master Strike: KO the top card of the Hero Deck and each card in the Hero Deck that shares a color with it. Shuffle the Hero Deck.
 Dark Phoenix Wins: When the Hero Deck is empty.
@@ -909,9 +867,7 @@ Worship Me as a God
 Fight: Each other player gains two 0-cost cards from the KO pile.
 
 
-
 Deathbird
-
 Always Leads: Shi'ar Imperial Guard and a Shi'ar Henchmen Group.
 Deathbird gets +1 Attack for each Shi'ar Villain in teh city and Escape Pile.
 Master Strike: If there are already any Shi'ar Villains in the city, each player gains a Wound. Then this strike enters the city as a Shi'ar Battle Cruiser Token Villain with 7 Attack worth 5 VP.
@@ -936,9 +892,7 @@ Shi'ar Master Spies
 Fight: Rescue 4 Bystanders. This Tactic enters the city as a Villain whose only ability is "Escape: This card becomes a Scheme Twist that takes effect immediately."
 
 
-
 Mojo
-
 Always Leads: Mojoverse
 Start of Game: Mojo captures 3 Human Shields. All Bystanders in Victory Piles are worth 3 VP.
 Master Strike: Mojo captures a Human Shield. Each player reveals a Tech Hero or discards a card at random.
@@ -964,9 +918,7 @@ Mojo Branding Opportunity
 Fight: Draw a card for each Mojoverse Villain in your Victory Pile. Mojo captures a HUman Shield.
 
 
-
 Onslaught
-
 Always Leads: Dark Descendants
 Each player's hand size is 1 less.
 Master Strike: KO all Heroes Dominated by Onslaught. Then each player reveals their hand and chooses one of their non-grey Heroes. Onslaught Dominates those Heroes.
@@ -991,9 +943,7 @@ Worldwide Mental Control
 Fight: Onslaught Dominates four 0-cost Heroes from the KO pile. The next time a player fights Onslaught, KO those 0-cost Heroes.
 
 
-
 Shadow King
-
 Always Leads: Shadow-X
 Master Strike: KO all Heroes Dominated by Shadow King. Then each player chooses a non-grey Hero from their discard pile. Shadow King Dominates those Heroes.
 Attack: 7+
@@ -1021,7 +971,6 @@ Fight: If the "Betrayal of the Shadow" Trap is in any Victory Pile or the KO pil
 == Spider-Man Homecoming ==
 
 Adrian Toomes
-
 Always Leads: Salvagers
 Double Striker
 Master Strike: Starting from the Sewers, each Villain in the city uses its "Escape" ability.
@@ -1048,9 +997,7 @@ The World's Changed
 Fight: Danger Sense 3. Put all Henchmen Villains revealed this way into your Victory Pile, then do their "Fight" abilities.
 
 
-
 Vulture
-
 Always Leads: Vulture Tech
 Striker
 Master Strike: Put a Wound from the Wound Stack below each HQ space as a "Winged Assault." Whenever a player gains or KOs a Hero from the HQ, the player on their right gains one of the Wounds below that HQ space.
@@ -1079,7 +1026,6 @@ Fight: Put two "Winged Assault" Wounds from under the HQ into each other player'
 == Champions ==
 
 Fin Fang Foom
-
 Always Leads: Monsters Unleashed
 Size-Changing: Strength, Instinct, Covert, Tech, Ranged
 Master Strike: Demolish each player, then do it again for each Monsters Unleashed Villain in the city and Escape Pile.
@@ -1105,7 +1051,6 @@ Fight: KO the top card of the Hero Deck. Then each other player reveals their ha
 
 
 Pagliacci
-
 Always Leads: Wrecking Crew
 Master Strike 1, 5: This card becomes a Scheme Twist that takes effect immediately.
 Master Strike 2, 3, 4: Demolish each player.

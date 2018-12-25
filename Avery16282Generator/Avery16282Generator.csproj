@@ -63,6 +63,9 @@
     <Compile Include="Legendary\DTO\Hero.cs" />
     <Compile Include="Legendary\DTO\HeroCard.cs" />
     <Compile Include="Legendary\DTO\HeroCardSection.cs" />
+    <Compile Include="Legendary\DTO\Mastermind.cs" />
+    <Compile Include="Legendary\DTO\MastermindCardSet.cs" />
+    <Compile Include="Legendary\DTO\MastermindTactic.cs" />
     <Compile Include="Legendary\Enums\HeroCardType.cs" />
     <Compile Include="Legendary\Enums\HeroFaction.cs" />
     <Compile Include="Legendary\LegendaryLabels.cs" />

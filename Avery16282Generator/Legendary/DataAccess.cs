@@ -9,7 +9,7 @@ namespace Avery16282Generator.Legendary
 {
     public class DataAccess
     {
-        public static IEnumerable<HeroCardSet> GetCardSets()
+        public static IEnumerable<HeroCardSet> GetHeroCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\HeroesAndAllies");
             var allSets = new List<HeroCardSet>();
@@ -37,7 +37,6 @@ namespace Avery16282Generator.Legendary
                                 currentLineIndex++;
                             }
                             currentLineIndex++;
-
                         }
                     }
                 }
@@ -112,6 +111,80 @@ namespace Avery16282Generator.Legendary
                 }
                 currentLineIndex++;
 
+            }
+
+            return allSets;
+        }
+
+        public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
+        {
+            var allLines = File.ReadAllLines(@"Legendary\Data\MastermindsAndCommanders");
+            var allSets = new List<MastermindCardSet>();
+            MastermindCardSet currentSet = null;
+            Mastermind currentMastermind = null;
+            MastermindTactic currentTactic = null;
+            var currentLineIndex = 0;
+            while (currentLineIndex < allLines.Length)
+            {
+                if (string.IsNullOrWhiteSpace(allLines[currentLineIndex]))
+                {
+                    if (currentTactic != null)
+                    {
+                        currentMastermind.Tactics.Add(currentTactic);
+                        if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 1]))
+                        {
+                            currentTactic = null;
+                            currentSet.Masterminds.Add(currentMastermind);
+                            currentMastermind = null;
+                            if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 2]))
+                            {
+                                allSets.Add(currentSet);
+                                currentSet = null;
+                                currentLineIndex++;
+                            }
+                            currentLineIndex++;
+                        }
+                        else
+                        {
+                            currentTactic = new MastermindTactic
+                            {
+                                Name = allLines[currentLineIndex + 1]
+                            };
+                            currentLineIndex++;
+                        }
+                    }
+                    else if (currentMastermind != null)
+                    {
+                        currentTactic = new MastermindTactic
+                        {
+                            Name = allLines[currentLineIndex + 1]
+                        };
+                        currentLineIndex++;
+                    }
+                }
+                else if (currentSet == null)
+                {
+                    currentSet = new MastermindCardSet
+                    {
+                        SetName = allLines[currentLineIndex].Replace("==", "")
+                    };
+                }
+                else if (currentMastermind == null)
+                {
+                    currentMastermind = new Mastermind
+                    {
+                        Name = allLines[currentLineIndex]
+                    };
+                }
+                else if (currentTactic == null)
+                {
+                    currentMastermind.TextLines.Add(allLines[currentLineIndex]);
+                }
+                else
+                {
+                    currentTactic.TextLines.Add(allLines[currentLineIndex]);
+                }
+                currentLineIndex++;
             }
 
             return allSets;

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Avery16282Generator.Legendary.DTO
 {
-    class MastermindCardSet
+    public class MastermindCardSet
     {
+        public string SetName { get; set; }
+        public IList<Mastermind> Masterminds { get; } = new List<Mastermind>();
     }
 }
