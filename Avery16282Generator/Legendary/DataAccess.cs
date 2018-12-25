@@ -180,6 +180,55 @@ namespace Avery16282Generator.Legendary
             return allSets;
         }
 
+        public static IEnumerable<HenchmenCardSet> GetHenchmenCardSets()
+        {
+            var allLines = File.ReadAllLines(@"Legendary\Data\HenchmenAndBackupAdversaries");
+            var allSets = new List<HenchmenCardSet>();
+            HenchmenCardSet currentSet = null;
+            Henchmen currentHenchmen = null;
+            var currentLineIndex = 0;
+            while (currentLineIndex < allLines.Length)
+            {
+                if (string.IsNullOrWhiteSpace(allLines[currentLineIndex]))
+                {
+                    if (currentHenchmen != null)
+                    {
+                        currentSet.Henchmen.Add(currentHenchmen);
+                        currentHenchmen = null;
+                        if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 1]))
+                        {
+                            allSets.Add(currentSet);
+                            currentSet = null;
+                            currentLineIndex++;
+                        }
+                    }
+                }
+                else if (currentSet == null)
+                {
+                    currentSet = new HenchmenCardSet
+                    {
+                        SetName = allLines[currentLineIndex].Replace("==", "")
+                    };
+                }
+                else if (currentHenchmen == null)
+                {
+                    currentHenchmen = new Henchmen
+                    {
+                        Name = allLines[currentLineIndex]
+                    };
+                    currentLineIndex++;
+                }
+                else
+                {
+                    currentHenchmen.CardText.Add(allLines[currentLineIndex]);
+                }
+                currentLineIndex++;
+
+            }
+
+            return allSets;
+        }
+
         public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\MastermindsAndCommanders");

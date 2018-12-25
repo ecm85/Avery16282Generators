@@ -16,6 +16,7 @@ namespace Avery16282Generator.Legendary
             var allHeroes = DataAccess.GetHeroCardSets().SelectMany(card => card.Heroes);
             var allMasterminds = DataAccess.GetMastermindCardSets().SelectMany(card => card.Masterminds);
             var allVillains = DataAccess.GetVillainCardSets().SelectMany(card => card.Villains);
+            var allHenchmen = DataAccess.GetHenchmenCardSets().SelectMany(card => card.Henchmen);
             var fontName = "KOMIKAX.ttf";
             var fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), fontName);
             //var labelBackground = new CMYKColor(100, 100, 100, 100);
@@ -82,7 +83,26 @@ namespace Avery16282Generator.Legendary
                     DrawCardText(rectangle, topCursor, bottomCursor, canvas, villain.Name, baseFont);
                 }
             }).ToList();
-            var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawHeroActions.Concat(drawMastermindActions).Concat(drawVillainActions));
+            var drawHenchmenActions = allHenchmen.SelectMany(henchmen => new List<Action<PdfContentByte, Rectangle>>
+            {
+                (canvas, rectangle) =>
+                {
+                    var topCursor = new Cursor();
+                    var bottomCursor = new Cursor();
+                    const float startOfLabelOffset = 4f;
+                    topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
+                    bottomCursor.AdvanceCursor(rectangle.Bottom + startOfLabelOffset);
+                    TextSharpHelpers.DrawRoundedRectangle(canvas, rectangle, new BaseColor(255,173,182));
+
+                    //DrawBackgroundImage(card.SuperType, rectangle, canvas, topCursor, bottomCursor);
+                    //DrawSetImageAndReturnTop(rectangle, bottomCursor, card.Set.Image, canvas);
+
+                    //var cardName = card.GroupName ?? card.Name;
+                    //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
+                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, henchmen.Name, baseFont);
+                }
+            }).ToList();
+            var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawHeroActions.Concat(drawMastermindActions).Concat(drawVillainActions).Concat(drawHenchmenActions));
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
 
             //TODO:
