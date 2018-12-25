@@ -863,14 +863,11 @@ Start of Game: Arcard captures 5 Human Shields.
 Master Strike: Arcade captures a random Bystander from each player's Victory Pile as a Human Shield. Each player who didn't have a Bystander gains a Wound instead.
 Attack: 3*
 VP: 5
-
-Epic Arcade
-
-Always Leads: Murderworld
-Start of Game: Arcard captures 8 Human Shields. Play a random Horror.
-Master Strike: Arcade captures two random Bystanders from each player's Victory Pile as a Human Shield. Each player who didn't have two Bystanders gains a Wound instead.
-Attack: 4*
-VP: 5
+EPIC: Always Leads: Murderworld
+EPIC: Start of Game: Arcard captures 8 Human Shields. Play a random Horror.
+EPIC: Master Strike: Arcade captures two random Bystanders from each player's Victory Pile as a Human Shield. Each player who didn't have two Bystanders gains a Wound instead.
+EPIC: Attack: 4*
+EPIC: VP: 5
 
 I Love a Parade!
 Fight: Arcade captures two Human Shields. Play an extra card from the Villain Deck next turn.
@@ -893,14 +890,11 @@ Master Strike: KO the top card of the Hero Deck and each card in the Hero Deck t
 Dark Phoenix Wins: When the Hero Deck is empty.
 13 Attack
 VP: 7
-
-Epic Dark Phoenix
-
-Always Leads: Hellfire Club
-Master Strike: KO the top card of the Hero Deck and each card in the Hero Deck that shares a color with it. Shuffle the Hero Deck. Then, each player plays a Hellfire Club card from their victory Pile. Next, play a random Horror.
-Dark Phoenix Wins: When the Hero Deck is empty.
-15 Attack
-VP: 7
+EPIC: Always Leads: Hellfire Club
+EPIC: Master Strike: KO the top card of the Hero Deck and each card in the Hero Deck that shares a color with it. Shuffle the Hero Deck. Then, each player plays a Hellfire Club card from their victory Pile. Next, play a random Horror.
+EPIC: Dark Phoenix Wins: When the Hero Deck is empty.
+EPIC: 15 Attack
+EPIC: VP: 7
 
 Burn the World to Ashes
 Fight: Each other player discards each card from their hand that has the same name as any card in the KO pile.
@@ -923,14 +917,11 @@ Deathbird gets +1 Attack for each Shi'ar Villain in teh city and Escape Pile.
 Master Strike: If there are already any Shi'ar Villains in the city, each player gains a Wound. Then this strike enters the city as a Shi'ar Battle Cruiser Token Villain with 7 Attack worth 5 VP.
 Attack: 8+
 VP: 6
-
-Epic Deathbird
-
-Always Leads: Shi'ar Imperial Guard and a Shi'ar Henchmen Group.
-Deathbird gets +2 Attack for each Shi'ar Villain in teh city and Escape Pile.
-Master Strike: If there are already any Shi'ar Villains in the city, play a random Horror. Then this strike enters the city as a Shi'ar Battle Cruiser Token Villain with 9 Attack worth 6 VP.
-Attack: 8+
-VP: 6
+EPIC: Always Leads: Shi'ar Imperial Guard and a Shi'ar Henchmen Group.
+EPIC: Deathbird gets +2 Attack for each Shi'ar Villain in teh city and Escape Pile.
+EPIC: Master Strike: If there are already any Shi'ar Villains in the city, play a random Horror. Then this strike enters the city as a Shi'ar Battle Cruiser Token Villain with 9 Attack worth 6 VP.
+EPIC: Attack: 8+
+EPIC: VP: 6
 
 Shi'ar Elite Bodyguards
 Fight: Rescue 4 Bystanders. This Tactic enters the city as a Villain whose only ability is "Escape: Shuffle this card back into Deathbird's Mastermind Tactics as another Tactic."
@@ -953,15 +944,12 @@ Start of Game: Mojo captures 3 Human Shields. All Bystanders in Victory Piles ar
 Master Strike: Mojo captures a Human Shield. Each player reveals a Tech Hero or discards a card at random.
 Attack: 6*
 VP: 5
-
-Epic Mojo
-
-Always Leads: Mojoverse
-Start of Game: Mojo captures 6 Human Shields. Play a random Horror.
-All Bystanders in Victory Piles are worth 4 VP.
-Master Strike: Mojo and each Mojoverse Villain capture a Human Shield. Each player reveals a Tech Hero or discards down to 4 cards each.
-Attack: 7*
-VP: 5
+EPIC: Always Leads: Mojoverse
+EPIC: Start of Game: Mojo captures 6 Human Shields. Play a random Horror.
+EPIC: All Bystanders in Victory Piles are worth 4 VP.
+EPIC: Master Strike: Mojo and each Mojoverse Villain capture a Human Shield. Each player reveals a Tech Hero or discards down to 4 cards each.
+EPIC: Attack: 7*
+EPIC: VP: 5
 
 Billions of TV Viewers
 Fight: Each player reveals a Tech Hero or chooses a random Bystander from their Victory Pile. Mojo captures those Bystanders as Human Shields.
@@ -984,14 +972,11 @@ Each player's hand size is 1 less.
 Master Strike: KO all Heroes Dominated by Onslaught. Then each player reveals their hand and chooses one of their non-grey Heroes. Onslaught Dominates those Heroes.
 Attack: 10+
 VP: 7
-
-Epic Onslaught
-
-Always Leads: Dark Descendants
-Each player's hand size is 1 less.
-Master Strike: KO all Heroes Dominated by Onslaught. Then each player reveals their hand and chooses two of their non-grey Heroes. Onslaught Dominates those Heroes. Then play a random Horror.
-Attack: 12+
-VP: 7
+EPIC: Always Leads: Dark Descendants
+EPIC: Each player's hand size is 1 less.
+EPIC: Master Strike: KO all Heroes Dominated by Onslaught. Then each player reveals their hand and chooses two of their non-grey Heroes. Onslaught Dominates those Heroes. Then play a random Horror.
+EPIC: Attack: 12+
+EPIC: VP: 7
 
 Godlike Psionic Entity
 Fight: Onslaught Dominates all five Heroes from the HQ.
@@ -1013,14 +998,11 @@ Always Leads: Shadow-X
 Master Strike: KO all Heroes Dominated by Shadow King. Then each player chooses a non-grey Hero from their discard pile. Shadow King Dominates those Heroes.
 Attack: 7+
 VP: 6
-
-Epic Shadow King
-
-Always Leads: Shadow-X
-Start of Game: Play two random Horrors.
-Master Strike: KO all Heroes Dominated by Shadow King. Then each player chooses a non-grey Hero from their discard pile. Shadow King Dominates those Heroes.
-Attack: 9+
-VP: 6
+EPIC: Always Leads: Shadow-X
+EPIC: Start of Game: Play two random Horrors.
+EPIC: Master Strike: KO all Heroes Dominated by Shadow King. Then each player chooses a non-grey Hero from their discard pile. Shadow King Dominates those Heroes.
+EPIC: Attack: 9+
+EPIC: VP: 6
 
 Fiend of the Astral Plane
 Fight: Each other player reveals their hand and shuffles two cards with Recruit icons from their hand back into their deck.
@@ -1045,14 +1027,11 @@ Double Striker
 Master Strike: Starting from the Sewers, each Villain in the city uses its "Escape" ability.
 Attack: 5+
 VP: 6
-
-Epic Adrian Toomes
-
-Always Leads: Salvagers
-Triple Striker
-Master Strike: Starting from the Sewers, each Villain in the city uses its "Ambush" ability, then its "Escape" ability.
-Attack: 5+
-VP: 6
+EPIC: Always Leads: Salvagers
+EPIC: Triple Striker
+EPIC: Master Strike: Starting from the Sewers, each Villain in the city uses its "Ambush" ability, then its "Escape" ability.
+EPIC: Attack: 5+
+EPIC: VP: 6
 
 Don't Interfere
 Fight: Danger Sense 4. If this revealed any Bystanders, rescue them.
@@ -1077,14 +1056,11 @@ Striker
 Master Strike: Put a Wound from the Wound Stack below each HQ space as a "Winged Assault." Whenever a player gains or KOs a Hero from the HQ, the player on their right gains one of the Wounds below that HQ space.
 Attack: 8+
 VP: 6
-
-Epic Vulture
-
-Always Leads: Vulture Tech
-Striker
-Master Strike: Put a Wound from the Wound Stack or KO pile below each HQ space as a "Winged Assault." Whenever a player gains or KOs a Hero from the HQ, the player on their right gains one of the Wounds below that HQ space, putting it on top of their deck.
-Attack: 10+
-VP: 6
+EPIC: Always Leads: Vulture Tech
+EPIC: Striker
+EPIC: Master Strike: Put a Wound from the Wound Stack or KO pile below each HQ space as a "Winged Assault." Whenever a player gains or KOs a Hero from the HQ, the player on their right gains one of the Wounds below that HQ space, putting it on top of their deck.
+EPIC: Attack: 10+
+EPIC: VP: 6
 
 Bird of Prey
 Fight: Each other player discards a Spider Friends Hero or discards two cards.
@@ -1109,14 +1085,11 @@ Size-Changing: Strength, Instinct, Covert, Tech, Ranged
 Master Strike: Demolish each player, then do it again for each Monsters Unleashed Villain in the city and Escape Pile.
 Attack: 20*
 VP: 7
-
-Epic Fin Fang Foom
-
-Always Leads: Monsters Unleashed
-Size-Changing: Strength, Instinct, Covert, Tech, Ranged
-Master Strike: Demolish each player, then do it again for each Monsters Unleashed Villain in the city and Escape Pile. KO all the Heroes Demolished this way.
-Attack: 24*
-VP: 7
+EPIC: Always Leads: Monsters Unleashed
+EPIC: Size-Changing: Strength, Instinct, Covert, Tech, Ranged
+EPIC: Master Strike: Demolish each player, then do it again for each Monsters Unleashed Villain in the city and Escape Pile. KO all the Heroes Demolished this way.
+EPIC: Attack: 24*
+EPIC: VP: 7
 
 Alien Dragon Technology
 Fight: A Hero in the HQ gets Size-Changing: Strength, Instinct, Covert, Tech, Ranged this turn.
@@ -1138,14 +1111,11 @@ Master Strike 1, 5: This card becomes a Scheme Twist that takes effect immediate
 Master Strike 2, 3, 4: Demolish each player.
 Attack: 9
 VP: 6
-
-Epic Pagliacci
-
-Always Leads: Wrecking Crew
-Master Strike 1, 3, 5: This card becomes a Scheme Twist that takes effect immediately.
-Master Strike 2, 4: Demolish each player.
-Attack: 11
-VP: 6
+EPIC: Always Leads: Wrecking Crew
+EPIC: Master Strike 1, 3, 5: This card becomes a Scheme Twist that takes effect immediately.
+EPIC: Master Strike 2, 4: Demolish each player.
+EPIC: Attack: 11
+EPIC: VP: 6
 
 Commedia Dell'Morte
 Fight: Each other player may gain two Wounds. Demolish each of those players who does not.
