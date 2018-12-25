@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Avery16282Generator.Legendary.Enums;
 
 namespace Avery16282Generator.Legendary.DTO
 {

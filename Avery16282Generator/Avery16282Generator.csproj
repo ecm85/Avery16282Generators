@@ -58,13 +58,13 @@
     <Compile Include="Dominion\DominionCard.cs" />
     <Compile Include="Dominion\DominionCardDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
-    <Compile Include="Legendary\CardSet.cs" />
+    <Compile Include="Legendary\DTO\CardSet.cs" />
     <Compile Include="Legendary\DataAccess.cs" />
-    <Compile Include="Legendary\Hero.cs" />
-    <Compile Include="Legendary\HeroCard.cs" />
-    <Compile Include="Legendary\HeroCardSection.cs" />
-    <Compile Include="Legendary\HeroCardType.cs" />
-    <Compile Include="Legendary\HeroFaction.cs" />
+    <Compile Include="Legendary\DTO\Hero.cs" />
+    <Compile Include="Legendary\DTO\HeroCard.cs" />
+    <Compile Include="Legendary\DTO\HeroCardSection.cs" />
+    <Compile Include="Legendary\Enums\HeroCardType.cs" />
+    <Compile Include="Legendary\Enums\HeroFaction.cs" />
     <Compile Include="Legendary\LegendaryLabels.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -237,6 +237,9 @@
     <Content Include="Legendary\Data\HeroesAndAllies">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Legendary\Data\HenchmenAndBackupAdversaries">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Legendary\Data\HeroesAndAlliesOriginal" />
     <Content Include="Legendary\images\Types\covert-instinct.pdn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -266,6 +269,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Legendary\images\Types\strength-tech.pdn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\Data\MastermindsAndCommanders">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\Data\SetupCards">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\Data\StartupCards">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\Data\VillainsAndAdversaries">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

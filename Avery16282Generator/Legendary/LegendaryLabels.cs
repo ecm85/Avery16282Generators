@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Avery16282Generator.Legendary.DTO;
+using Avery16282Generator.Legendary.Enums;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
