@@ -116,6 +116,70 @@ namespace Avery16282Generator.Legendary
             return allSets;
         }
 
+        public static IEnumerable<VillainCardSet> GetVillainCardSets()
+        {
+            var allLines = File.ReadAllLines(@"Legendary\Data\VillainsAndAdversaries");
+            var allSets = new List<VillainCardSet>();
+            VillainCardSet currentSet = null;
+            Villain currentVillain = null;
+            VillainCard currentCard = null;
+            var currentLineIndex = 0;
+            while (currentLineIndex < allLines.Length)
+            {
+                if (string.IsNullOrWhiteSpace(allLines[currentLineIndex]))
+                {
+                    if (currentCard != null)
+                    {
+                        currentVillain.Cards.Add(currentCard);
+                        currentCard = null;
+                        if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 1]))
+                        {
+                            currentSet.Villains.Add(currentVillain);
+                            currentVillain = null;
+                            if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 2]))
+                            {
+                                allSets.Add(currentSet);
+                                currentSet = null;
+                                currentLineIndex++;
+                            }
+                            currentLineIndex++;
+                        }
+                    }
+                }
+                else if (currentSet == null)
+                {
+                    currentSet = new VillainCardSet
+                    {
+                        SetName = allLines[currentLineIndex].Replace("==", "")
+                    };
+                }
+                else if (currentVillain == null)
+                {
+                    currentVillain = new Villain
+                    {
+                        Name = allLines[currentLineIndex]
+                    };
+                    currentLineIndex++;
+                }
+                else if (currentCard == null)
+                {
+                    currentCard = new VillainCard
+                    {
+                        NameAndCount = allLines[currentLineIndex]
+                    };
+                    currentLineIndex++;
+                }
+                else
+                {
+                    currentCard.CardText.Add(allLines[currentLineIndex]);
+                }
+                currentLineIndex++;
+
+            }
+
+            return allSets;
+        }
+
         public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\MastermindsAndCommanders");
