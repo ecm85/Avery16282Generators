@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Avery16282Generator.Legendary
+namespace Avery16282Generator.Legendary.DTO
 {
     public class CardSet
     {

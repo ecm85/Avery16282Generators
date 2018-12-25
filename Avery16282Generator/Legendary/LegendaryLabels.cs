@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -43,6 +42,11 @@ namespace Avery16282Generator.Legendary
             }).ToList();
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
+
+            //TODO:
+            //Schemes (Plots)
+            //Scheme(Plot) Twists
+            //Master(Command) Strikes
         }
 
         private static void DrawFactionsAndTypes(Hero hero, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, Cursor bottomCursor)
