@@ -9,11 +9,11 @@ namespace Avery16282Generator.Legendary
 {
     public class DataAccess
     {
-        public static IEnumerable<CardSet> GetCardSets()
+        public static IEnumerable<HeroCardSet> GetCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\HeroesAndAllies");
-            var allSets = new List<CardSet>();
-            CardSet currentSet = null;
+            var allSets = new List<HeroCardSet>();
+            HeroCardSet currentSet = null;
             Hero currentHero = null;
             HeroCard currentCard = null;
             HeroCardSection heroCardSection = null;
@@ -43,7 +43,7 @@ namespace Avery16282Generator.Legendary
                 }
                 else if (currentSet == null)
                 {
-                    currentSet = new CardSet
+                    currentSet = new HeroCardSet
                     {
                         SetName = allLines[currentLineIndex].Replace("==", "")
                     };
