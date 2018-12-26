@@ -13,6 +13,10 @@ namespace Avery16282Generator.Legendary
     {
         public static void CreateLabels()
         {
+            //TODO: Add set label
+            //TODO: Configurable by set
+            //TODO: Configurable to print 'special' labels
+
             var allHeroes = DataAccess.GetHeroCardSets().SelectMany(card => card.Heroes);
             var allMasterminds = DataAccess.GetMastermindCardSets().SelectMany(card => card.Masterminds);
             var allVillains = DataAccess.GetVillainCardSets().SelectMany(card => card.Villains);
