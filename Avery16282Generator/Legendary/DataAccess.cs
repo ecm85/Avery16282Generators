@@ -44,7 +44,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new HeroCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "")
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
                     };
                 }
                 else if (currentHero == null)
@@ -53,7 +53,8 @@ namespace Avery16282Generator.Legendary
                     currentHero = new Hero
                     {
                         Factions = ParseHeroFactions(factionText).ToList(),
-                        Name = allLines[currentLineIndex]
+                        Name = allLines[currentLineIndex],
+                        Set = currentSet.SetName
                     };
                     currentLineIndex++;
                 }
@@ -150,14 +151,15 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new VillainCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "")
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
                     };
                 }
                 else if (currentVillain == null)
                 {
                     currentVillain = new Villain
                     {
-                        Name = allLines[currentLineIndex]
+                        Name = allLines[currentLineIndex],
+                        Set = currentSet.SetName
                     };
                     currentLineIndex++;
                 }
@@ -207,14 +209,15 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new HenchmenCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "")
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
                     };
                 }
                 else if (currentHenchmen == null)
                 {
                     currentHenchmen = new Henchmen
                     {
-                        Name = allLines[currentLineIndex]
+                        Name = allLines[currentLineIndex],
+                        Set = currentSet.SetName
                     };
                 }
                 else
@@ -255,14 +258,15 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new StartingCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "")
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
                     };
                 }
                 else if (currentStartingCard == null)
                 {
                     currentStartingCard = new StartingCard
                     {
-                        Name = allLines[currentLineIndex]
+                        Name = allLines[currentLineIndex],
+                        Set = currentSet.SetName
                     };
                 }
                 else
@@ -303,7 +307,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new SetupCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "")
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
                     };
                 }
                 else if (currentSetupCard == null)
@@ -311,6 +315,7 @@ namespace Avery16282Generator.Legendary
                     currentSetupCard = new SetupCard
                     {
                         Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(")),
+                        Set = currentSet.SetName
                     };
                 }
                 else
@@ -374,14 +379,15 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new MastermindCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "")
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
                     };
                 }
                 else if (currentMastermind == null)
                 {
                     currentMastermind = new Mastermind
                     {
-                        Name = allLines[currentLineIndex]
+                        Name = allLines[currentLineIndex],
+                        Set = currentSet.SetName
                     };
                 }
                 else if (currentTactic == null)

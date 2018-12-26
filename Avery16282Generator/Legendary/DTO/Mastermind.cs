@@ -7,5 +7,6 @@ namespace Avery16282Generator.Legendary.DTO
         public string Name { get; set; }
         public IList<string> TextLines { get; } = new List<string>();
         public IList<MastermindTactic> Tactics { get; } = new List<MastermindTactic>();
+        public string Set { get; set; }
     }
 }

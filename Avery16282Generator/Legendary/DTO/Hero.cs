@@ -8,5 +8,6 @@ namespace Avery16282Generator.Legendary.DTO
         public IList<HeroCard> Cards { get; } = new List<HeroCard>();
         public IList<HeroFaction> Factions { get; set; }
         public string Name { get; set; }
+        public string Set { get; set; }
     }
 }

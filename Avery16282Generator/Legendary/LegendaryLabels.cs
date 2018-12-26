@@ -13,16 +13,15 @@ namespace Avery16282Generator.Legendary
     {
         public static void CreateLabels()
         {
-            //TODO: Add set label
             //TODO: Configurable by set
             //TODO: Configurable to print 'special' labels
 
-            var allHeroes = DataAccess.GetHeroCardSets().SelectMany(card => card.Heroes);
-            var allMasterminds = DataAccess.GetMastermindCardSets().SelectMany(card => card.Masterminds);
-            var allVillains = DataAccess.GetVillainCardSets().SelectMany(card => card.Villains);
-            var allHenchmen = DataAccess.GetHenchmenCardSets().SelectMany(card => card.Henchmen);
-            var allStartingCards = DataAccess.GetStartingCardSets().SelectMany(card => card.StartingCards);
-            var allSetupCards = DataAccess.GetSetupCardSets().SelectMany(card => card.SetupCards);
+            var allHeroes = DataAccess.GetHeroCardSets().SelectMany(heroCardSet => heroCardSet.Heroes);
+            var allMasterminds = DataAccess.GetMastermindCardSets().SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
+            var allVillains = DataAccess.GetVillainCardSets().SelectMany(villainCardSet => villainCardSet.Villains);
+            var allHenchmen = DataAccess.GetHenchmenCardSets().SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
+            var allStartingCards = DataAccess.GetStartingCardSets().SelectMany(startingCardSet => startingCardSet.StartingCards);
+            var allSetupCards = DataAccess.GetSetupCardSets().SelectMany(setupCardSet => setupCardSet.SetupCards);
             var fontName = "KOMIKAX.ttf";
             var fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), fontName);
             //var labelBackground = new CMYKColor(100, 100, 100, 100);
@@ -48,6 +47,7 @@ namespace Avery16282Generator.Legendary
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
                     DrawCardText(rectangle, topCursor, bottomCursor, canvas, hero.Name, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, hero.Set, baseFont);
                 }
             }).ToList();
             var drawMastermindActions = allMasterminds.SelectMany(mastermind => new List<Action<PdfContentByte, Rectangle>>
@@ -67,6 +67,7 @@ namespace Avery16282Generator.Legendary
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
                     DrawCardText(rectangle, topCursor, bottomCursor, canvas, mastermind.Name, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, mastermind.Set, baseFont);
                 }
             }).ToList();
 
@@ -87,6 +88,7 @@ namespace Avery16282Generator.Legendary
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
                     DrawCardText(rectangle, topCursor, bottomCursor, canvas, villain.Name, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, villain.Set, baseFont);
                 }
             }).ToList();
             var drawHenchmenActions = allHenchmen.SelectMany(henchmen => new List<Action<PdfContentByte, Rectangle>>
@@ -106,9 +108,10 @@ namespace Avery16282Generator.Legendary
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
                     DrawCardText(rectangle, topCursor, bottomCursor, canvas, henchmen.Name, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, henchmen.Set, baseFont);
                 }
             }).ToList();
-            var drawStartingCardsActions = allStartingCards.SelectMany(henchmen => new List<Action<PdfContentByte, Rectangle>>
+            var drawStartingCardsActions = allStartingCards.SelectMany(startingCard => new List<Action<PdfContentByte, Rectangle>>
             {
                 (canvas, rectangle) =>
                 {
@@ -124,10 +127,11 @@ namespace Avery16282Generator.Legendary
 
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
-                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, henchmen.Name, baseFont);
+                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, startingCard.Name, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, startingCard.Set, baseFont);
                 }
             }).ToList();
-            var drawStartupCardsActions = allSetupCards.SelectMany(henchmen => new List<Action<PdfContentByte, Rectangle>>
+            var drawStartupCardsActions = allSetupCards.SelectMany(setupCard => new List<Action<PdfContentByte, Rectangle>>
             {
                 (canvas, rectangle) =>
                 {
@@ -143,7 +147,8 @@ namespace Avery16282Generator.Legendary
 
                     //var cardName = card.GroupName ?? card.Name;
                     //DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
-                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, henchmen.Name, baseFont);
+                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, setupCard.Name, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, setupCard.Set, baseFont);
                 }
             }).ToList();
             var allActions = drawHeroActions
@@ -265,6 +270,31 @@ namespace Avery16282Generator.Legendary
             var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
             var textRectangleHeight = textFontSize * .9f;
             var textWidthOffset = rectangle.Width/2.0f - textRectangleHeight / 2.0f;
+            //var textWidthOffset = 8 + (maxFontSize - font.Size) * .35f;
+            var textRectangle = new Rectangle(
+                rectangle.Left + textWidthOffset,
+                bottomCursor.GetCurrent() + textPadding,
+                rectangle.Left + textWidthOffset + textRectangleHeight,
+                topCursor.GetCurrent() - textPadding);
+            //TextSharpHelpers.DrawRectangle(canvas, textRectangle, BaseColor.GREEN);
+            DrawText(canvas, heroName, textRectangle, 0, 0, font);
+        }
+
+        private static void DrawSetText(
+            Rectangle rectangle,
+            Cursor topCursor,
+            Cursor bottomCursor,
+            PdfContentByte canvas,
+            string heroName,
+            BaseFont baseFont)
+        {
+            const float textPadding = 0f;
+            const float maxFontSize = 4f;
+            var potentialTextRectangleHeight = topCursor.GetCurrent() - bottomCursor.GetCurrent(); // - textPadding * 2
+            var textFontSize = TextSharpHelpers.GetFontSize(canvas, heroName, potentialTextRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
+            var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
+            var textRectangleHeight = textFontSize * .9f;
+            var textWidthOffset = 2f;
             //var textWidthOffset = 8 + (maxFontSize - font.Size) * .35f;
             var textRectangle = new Rectangle(
                 rectangle.Left + textWidthOffset,

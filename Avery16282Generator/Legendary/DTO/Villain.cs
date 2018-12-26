@@ -6,5 +6,6 @@ namespace Avery16282Generator.Legendary.DTO
     {
         public IList<VillainCard> Cards { get; } = new List<VillainCard>();
         public string Name { get; set; }
+        public string Set { get; set; }
     }
 }

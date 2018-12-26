@@ -18,7 +18,20 @@ namespace Avery16282Generator
             //DominionLabels.CreateLabels();
             //AeonsEndLabels.CreateLabels();
             LegendaryLabels.CreateLabels();
-
+            //var sets =
+            //    (DataAccess.GetStartingCardSets().Select(set => set.SetName))
+            //    .Concat((DataAccess.GetHenchmenCardSets().Select(set => set.SetName)))
+            //    .Concat((DataAccess.GetHeroCardSets().Select(set => set.SetName)))
+            //    .Concat((DataAccess.GetMastermindCardSets().Select(set => set.SetName)))
+            //    .Concat((DataAccess.GetSetupCardSets().Select(set => set.SetName)))
+            //    .Concat((DataAccess.GetVillainCardSets().Select(set => set.SetName)))
+            //    .Distinct()
+            //    .OrderBy(set => set)
+            //    .ToList();
+            //foreach (var set in sets)
+            //{
+            //    Console.WriteLine(set);
+            //}
 
             //var directory = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
             //foreach (var file in Directory.EnumerateFiles(directory))
