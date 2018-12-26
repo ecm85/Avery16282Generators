@@ -276,6 +276,54 @@ namespace Avery16282Generator.Legendary
             return allSets;
         }
 
+        public static IEnumerable<SetupCardSet> GetSetupCardSets()
+        {
+            var allLines = File.ReadAllLines(@"Legendary\Data\SetupCards");
+            var allSets = new List<SetupCardSet>();
+            SetupCardSet currentSet = null;
+            SetupCard currentSetupCard = null;
+            var currentLineIndex = 0;
+            while (currentLineIndex < allLines.Length)
+            {
+                if (string.IsNullOrWhiteSpace(allLines[currentLineIndex]))
+                {
+                    if (currentSetupCard != null)
+                    {
+                        currentSet.SetupCards.Add(currentSetupCard);
+                        currentSetupCard = null;
+                        if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 1]))
+                        {
+                            allSets.Add(currentSet);
+                            currentSet = null;
+                            currentLineIndex++;
+                        }
+                    }
+                }
+                else if (currentSet == null)
+                {
+                    currentSet = new SetupCardSet
+                    {
+                        SetName = allLines[currentLineIndex].Replace("==", "")
+                    };
+                }
+                else if (currentSetupCard == null)
+                {
+                    currentSetupCard = new SetupCard
+                    {
+                        Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(")),
+                    };
+                }
+                else
+                {
+                    currentSetupCard.CardText.Add(allLines[currentLineIndex]);
+                }
+                currentLineIndex++;
+
+            }
+
+            return allSets;
+        }
+
         public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\MastermindsAndCommanders");

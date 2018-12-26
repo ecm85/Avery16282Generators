@@ -58,6 +58,8 @@
     <Compile Include="Dominion\DominionCard.cs" />
     <Compile Include="Dominion\DominionCardDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
+    <Compile Include="Legendary\DTO\SetupCard.cs" />
+    <Compile Include="Legendary\DTO\SetupCardSet.cs" />
     <Compile Include="Legendary\DTO\StartingCardSet.cs" />
     <Compile Include="Legendary\DTO\StartingCard.cs" />
     <Compile Include="Legendary\DTO\Henchmen.cs" />
