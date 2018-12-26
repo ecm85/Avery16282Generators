@@ -216,11 +216,58 @@ namespace Avery16282Generator.Legendary
                     {
                         Name = allLines[currentLineIndex]
                     };
-                    currentLineIndex++;
                 }
                 else
                 {
                     currentHenchmen.CardText.Add(allLines[currentLineIndex]);
+                }
+                currentLineIndex++;
+
+            }
+
+            return allSets;
+        }
+
+        public static IEnumerable<StartingCardSet> GetStartingCardSets()
+        {
+            var allLines = File.ReadAllLines(@"Legendary\Data\StartingCards");
+            var allSets = new List<StartingCardSet>();
+            StartingCardSet currentSet = null;
+            StartingCard currentStartingCard = null;
+            var currentLineIndex = 0;
+            while (currentLineIndex < allLines.Length)
+            {
+                if (string.IsNullOrWhiteSpace(allLines[currentLineIndex]))
+                {
+                    if (currentStartingCard != null)
+                    {
+                        currentSet.StartingCards.Add(currentStartingCard);
+                        currentStartingCard = null;
+                        if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 1]))
+                        {
+                            allSets.Add(currentSet);
+                            currentSet = null;
+                            currentLineIndex++;
+                        }
+                    }
+                }
+                else if (currentSet == null)
+                {
+                    currentSet = new StartingCardSet
+                    {
+                        SetName = allLines[currentLineIndex].Replace("==", "")
+                    };
+                }
+                else if (currentStartingCard == null)
+                {
+                    currentStartingCard = new StartingCard
+                    {
+                        Name = allLines[currentLineIndex]
+                    };
+                }
+                else
+                {
+                    currentStartingCard.CardText.Add(allLines[currentLineIndex]);
                 }
                 currentLineIndex++;
 
