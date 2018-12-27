@@ -14,16 +14,19 @@ namespace Avery16282Generator.Legendary
     {
         public static void CreateLabels()
         {
-            //TODO: Configurable to print 'special' labels
             var includedSets = ConfigurationManager.AppSettings["LegendarySetsToUse"].Split(',').Select(set => set.ToLower());
             var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(heroCardSet => heroCardSet.Heroes);
             var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
             var allVillains = DataAccess.GetVillainCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(villainCardSet => villainCardSet.Villains);
             var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
             var allStartingCards = DataAccess.GetStartingCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(startingCardSet => startingCardSet.StartingCards);
-            var allSetupCards = DataAccess.GetSetupCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(setupCardSet => setupCardSet.SetupCards);
+            var includeSpecialSetupCards = bool.Parse(ConfigurationManager.AppSettings["IncludeLegendarySpecialCards"]);
+            var allSetupCards = DataAccess.GetSetupCardSets()
+                .Where(set => includedSets.Contains(set.SetName.ToLower()))
+                .SelectMany(setupCardSet => setupCardSet.SetupCards)
+                .Where(setupCard => includeSpecialSetupCards || !setupCard.IsSpecialCard);
             var allVillainSetupCards = DataAccess.GetVillainSetupCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(setupCardSet => setupCardSet.VillainSetupCards);
-
+            
             var mastermindBaseColor = new BaseColor(255, 61, 83);
             var villainBaseColor = new BaseColor(255, 102, 119);
             var henchmenBaseColor = new BaseColor(255, 173, 182);

@@ -310,11 +310,24 @@ namespace Avery16282Generator.Legendary
                 }
                 else if (currentSetupCard == null)
                 {
-                    currentSetupCard = new SetupCard
+                    if (allLines[currentLineIndex].StartsWith("S: "))
                     {
-                        Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal)),
-                        Set = currentSet.SetName
-                    };
+                        currentSetupCard = new SetupCard
+                        {
+                            Name = allLines[currentLineIndex].Substring(3, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal) - 3),
+                            Set = currentSet.SetName,
+                            IsSpecialCard = true
+                        };
+                    }
+                    else
+                    {
+                        currentSetupCard = new SetupCard
+                        {
+                            Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal)),
+                            Set = currentSet.SetName,
+                            IsSpecialCard = false
+                        };
+                    }
                 }
                 else
                 {
