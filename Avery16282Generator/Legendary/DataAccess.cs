@@ -327,6 +327,55 @@ namespace Avery16282Generator.Legendary
             return allSets;
         }
 
+        public static IEnumerable<VillainSetupCardSet> GetVillainSetupCardSets()
+        {
+            var allLines = File.ReadAllLines(@"Legendary\Data\VillainSetupCards");
+            var allSets = new List<VillainSetupCardSet>();
+            VillainSetupCardSet currentSet = null;
+            VillainSetupCard currentVillainSetupCard = null;
+            var currentLineIndex = 0;
+            while (currentLineIndex < allLines.Length)
+            {
+                if (string.IsNullOrWhiteSpace(allLines[currentLineIndex]))
+                {
+                    if (currentVillainSetupCard != null)
+                    {
+                        currentSet.VillainSetupCards.Add(currentVillainSetupCard);
+                        currentVillainSetupCard = null;
+                        if (string.IsNullOrWhiteSpace(allLines[currentLineIndex + 1]))
+                        {
+                            allSets.Add(currentSet);
+                            currentSet = null;
+                            currentLineIndex++;
+                        }
+                    }
+                }
+                else if (currentSet == null)
+                {
+                    currentSet = new VillainSetupCardSet
+                    {
+                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                    };
+                }
+                else if (currentVillainSetupCard == null)
+                {
+                    currentVillainSetupCard = new VillainSetupCard
+                    {
+                        Name = allLines[currentLineIndex],
+                        Set = currentSet.SetName
+                    };
+                }
+                else
+                {
+                    currentVillainSetupCard.CardText.Add(allLines[currentLineIndex]);
+                }
+                currentLineIndex++;
+
+            }
+
+            return allSets;
+        }
+
         public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\MastermindsAndCommanders");

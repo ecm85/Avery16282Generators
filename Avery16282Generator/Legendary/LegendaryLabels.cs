@@ -14,11 +14,6 @@ namespace Avery16282Generator.Legendary
     {
         public static void CreateLabels()
         {
-            //TODO:
-            //Schemes (Plots)
-            //Scheme(Plot) Twists
-            //Master(Command) Strikes
-
             //TODO: Configurable to print 'special' labels
             var includedSets = ConfigurationManager.AppSettings["LegendarySetsToUse"].Split(',').Select(set => set.ToLower());
             var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(heroCardSet => heroCardSet.Heroes);
@@ -27,12 +22,14 @@ namespace Avery16282Generator.Legendary
             var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
             var allStartingCards = DataAccess.GetStartingCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(startingCardSet => startingCardSet.StartingCards);
             var allSetupCards = DataAccess.GetSetupCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(setupCardSet => setupCardSet.SetupCards);
+            var allVillainSetupCards = DataAccess.GetVillainSetupCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(setupCardSet => setupCardSet.VillainSetupCards);
 
             var mastermindBaseColor = new BaseColor(255, 61, 83);
             var villainBaseColor = new BaseColor(255, 102, 119);
             var henchmenBaseColor = new BaseColor(255, 173, 182);
             var startingCardBaseColor = new BaseColor(200, 200, 200);
             var setupCardBaseColor = new BaseColor(35, 255, 39);
+            var villainSetupCardBaseColor = new BaseColor(255, 73, 197);
 
             var fontName = "KOMIKAX.ttf";
             var fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), fontName);
@@ -88,14 +85,23 @@ namespace Avery16282Generator.Legendary
                     baseFont,
                     setupCardBaseColor
                 ));
+            var drawVillainSetupCardsActions = allVillainSetupCards.Select(villainSetupCard =>
+                CreateActionToDrawNameAndSet(
+                    villainSetupCard.Name,
+                    villainSetupCard.Set,
+                    baseFont,
+                    villainSetupCardBaseColor
+                ));
 
-            
+
             var allActions = drawHeroActions
                 .Concat(drawMastermindActions)
                 .Concat(drawVillainActions)
                 .Concat(drawHenchmenActions)
                 .Concat(drawStartingCardsActions)
-                .Concat(drawSetupCardsActions);
+                .Concat(drawSetupCardsActions)
+                .Concat(drawVillainSetupCardsActions);
+
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(allActions);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
         }

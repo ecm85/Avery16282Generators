@@ -59,7 +59,9 @@
     <Compile Include="Dominion\DominionCard.cs" />
     <Compile Include="Dominion\DominionCardDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
+    <Compile Include="Legendary\DTO\VillainSetupCard.cs" />
     <Compile Include="Legendary\DTO\SetupCard.cs" />
+    <Compile Include="Legendary\DTO\VillainSetupCardSet.cs" />
     <Compile Include="Legendary\DTO\SetupCardSet.cs" />
     <Compile Include="Legendary\DTO\StartingCardSet.cs" />
     <Compile Include="Legendary\DTO\StartingCard.cs" />
@@ -294,6 +296,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Legendary\Data\VillainsAndAdversaries">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Legendary\Data\VillainSetupCards">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
