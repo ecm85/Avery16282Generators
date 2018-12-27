@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using Avery16282Generator.Legendary.DTO;
@@ -13,15 +14,20 @@ namespace Avery16282Generator.Legendary
     {
         public static void CreateLabels()
         {
-            //TODO: Configurable by set
-            //TODO: Configurable to print 'special' labels
+            //TODO:
+            //Schemes (Plots)
+            //Scheme(Plot) Twists
+            //Master(Command) Strikes
 
-            var allHeroes = DataAccess.GetHeroCardSets().SelectMany(heroCardSet => heroCardSet.Heroes);
-            var allMasterminds = DataAccess.GetMastermindCardSets().SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
-            var allVillains = DataAccess.GetVillainCardSets().SelectMany(villainCardSet => villainCardSet.Villains);
-            var allHenchmen = DataAccess.GetHenchmenCardSets().SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
-            var allStartingCards = DataAccess.GetStartingCardSets().SelectMany(startingCardSet => startingCardSet.StartingCards);
-            var allSetupCards = DataAccess.GetSetupCardSets().SelectMany(setupCardSet => setupCardSet.SetupCards);
+            //TODO: Configurable to print 'special' labels
+            var includedSets = ConfigurationManager.AppSettings["LegendarySetsToUse"].Split(',').Select(set => set.ToLower());
+            var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(heroCardSet => heroCardSet.Heroes);
+            var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
+            var allVillains = DataAccess.GetVillainCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(villainCardSet => villainCardSet.Villains);
+            var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
+            var allStartingCards = DataAccess.GetStartingCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(startingCardSet => startingCardSet.StartingCards);
+            var allSetupCards = DataAccess.GetSetupCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(setupCardSet => setupCardSet.SetupCards);
+
             var fontName = "KOMIKAX.ttf";
             var fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), fontName);
             //var labelBackground = new CMYKColor(100, 100, 100, 100);
@@ -159,11 +165,6 @@ namespace Avery16282Generator.Legendary
                 .Concat(drawStartupCardsActions);
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(allActions);
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
-
-            //TODO:
-            //Schemes (Plots)
-            //Scheme(Plot) Twists
-            //Master(Command) Strikes
         }
 
         private static void DrawFactionsAndTypes(Hero hero, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, Cursor bottomCursor)
