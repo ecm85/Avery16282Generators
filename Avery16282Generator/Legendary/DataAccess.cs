@@ -60,7 +60,6 @@ namespace Avery16282Generator.Legendary
                 }
                 else if (currentCard == null)
                 {
-                    //TODO: Parse out name, count and card type
                     if (allLines[currentLineIndex + 1].Equals("Divided", StringComparison.OrdinalIgnoreCase))
                     {
                         heroCardSection = new HeroCardSection
@@ -81,7 +80,7 @@ namespace Avery16282Generator.Legendary
                         heroCardSection = new HeroCardSection
                         {
 
-                            Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(")),
+                            Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal)),
                             HeroCardTypes = ParseHeroCardTypes(allLines[currentLineIndex + 1]).ToList()
                         };
                         currentCard = new HeroCard
@@ -108,7 +107,6 @@ namespace Avery16282Generator.Legendary
                     {
                         heroCardSection.CardTextAndCost.Add(allLines[currentLineIndex]);
                     }
-                    //TODO: Check for cost
                 }
                 currentLineIndex++;
 
@@ -314,7 +312,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSetupCard = new SetupCard
                     {
-                        Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(")),
+                        Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal)),
                         Set = currentSet.SetName
                     };
                 }
