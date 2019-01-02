@@ -53,6 +53,7 @@
     <Compile Include="AeonsEnd\Divider.cs" />
     <Compile Include="Brewcrafters\Beer.cs" />
     <Compile Include="Brewcrafters\BrewcraftersLabels.cs" />
+    <Compile Include="CenteringCursor.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Dominion\CardSet.cs" />
     <Compile Include="Dominion\CardType.cs" />

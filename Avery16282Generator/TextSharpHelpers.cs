@@ -92,10 +92,21 @@ namespace Avery16282Generator
             return image;
         }
 
-        public static void WriteNonWrappingTextInRectangle(PdfContentByte canvas, string text, Rectangle rectangle, float textWidthOffset, float textHeightOffset, Font font, int textRotation, int alignment)
+        public static void WriteCenteredNonWrappingTextInRectangle(PdfContentByte canvas, string text, Rectangle rectangle, Font font, int textRotation)
         {
-            ColumnText.ShowTextAligned(canvas, alignment, new Phrase(text, font),
-                rectangle.Left + textWidthOffset, rectangle.Top - textHeightOffset,
+            var x = rectangle.Left;
+            var y = rectangle.Bottom + rectangle.Height/2;
+            ColumnText.ShowTextAligned(canvas, Element.ALIGN_CENTER, new Phrase(text, font),
+                x, y,
+                textRotation);
+        }
+
+        public static void WriteNonWrappingTextInRectangle(PdfContentByte canvas, string text, Rectangle rectangle, float textWidthOffset, float textHeightOffset, Font font, int textRotation)
+        {
+            var x = rectangle.Left + textWidthOffset;
+            var y = rectangle.Top - textHeightOffset;
+            ColumnText.ShowTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(text, font),
+                x, y,
                 textRotation);
         }
     }

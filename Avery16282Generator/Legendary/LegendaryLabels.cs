@@ -244,7 +244,6 @@ namespace Avery16282Generator.Legendary
             string heroName,
             BaseFont baseFont)
         {
-            const float textPadding = 0f;
             const float maxFontSize = 4f;
             var potentialTextRectangleHeight = topCursor.GetCurrent() - bottomCursor.GetCurrent(); // - textPadding * 2
             var textFontSize = TextSharpHelpers.GetFontSize(canvas, heroName, potentialTextRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
@@ -253,9 +252,9 @@ namespace Avery16282Generator.Legendary
             var textWidthOffset = 2f;
             var textRectangle = new Rectangle(
                 rectangle.Left + textWidthOffset,
-                bottomCursor.GetCurrent() + textPadding,
+                bottomCursor.GetCurrent(),
                 rectangle.Left + textWidthOffset + textRectangleHeight,
-                topCursor.GetCurrent() - textPadding);
+                topCursor.GetCurrent());
             DrawText(canvas, heroName, textRectangle, 0, 0, font);
         }
 
@@ -263,7 +262,7 @@ namespace Avery16282Generator.Legendary
             float textWidthOffset, float textHeightOffset, Font font)
         {
             const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation, Element.ALIGN_LEFT);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
         }
     }
 }

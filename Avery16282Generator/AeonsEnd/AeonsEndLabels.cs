@@ -23,18 +23,20 @@ namespace Avery16282Generator.AeonsEnd
                 {
                     (canvas, rectangle) =>
                     {
-                        var topCursor = new Cursor();
+                        var centeringCursor = new CenteringCursor(rectangle.Top, rectangle.Bottom);
+                        var topCursor = centeringCursor.StartCursor;
+                        var bottomCursor = centeringCursor.EndCursor;
                         const float topPadding = -4f;
                         const float dummyCostPadding = -27f;
                         topCursor.AdvanceCursor(topPadding);
-                        var bottomCursor = new Cursor();
+                        
                         DrawBackground(canvas, rectangle, divider.Type, topCursor, bottomCursor);
                         if (divider.Cost != null)
                             DrawCost(canvas, rectangle, divider.Cost.Value, boldBaseFont, topCursor);
                         else
                             topCursor.AdvanceCursor(dummyCostPadding);
                         DrawExpansionLogo(canvas, rectangle, divider.Expansion, boldBaseFont, bottomCursor);
-                        DrawName(canvas, rectangle, divider.Name, baseFont, topCursor, bottomCursor);
+                        DrawName(canvas, rectangle, divider.Name, baseFont, centeringCursor);
                     }
                 })
                 .ToList();
@@ -44,20 +46,28 @@ namespace Avery16282Generator.AeonsEnd
             PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "AeonsEnd");
         }
 
-        private static void DrawName(PdfContentByte canvas, Rectangle rectangle, string name, BaseFont baseFont, Cursor topCursor, Cursor bottomCursor)
+        private static void DrawName(
+            PdfContentByte canvas,
+            Rectangle rectangle,
+            string name,
+            BaseFont baseFont,
+            CenteringCursor centeringCursor
+            )
         {
-            const float textHeightPadding = 3f;
-            const float textWidthPadding = 10f;
             const float maxFontSize = 15f;
-
+            var potentialTextRectangleHeight = centeringCursor.GetCurrentStartWithCentering() - centeringCursor.GetCurrentEndWithCentering();
+            var textFontSize = TextSharpHelpers.GetFontSize(canvas, name, potentialTextRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
+            var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
+            var textRectangleHeight = textFontSize * .9f;
+            
+            var textWidthOffsetToCenter = (rectangle.Width / 2.0f - textRectangleHeight / 2.0f);
+            var extraWidthOffsetForBackgroundImage = textFontSize/3;
             var textRectangle = new Rectangle(
-                rectangle.Left + textWidthPadding,
-                bottomCursor.GetCurrent() + textHeightPadding,
-                rectangle.Right,
-                topCursor.GetCurrent());
-            var fontSize = TextSharpHelpers.GetFontSize(canvas, name, textRectangle.Height, baseFont, maxFontSize,Element.ALIGN_LEFT, Font.NORMAL );
-            var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
-            DrawText(canvas, name, textRectangle, 0, 0, font);
+                rectangle.Left + textWidthOffsetToCenter + extraWidthOffsetForBackgroundImage,
+                centeringCursor.GetCurrentEndWithCentering(),
+                rectangle.Left + textWidthOffsetToCenter + extraWidthOffsetForBackgroundImage + textRectangleHeight,
+                centeringCursor.GetCurrentStartWithCentering());
+            DrawCenteredText(canvas, name, textRectangle, font);
         }
 
         private static void DrawExpansionLogo(PdfContentByte canvas, Rectangle rectangle, string expansion, BaseFont baseFont, Cursor bottomCursor)
@@ -72,7 +82,7 @@ namespace Avery16282Generator.AeonsEnd
                 bottomCursor.GetCurrent() + textHeightPadding,
                 rectangle.Right,
                 bottomCursor.GetCurrent() + textHeightPadding + textHeight);
-            DrawText(canvas, expansion, textRectangle, 0, 0, font);
+            DrawText(canvas, expansion, textRectangle, font);
             bottomCursor.AdvanceCursor(textRectangle.Height + textHeightPadding);
         }
 
@@ -88,7 +98,7 @@ namespace Avery16282Generator.AeonsEnd
                 topCursor.GetCurrent() - (textHeight + textHeightPadding),
                 rectangle.Right,
                 topCursor.GetCurrent() - textHeightPadding);
-            DrawText(canvas, dividerCost.ToString(), textRectangle, 0, 0, font);
+            DrawText(canvas, dividerCost.ToString(), textRectangle, font);
             topCursor.AdvanceCursor(-(textRectangle.Height + textHeightPadding));
 
             const float imageHeight = 15f;
@@ -108,11 +118,16 @@ namespace Avery16282Generator.AeonsEnd
             topCursor.AdvanceCursor(bottomCursor.GetCurrent() + image.ScaledHeight);
         }
 
-        private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle,
-            float textWidthOffset, float textHeightOffset, Font font)
+        private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle, Font font)
         {
             const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation, Element.ALIGN_LEFT);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, 0, 0, font, textRotation);
+        }
+
+        private static void DrawCenteredText(PdfContentByte canvas, string text, Rectangle rectangle, Font font)
+        {
+            const int textRotation = 270;
+            TextSharpHelpers.WriteCenteredNonWrappingTextInRectangle(canvas, text, rectangle, font, textRotation);
         }
 
 

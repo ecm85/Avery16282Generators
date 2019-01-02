@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Avery16282Generator.AeonsEnd;
 using Avery16282Generator.Dominion;
 using Avery16282Generator.Legendary;
 using iTextSharp.text;
@@ -16,9 +17,9 @@ namespace Avery16282Generator
             //DrawPlainRectangleLabels();
             //BrewcraftersLabels.CreateLabels();
             //DominionLabels.CreateLabels();
-            //AeonsEndLabels.CreateLabels();
-            LegendaryLabels.CreateLabels();
-            
+            AeonsEndLabels.CreateLabels();
+            //LegendaryLabels.CreateLabels();
+
 
             //var directory = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
             //foreach (var file in Directory.EnumerateFiles(directory))

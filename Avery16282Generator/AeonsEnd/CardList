@@ -1,5 +1,5 @@
 Turn Order,,AE,Misc
-  Jade,2,AE,Gem
+Jade,2,AE,Gem
 Leeching Agate,3,N,Gem
 Sifter's Pearl,3,AE,Gem
 V'riswood Amber,3,AE,Gem
@@ -21,8 +21,8 @@ Temporal Helix,7,N,Relic
 Phoenix Flame,3,AE,Spell
 Spectral Echo,3,AE,Spell
 Amplify Vision,4,AE,Spell
-  Blaze,4,N,Spell
-  Ignite,4,AE,Spell
+Blaze,4,N,Spell
+Ignite,4,AE,Spell
 Lava Tendril,4,AE,Spell
 Void Bond,4,D,Spell
 Combustion,5,D,Spell
@@ -41,8 +41,8 @@ Disintegrating Scythe,7,D,Spell
 Sage's Brand,7,N,Spell
 Monstrous Inferno,8,D,Spell
 Radiance,8,N,Spell
-  Spark,,AE,Spell
- Crystal,,AE,Gem
+Spark,,AE,Spell
+Crystal,,AE,Gem
 Unique Mage Cards,,AE,Misc
 Rageborne,,AE,Nemesis
 Crooked Mask,,AE,Nemesis
@@ -51,6 +51,6 @@ Horde-Crone,,D,Nemesis
 Carapace Queen,,AE,Nemesis
 Blight Lord,,N,Nemesis
 Wayward One,,N,Nemesis
-   Tier 1,,AE,Nemesis
-   Tier 2,,AE,Nemesis
-   Tier 3,,AE,Nemesis
+Tier 1,,AE,Nemesis
+Tier 2,,AE,Nemesis
+Tier 3,,AE,Nemesis

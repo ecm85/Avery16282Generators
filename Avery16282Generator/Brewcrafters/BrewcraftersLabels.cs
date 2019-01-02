@@ -140,7 +140,7 @@ namespace Avery16282Generator.Brewcrafters
             float textWidthOffset, float textHeightOffset, Font font)
         {
             const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation, Element.ALIGN_LEFT);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
         }
 
         private static IEnumerable<Beer> GetBeers()
