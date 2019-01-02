@@ -51,6 +51,7 @@
     <Compile Include="AeonsEnd\AeonsEndLabels.cs" />
     <Compile Include="AeonsEnd\DataAccess.cs" />
     <Compile Include="AeonsEnd\Divider.cs" />
+    <Compile Include="AeonsEnd\Expansion.cs" />
     <Compile Include="Brewcrafters\Beer.cs" />
     <Compile Include="Brewcrafters\BrewcraftersLabels.cs" />
     <Compile Include="CenteringCursor.cs" />

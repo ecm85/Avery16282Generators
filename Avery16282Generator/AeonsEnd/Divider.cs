@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
         public int? Cost { get; set; }
-        public string Expansion { get; set; }
+        public Expansion Expansion { get; set; }
         public string Type { get; set; }
     }
 }

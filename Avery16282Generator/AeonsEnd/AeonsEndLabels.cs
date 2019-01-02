@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using iTextSharp.text;
@@ -11,13 +12,16 @@ namespace Avery16282Generator.AeonsEnd
     {
         public static void CreateLabels()
         {
-            
+            var includedSets = ConfigurationManager.AppSettings["AeonsEndSetsToUse"].Split(',').Select(set => set.ToLower());
+
             var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
             var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
             var baseFont = BaseFont.CreateFont(garamond, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             var boldBaseFont = BaseFont.CreateFont(garamondBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
-            var dividers = DataAccess.GetDividers();
+            var dividers = DataAccess.GetDividers()
+                .Where(divider => includedSets.Contains(divider.Expansion.GetFriendlyName().ToLower()))
+                .ToList();
             var drawActionRectangles = dividers
                 .SelectMany(divider => new List<Action<PdfContentByte, Rectangle>>
                 {
@@ -35,7 +39,7 @@ namespace Avery16282Generator.AeonsEnd
                             DrawCost(canvas, rectangle, divider.Cost.Value, boldBaseFont, topCursor);
                         else
                             topCursor.AdvanceCursor(dummyCostPadding);
-                        DrawExpansionLogo(canvas, rectangle, divider.Expansion, boldBaseFont, bottomCursor);
+                        DrawExpansionLogo(canvas, rectangle, divider.Expansion.GetAbbreviation(), boldBaseFont, bottomCursor);
                         DrawName(canvas, rectangle, divider.Name, baseFont, centeringCursor);
                     }
                 })
