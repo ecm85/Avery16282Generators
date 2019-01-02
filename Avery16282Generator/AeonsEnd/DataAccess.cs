@@ -9,6 +9,7 @@ namespace Avery16282Generator.AeonsEnd
     {
         public static IEnumerable<Divider> GetDividers()
         {
+            //Gotten from https://www.actionphasegames.com/pages/aerandomizer
             return File.ReadAllLines(@"AeonsEnd\CardList")
                 .Select(ConvertLineToDivider)
                 .ToList();
@@ -23,9 +24,9 @@ namespace Avery16282Generator.AeonsEnd
             return new Divider
             {
                 Name = tokens[0],
-                Cost = string.IsNullOrWhiteSpace(tokens[1]) ? (int?)null : int.Parse(tokens[1]),
-                Expansion = allExpansionsByFriendlyText[tokens[2]],
-                Type = tokens[3]
+                Type = tokens[1],
+                Cost = string.IsNullOrWhiteSpace(tokens[2]) ? (int?)null : int.Parse(tokens[2]),
+                Expansion = allExpansionsByFriendlyText[tokens[3]]
             };
         }
     }

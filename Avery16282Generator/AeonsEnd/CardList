@@ -1,56 +1,108 @@
-Turn Order,,Aeon's End,Misc
-Jade,2,Aeon's End,Gem
-Leeching Agate,3,The Nameless,Gem
-Sifter's Pearl,3,Aeon's End,Gem
-V'riswood Amber,3,Aeon's End,Gem
-Diamond Cluster,4,Aeon's End,Gem
-Searing Ruby,4,Aeon's End,Gem
-Banishing Topaz,5,The Depths,Gem
-Burning Opal,5,Aeon's End,Gem
-Clouded Sapphire,6,Aeon's End,Gem
-Flexing Dagger,2,Aeon's End,Relic
-Bottled Vortex,3,Aeon's End,Relic
-Unstable Prism,3,Aeon's End,Relic
-Blasting Staff,4,Aeon's End,Relic
-Focusing Orb,4,Aeon's End,Relic
-Transmogrifier,4,The Depths,Relic
-Vim Dynamo,4,The Depths,Relic
-Mage's Talisman,5,Aeon's End,Relic
-Molten Hammer,5,The Nameless,Relic
-Temporal Helix,7,The Nameless,Relic
-Phoenix Flame,3,Aeon's End,Spell
-Spectral Echo,3,Aeon's End,Spell
-Amplify Vision,4,Aeon's End,Spell
-Blaze,4,The Nameless,Spell
-Ignite,4,Aeon's End,Spell
-Lava Tendril,4,Aeon's End,Spell
-Void Bond,4,The Depths,Spell
-Combustion,5,The Depths,Spell
-Dark Fire,5,Aeon's End,Spell
-Essence Theft,5,Aeon's End,Spell
-Feral Lightning,5,Aeon's End,Spell
-Oblivion Swell,5,Aeon's End,Spell
-Chaos Arc,6,Aeon's End,Spell
-Devouring Shadow,6,The Depths,Spell
-Planar Insight,6,Aeon's End,Spell
-Scrying Bolt,6,The Nameless,Spell
-Wildfire Whip,6,Aeon's End,Spell
-Arcane Nexus,7,Aeon's End,Spell
-Consuming Void,7,Aeon's End,Spell
-Disintegrating Scythe,7,The Depths,Spell
-Sage's Brand,7,The Nameless,Spell
-Monstrous Inferno,8,The Depths,Spell
-Radiance,8,The Nameless,Spell
-Spark,,Aeon's End,Spell
-Crystal,,Aeon's End,Gem
-Unique Mage Cards,,Aeon's End,Misc
-Rageborne,,Aeon's End,Nemesis
-Crooked Mask,,Aeon's End,Nemesis
-Prince of Gluttons,,Aeon's End,Nemesis
-Horde-Crone,,The Depths,Nemesis
-Carapace Queen,,Aeon's End,Nemesis
-Blight Lord,,The Nameless,Nemesis
-Wayward One,,The Nameless,Nemesis
-Tier 1,,Aeon's End,Nemesis
-Tier 2,,Aeon's End,Nemesis
-Tier 3,,Aeon's End,Nemesis
+Jade,Gem,2,Aeon's End
+Sifter's Pearl,Gem,3,Aeon's End
+V'riswood Amber,Gem,3,Aeon's End
+Leeching Agate,Gem,3,The Nameless
+Diamond Cluster,Gem,4,Aeon's End
+Searing Ruby,Gem,4,Aeon's End
+Burning Opal,Gem,5,Aeon's End
+Banishing Topaz,Gem,5,The Depths
+Clouded Sapphire,Gem,6,Aeon's End
+Bloodstone Jewel,Gem,6,War Eternal
+Breach Ore,Gem,4,War Eternal
+Dread Diamond,Gem,3,War Eternal
+Erratic Ingot,Gem,5,War Eternal
+Frozen Magmite,Gem,3,War Eternal
+Scoria Slag,Gem,4,War Eternal
+Volcanic Glass,Gem,3,War Eternal
+Alien Element,Gem,4,The Outer Dark
+Haunted Berylite,Gem,3,The Outer Dark
+Pain Stone,Gem,6,The Outer Dark
+Fossilized Scarab,Gem,3,The Void
+Phoenix Flame,Spell,3,Aeon's End
+Spectral Echo,Spell,3,Aeon's End
+Amplify Vision,Spell,4,Aeon's End
+Ignite,Spell,4,Aeon's End
+Lava Tendril,Spell,4,Aeon's End
+Void Bond,Spell,4,The Depths
+Blaze,Spell,4,The Nameless
+Dark Fire,Spell,5,Aeon's End
+Essence Theft,Spell,5,Aeon's End
+Feral Lightning,Spell,5,Aeon's End
+Oblivion Swell,Spell,5,Aeon's End
+Combustion,Spell,5,The Depths
+Chaos Arc,Spell,6,Aeon's End
+Planar Insight,Spell,6,Aeon's End
+Wildfire Whip,Spell,6,Aeon's End
+Devouring Shadow,Spell,6,The Depths
+Scrying Bolt,Spell,6,The Nameless
+Arcane Nexus,Spell,7,Aeon's End
+Consuming Void,Spell,7,Aeon's End
+Disintegrating Scythe,Spell,7,The Depths
+Sage's Brand,Spell,7,The Nameless
+Monstrous Inferno,Spell,8,The Depths
+Radiance,Spell,8,The Nameless
+Aurora,Spell,5,War Eternal
+Carbonize,Spell,4,War Eternal
+Conjure The Lost,Spell,6,War Eternal
+Celestial Spire,Spell,5,War Eternal
+Convection Field,Spell,5,War Eternal
+Crystallize,Spell,8,War Eternal
+Equilibrium,Spell,7,War Eternal
+Fiery Torrent,Spell,5,War Eternal
+Jagged Lightning,Spell,4,War Eternal
+Kindle,Spell,4,War Eternal
+Nova Forge,Spell,6,War Eternal
+Pyrotechnic Surge,Spell,4,War Eternal
+Reduce To Ash,Spell,7,War Eternal
+Thoughtform Familiar,Spell,3,War Eternal
+Char,Spell,8,The Outer Dark
+Catalyst,Spell,6,The Outer Dark
+Feedback Aura,Spell,5,The Outer Dark
+Nether Conduit,Spell,7,The Outer Dark
+Pyromancy,Spell,7,The Outer Dark
+Scorch,Spell,5,The Outer Dark
+Resonate,Spell,6,The Void
+Conflagration,Spell,3,The Void
+Fulminate,Spell,5,The Void
+Inner Fire,Spell,2,The Void
+Thermal Dart,Spell,4,The Void
+Flexing Dagger,Relic,2,Aeon's End
+Bottled Vortex,Relic,3,Aeon's End
+Unstable Prism,Relic,3,Aeon's End
+Blasting Staff,Relic,4,Aeon's End
+Focusing Orb,Relic,4,Aeon's End
+Transmogrifier,Relic,4,The Depths
+Vim Dynamo,Relic,4,The Depths
+Mage's Talisman,Relic,5,Aeon's End
+Molten Hammer,Relic,5,The Nameless
+Temporal Helix,Relic,7,The Nameless
+Cairn Compass,Relic,4,War Eternal
+Conclave Scroll,Relic,3,War Eternal
+Fiend Catcher,Relic,3,War Eternal
+Mage's Totem,Relic,2,War Eternal
+Primordial Fetish,Relic,4,War Eternal
+Vortex Gauntlet,Relic,6,War Eternal
+Astral Cube,Relic,5,The Outer Dark
+Riddle Sphere,Relic,3,The Outer Dark
+Dimensional Key,Relic,8,The Void
+Eternity Charm,Relic,3,The Void
+Rageborne,Nemesis,,Aeon's End
+Carapace Queen,Nemesis,,Aeon's End
+Crooked Mask,Nemesis,,Aeon's End
+Prince Of Gluttons,Nemesis,,Aeon's End
+Horde Crone,Nemesis,,The Depths
+Blight Lord,Nemesis,,The Nameless
+Wayward One,Nemesis,,The Nameless
+Hollow Crown,Nemesis,,War Eternal
+Umbra Titan,Nemesis,,War Eternal
+Gate Witch,Nemesis,,War Eternal
+Magus Of Cloaks,Nemesis,,War Eternal
+Knight Of Shackles,Nemesis,,The Void
+Maiden Of Thorns,Nemesis,,The Void
+Wraithmonger,Nemesis,,The Outer Dark
+Thrice Dead Prophet,Nemesis,,The Outer Dark
+Turn Order,Misc,,Aeon's End
+Unique Mage Cards,Misc,,Aeon's End
+Tier 1,Nemesis,,Aeon's End
+Tier 2,Nemesis,,Aeon's End
+Tier 3,Nemesis,,Aeon's End
