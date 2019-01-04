@@ -2,6 +2,7 @@
   "name": "Avery16828Generator.PL",
   "version": "0.1.0",
   "private": true,
+  "homepage": "Avery16828Generators",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "react": "^16.0.0",
