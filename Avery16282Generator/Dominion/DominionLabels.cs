@@ -9,7 +9,7 @@ namespace Avery16282Generator.Dominion
 {
     public static class DominionLabels
     {
-        public static void CreateLabels()
+        public static void CreateLabels(string directory)
         {
             var cardsToPrint = DominionCardDataAccess.GetCardsToPrint();
 
@@ -32,7 +32,7 @@ namespace Avery16282Generator.Dominion
                 }
             }).ToList();
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Dominion");
+            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, directory, "Dominion");
         }
 
         private static void DrawCardText(Rectangle rectangle, Cursor topCursor, Cursor bottomCursor,

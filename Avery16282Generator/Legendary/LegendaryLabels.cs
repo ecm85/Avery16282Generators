@@ -12,7 +12,7 @@ namespace Avery16282Generator.Legendary
 {
     public static class LegendaryLabels
     {
-        public static void CreateLabels()
+        public static void CreateLabels(string directory)
         {
             var includedSets = ConfigurationManager.AppSettings["LegendarySetsToUse"].Split(',').Select(set => set.ToLower());
             var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(heroCardSet => heroCardSet.Heroes);
@@ -106,7 +106,7 @@ namespace Avery16282Generator.Legendary
                 .Concat(drawVillainSetupCardsActions);
 
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(allActions);
-            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "Legendary");
+            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, directory, "Legendary");
         }
 
         private static Action<PdfContentByte, Rectangle> CreateActionToDrawNameAndSet(string name, string set, BaseFont baseFont, BaseColor baseColor)

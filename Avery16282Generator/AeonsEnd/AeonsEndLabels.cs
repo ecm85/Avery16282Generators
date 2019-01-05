@@ -10,7 +10,7 @@ namespace Avery16282Generator.AeonsEnd
 {
     public static class AeonsEndLabels
     {
-        public static void CreateLabels()
+        public static void CreateLabels(string directory)
         {
             var includedSets = ConfigurationManager.AppSettings["AeonsEndSetsToUse"].Split(',').Select(set => set.ToLower());
 
@@ -47,7 +47,7 @@ namespace Avery16282Generator.AeonsEnd
         
 
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "AeonsEnd");
+            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, directory, "AeonsEnd");
         }
 
         private static void DrawName(

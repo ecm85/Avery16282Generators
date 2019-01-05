@@ -9,17 +9,21 @@ namespace Avery16282Generator
 {
     public static class PdfGenerator
     {
-        public static string DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions, BaseColor backgroundColor, string filePrefix)
+        public static string DrawRectangles(
+            Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions,
+            BaseColor backgroundColor,
+            string directory,
+            string filePrefix)
         {
             const int maxColumnIndex = 3;
             const int maxRowIndex = 4;
-            var filename = $@"C:\Avery\{filePrefix}Labels{DateTime.Now.ToFileTime()}.pdf";
-
+            var filename = $@"{filePrefix}Labels{DateTime.Now.ToFileTime()}.pdf";
+            var fullPath = Path.Combine(directory, filename);
             var documentRectangle = new Rectangle(0, 0, PageWidth, PageHeight);
             using (var document = new Document(documentRectangle))
             {
                 using (var fileStream =
-                    new FileStream(filename,
+                    new FileStream(fullPath,
                         FileMode.Create))
                 {
                     using (var pdfWriter = PdfWriter.GetInstance(document, fileStream))

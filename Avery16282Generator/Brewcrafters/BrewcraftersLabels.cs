@@ -12,7 +12,7 @@ namespace Avery16282Generator.Brewcrafters
     {
         public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
 
-        public static string CreateLabels()
+        public static string CreateLabels(string directory)
         {
             var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
             var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
@@ -45,7 +45,11 @@ namespace Avery16282Generator.Brewcrafters
             }).ToList();
 
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, "BrewCrafters");
+            return PdfGenerator.DrawRectangles(
+                drawActionRectangleQueue,
+                BaseColor.WHITE,
+                directory,
+                "BrewCrafters");
         }
 
         private static void DrawBeerName(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer,
