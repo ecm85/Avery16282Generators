@@ -9,16 +9,17 @@ namespace Avery16282Generator
 {
     public static class PdfGenerator
     {
-        public static void DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions, BaseColor backgroundColor, string filePrefix)
+        public static string DrawRectangles(Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions, BaseColor backgroundColor, string filePrefix)
         {
             const int maxColumnIndex = 3;
             const int maxRowIndex = 4;
+            var filename = $@"C:\Avery\{filePrefix}Labels{DateTime.Now.ToFileTime()}.pdf";
 
             var documentRectangle = new Rectangle(0, 0, PageWidth, PageHeight);
             using (var document = new Document(documentRectangle))
             {
                 using (var fileStream =
-                    new FileStream($@"C:\Avery\{filePrefix}Labels{DateTime.Now.ToFileTime()}.pdf",
+                    new FileStream(filename,
                         FileMode.Create))
                 {
                     using (var pdfWriter = PdfWriter.GetInstance(document, fileStream))
@@ -78,6 +79,8 @@ namespace Avery16282Generator
                     }
                 }
             }
+
+            return filename;
         }
 
         private static float PageHeight => Utilities.InchesToPoints(11f);
