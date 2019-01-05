@@ -20,9 +20,11 @@ export class Brewcrafters extends Component {
     }
  
     render() {
-    let contents = this.state.loading
-        ? <p><em>Loading...</em></p>
-    : <div>{this.state.filename}</div>;
+    let contents = this.state.loading ?
+        <p><em>Creating...</em></p> :
+        this.state.filename === null ?
+            <div></div> : 
+            <div><a download href={"api/PdfGenerator/GetFile?fileName=" + this.state.filename}>Download PDF</a>;</div>
     return (
       <div>
         <h1>Brewcrafters</h1>
