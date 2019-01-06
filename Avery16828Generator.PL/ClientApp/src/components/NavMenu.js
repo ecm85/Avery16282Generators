@@ -30,6 +30,13 @@ export class NavMenu extends Component {
               </NavItem>
             </LinkContainer>
 
+
+          <LinkContainer to={'/Dominion'}>
+          <NavItem>
+          Dominion
+          </NavItem>
+          </LinkContainer>
+
           <LinkContainer to={'/AeonsEnd'}>
           <NavItem>
           Aeon's End

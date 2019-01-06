@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Brewcrafters } from './components/Brewcrafters';
 import { AeonsEnd } from './components/AeonsEnd';
 import { Legendary } from './components/Legendary';
+import { Dominion } from './components/Dominion';
 
 export default class App extends Component {
   displayName = App.name
@@ -17,6 +18,7 @@ export default class App extends Component {
         <Route path='/brewcrafters' component={Brewcrafters} />
         <Route path='/aeonsend' component={AeonsEnd} />
         <Route path='/legendary' component={Legendary} />
+        <Route path='/dominion' component={Dominion} />
         <Route path='/fetchdata' component={FetchData} />
       </Layout>
     );

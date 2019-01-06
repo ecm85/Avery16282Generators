@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json;
 
 namespace Avery16282Generator.Dominion
 {
     public static class DominionCardDataAccess
     {
+        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
         public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint, bool includeExtras)
         {
             var expansionNamesToPrint = expansionsToPrint.Select(expansion => expansion.GetExpansionName()).ToList();
@@ -38,7 +40,7 @@ namespace Avery16282Generator.Dominion
         private static IEnumerable<DominionCard> GetCards(IDictionary<string, CardSet> cardSets, IList<CardSuperType> cardSuperTypes)
         {
             IEnumerable<DominionCard> cards;
-            using (var fileStream = new FileStream("Dominion\\cards_db.json", FileMode.Open))
+            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\cards_db.json", FileMode.Open))
             using (var reader = new StreamReader(fileStream))
             using (var jsonTextReader = new JsonTextReader(reader))
             {
@@ -47,7 +49,7 @@ namespace Avery16282Generator.Dominion
             }
 
             IDictionary<string, DominionCard> englishCards;
-            using (var fileStream = new FileStream("Dominion\\cards_en_us.json", FileMode.Open))
+            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\cards_en_us.json", FileMode.Open))
             using (var reader = new StreamReader(fileStream))
             using (var jsonTextReader = new JsonTextReader(reader))
             {
@@ -80,7 +82,7 @@ namespace Avery16282Generator.Dominion
         private static IDictionary<string, CardSet> GetCardSets()
         {
             IDictionary<string, CardSet> cardSets;
-            using (var fileStream = new FileStream("Dominion\\sets_db.json", FileMode.Open))
+            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\sets_db.json", FileMode.Open))
             using (var reader = new StreamReader(fileStream))
             using (var jsonTextReader = new JsonTextReader(reader))
             {
@@ -89,7 +91,7 @@ namespace Avery16282Generator.Dominion
             }
 
             IDictionary<string, CardSet> englishCardSets;
-            using (var fileStream = new FileStream("Dominion\\sets_en_us.json", FileMode.Open))
+            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\sets_en_us.json", FileMode.Open))
             using (var reader = new StreamReader(fileStream))
             using (var jsonTextReader = new JsonTextReader(reader))
             {
@@ -108,7 +110,7 @@ namespace Avery16282Generator.Dominion
 
         private static IEnumerable<CardSuperType> GetCardTypes()
         {
-            using (var fileStream = new FileStream("Dominion\\types_db.json", FileMode.Open))
+            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\types_db.json", FileMode.Open))
             using (var reader = new StreamReader(fileStream))
             using (var jsonTextReader = new JsonTextReader(reader))
             {

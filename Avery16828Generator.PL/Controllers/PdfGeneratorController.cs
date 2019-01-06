@@ -3,8 +3,10 @@ using System.IO;
 using System.Linq;
 using Avery16282Generator.AeonsEnd;
 using Avery16282Generator.Brewcrafters;
+using Avery16282Generator.Dominion;
 using Avery16282Generator.Legendary;
 using Microsoft.AspNetCore.Mvc;
+using Expansion = Avery16282Generator.AeonsEnd.Expansion;
 
 namespace Avery16828Generator.PL.Controllers
 {
@@ -26,6 +28,15 @@ namespace Avery16828Generator.PL.Controllers
                 .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
                 .ToList();
             return LegendaryLabels.CreateLabels(Directory, includedSets, true);
+        }
+
+        [HttpGet("[action]")]
+        public string GenerateDominion()
+        {
+            var includedSets = Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
+                .Cast<Avery16282Generator.Dominion.Expansion>()
+                .ToList();
+            return DominionLabels.CreateLabels(Directory, includedSets, true);
         }
 
         [HttpGet("[action]")]
