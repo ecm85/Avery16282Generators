@@ -36,7 +36,7 @@ namespace Avery16828Generator.PL
             var linesToWrite = new List<string>();
             linesToWrite.Add($"Environment name: {env.EnvironmentName}");
             linesToWrite.Add($"IsDevelopment: {env.IsDevelopment()}");
-            File.WriteAllLines("c:\\startuplog.txt", linesToWrite);
+            File.WriteAllLines("c:\\Avery\\startuplog.txt", linesToWrite);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
