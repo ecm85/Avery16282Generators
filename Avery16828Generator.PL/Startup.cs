@@ -33,10 +33,6 @@ namespace Avery16828Generator.PL
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var linesToWrite = new List<string>();
-            linesToWrite.Add($"Environment name: {env.EnvironmentName}");
-            linesToWrite.Add($"IsDevelopment: {env.IsDevelopment()}");
-            File.WriteAllLines("c:\\Avery\\startuplog.txt", linesToWrite);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
