@@ -64,6 +64,7 @@
     <Compile Include="Dominion\DominionCard.cs" />
     <Compile Include="Dominion\DominionCardDataAccess.cs" />
     <Compile Include="Dominion\DominionLabels.cs" />
+    <Compile Include="Dominion\Expansion.cs" />
     <Compile Include="Legendary\DTO\VillainSetupCard.cs" />
     <Compile Include="Legendary\DTO\SetupCard.cs" />
     <Compile Include="Legendary\DTO\VillainSetupCardSet.cs" />
@@ -83,14 +84,10 @@
     <Compile Include="Legendary\DTO\Mastermind.cs" />
     <Compile Include="Legendary\DTO\MastermindCardSet.cs" />
     <Compile Include="Legendary\DTO\MastermindTactic.cs" />
+    <Compile Include="Legendary\Enums\Expansion.cs" />
     <Compile Include="Legendary\Enums\HeroCardType.cs" />
     <Compile Include="Legendary\Enums\HeroFaction.cs" />
     <Compile Include="Legendary\LegendaryLabels.cs" />
-    <Compile Include="Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="TextSharpHelpers.cs" />
     <Compile Include="PdfGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -306,10 +303,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <None Include="Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Brewcrafters\Apple.png">

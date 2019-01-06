@@ -9,9 +9,9 @@ namespace Avery16282Generator.Dominion
 {
     public static class DominionLabels
     {
-        public static void CreateLabels(string directory)
+        public static void CreateLabels(string directory, IEnumerable<Expansion> expansionsToPrint, bool includeExtras)
         {
-            var cardsToPrint = DominionCardDataAccess.GetCardsToPrint();
+            var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint, includeExtras);
 
             var trajan = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Regular.otf");
             var trajanBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "TrajanPro-Bold.otf");

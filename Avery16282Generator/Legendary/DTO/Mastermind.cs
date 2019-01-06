@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Avery16282Generator.Legendary.Enums;
 
 namespace Avery16282Generator.Legendary.DTO
 {
@@ -7,6 +8,6 @@ namespace Avery16282Generator.Legendary.DTO
         public string Name { get; set; }
         public IList<string> TextLines { get; } = new List<string>();
         public IList<MastermindTactic> Tactics { get; } = new List<MastermindTactic>();
-        public string Set { get; set; }
+        public Expansion Expansion { get; set; }
     }
 }

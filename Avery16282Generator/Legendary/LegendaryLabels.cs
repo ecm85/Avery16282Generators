@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using Avery16282Generator.Legendary.DTO;
@@ -12,20 +11,18 @@ namespace Avery16282Generator.Legendary
 {
     public static class LegendaryLabels
     {
-        public static void CreateLabels(string directory)
+        public static void CreateLabels(string directory, IEnumerable<Expansion> includedSets, bool includeSpecialSetupCards)
         {
-            var includedSets = ConfigurationManager.AppSettings["LegendarySetsToUse"].Split(',').Select(set => set.ToLower());
-            var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(heroCardSet => heroCardSet.Heroes);
-            var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
-            var allVillains = DataAccess.GetVillainCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(villainCardSet => villainCardSet.Villains);
-            var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
-            var allStartingCards = DataAccess.GetStartingCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(startingCardSet => startingCardSet.StartingCards);
-            var includeSpecialSetupCards = bool.Parse(ConfigurationManager.AppSettings["IncludeLegendarySpecialCards"]);
+            var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(heroCardSet => heroCardSet.Heroes);
+            var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
+            var allVillains = DataAccess.GetVillainCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(villainCardSet => villainCardSet.Villains);
+            var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
+            var allStartingCards = DataAccess.GetStartingCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(startingCardSet => startingCardSet.StartingCards);
             var allSetupCards = DataAccess.GetSetupCardSets()
-                .Where(set => includedSets.Contains(set.SetName.ToLower()))
+                .Where(set => includedSets.Contains(set.Expansion))
                 .SelectMany(setupCardSet => setupCardSet.SetupCards)
                 .Where(setupCard => includeSpecialSetupCards || !setupCard.IsSpecialCard);
-            var allVillainSetupCards = DataAccess.GetVillainSetupCardSets().Where(set => includedSets.Contains(set.SetName.ToLower())).SelectMany(setupCardSet => setupCardSet.VillainSetupCards);
+            var allVillainSetupCards = DataAccess.GetVillainSetupCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(setupCardSet => setupCardSet.VillainSetupCards);
             
             var mastermindBaseColor = new BaseColor(255, 61, 83);
             var villainBaseColor = new BaseColor(255, 102, 119);
@@ -50,48 +47,48 @@ namespace Avery16282Generator.Legendary
                     DrawFactionsAndTypes(hero, rectangle, canvas, topCursor, bottomCursor);
 
                     DrawCardText(rectangle, topCursor, bottomCursor, canvas, hero.Name, baseFont);
-                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, hero.Set, baseFont);
+                    DrawSetText(rectangle, topCursor, bottomCursor, canvas, hero.Expansion.GetExpansionName(), baseFont);
                 }
             )).ToList();
             var drawMastermindActions = allMasterminds.Select(mastermind =>
                 CreateActionToDrawNameAndSet(
                     mastermind.Name,
-                    mastermind.Set,
+                    mastermind.Expansion.GetExpansionName(),
                     baseFont,
                     mastermindBaseColor
                 ));
             var drawVillainActions = allVillains.Select(villain =>
                 CreateActionToDrawNameAndSet(
                     villain.Name,
-                    villain.Set,
+                    villain.Expansion.GetExpansionName(),
                     baseFont,
                     villainBaseColor
                 ));
             var drawHenchmenActions = allHenchmen.Select(henchmen =>
                 CreateActionToDrawNameAndSet(
                     henchmen.Name,
-                    henchmen.Set,
+                    henchmen.Expansion.GetExpansionName(),
                     baseFont,
                     henchmenBaseColor
                 ));
             var drawStartingCardsActions = allStartingCards.Select(startingCard =>
                 CreateActionToDrawNameAndSet(
                     startingCard.Name,
-                    startingCard.Set,
+                    startingCard.Expansion.GetExpansionName(),
                     baseFont,
                     startingCardBaseColor
                 ));
             var drawSetupCardsActions = allSetupCards.Select(setupCard =>
                 CreateActionToDrawNameAndSet(
                     setupCard.Name,
-                    setupCard.Set,
+                    setupCard.Expansion.GetExpansionName(),
                     baseFont,
                     setupCardBaseColor
                 ));
             var drawVillainSetupCardsActions = allVillainSetupCards.Select(villainSetupCard =>
                 CreateActionToDrawNameAndSet(
                     villainSetupCard.Name,
-                    villainSetupCard.Set,
+                    villainSetupCard.Expansion.GetExpansionName(),
                     baseFont,
                     villainSetupCardBaseColor
                 ));

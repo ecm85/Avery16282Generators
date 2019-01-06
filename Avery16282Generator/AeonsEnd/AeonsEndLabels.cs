@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using iTextSharp.text;
@@ -10,17 +9,15 @@ namespace Avery16282Generator.AeonsEnd
 {
     public static class AeonsEndLabels
     {
-        public static void CreateLabels(string directory)
+        public static void CreateLabels(string directory, IEnumerable<Expansion> includedSets)
         {
-            var includedSets = ConfigurationManager.AppSettings["AeonsEndSetsToUse"].Split(',').Select(set => set.ToLower());
-
             var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
             var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
             var baseFont = BaseFont.CreateFont(garamond, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             var boldBaseFont = BaseFont.CreateFont(garamondBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             var dividers = DataAccess.GetDividers()
-                .Where(divider => includedSets.Contains(divider.Expansion.GetFriendlyName().ToLower()))
+                .Where(divider => includedSets.Contains(divider.Expansion))
                 .ToList();
             var drawActionRectangles = dividers
                 .SelectMany(divider => new List<Action<PdfContentByte, Rectangle>>

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Avery16282Generator.Legendary.Enums;
 
 namespace Avery16282Generator.Legendary.DTO
 {
     public class SetupCardSet
     {
         public IList<SetupCard> SetupCards { get; } = new List<SetupCard>();
-        public string SetName { get; set; }
+        public Expansion Expansion { get; set; }
     }
 }

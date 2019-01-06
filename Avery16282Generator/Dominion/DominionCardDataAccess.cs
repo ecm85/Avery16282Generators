@@ -7,30 +7,20 @@ namespace Avery16282Generator.Dominion
 {
     public static class DominionCardDataAccess
     {
-        public static IEnumerable<DominionCard> GetCardsToPrint()
+        public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint, bool includeExtras)
         {
+            var expansionNamesToPrint = expansionsToPrint.Select(expansion => expansion.GetExpansionName()).ToList();
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
 
             var setsToPrint = cardSets.Values.Select(set => set.Set_name).ToList();
-            if (Settings.Default.UseBlackList)
             {
-                setsToPrint = setsToPrint.Where(setToPrint => !Settings.Default.BlackList.Contains(setToPrint)).ToList();
+                setsToPrint = setsToPrint.Where(setToPrint => expansionNamesToPrint.Contains(setToPrint)).ToList();
             }
-            if (Settings.Default.UseWhiteList)
-            {
-                setsToPrint = setsToPrint.Where(setToPrint => Settings.Default.WhiteList.Contains(setToPrint)).ToList();
-            }
-            if (Settings.Default.UseBannedKeywords)
-            {
-                setsToPrint = setsToPrint
-                    .Where(
-                        setToPrint => Settings.Default.BannedKeywords
-                            .Cast<string>()
-                            .All(bannedKeyword => !setToPrint.Contains(bannedKeyword)))
-                    .ToList();
-            }
+            setsToPrint = setsToPrint
+                .Where(setToPrint => includeExtras || !setToPrint.Contains("Extras"))
+                .ToList();
 
             var cardFromSetsToPrint = cards
                 .Where(card => setsToPrint.Contains(card.Set.Set_name))

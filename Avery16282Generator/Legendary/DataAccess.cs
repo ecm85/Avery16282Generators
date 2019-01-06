@@ -9,6 +9,10 @@ namespace Avery16282Generator.Legendary
 {
     public class DataAccess
     {
+        private static IDictionary<string, Expansion> CardSetsByName { get; } = Enum.GetValues(typeof(Expansion))
+            .Cast<Expansion>()
+            .ToDictionary(cardSet => cardSet.GetExpansionName().ToLower());
+
         public static IEnumerable<HeroCardSet> GetHeroCardSets()
         {
             var allLines = File.ReadAllLines(@"Legendary\Data\HeroesAndAllies");
@@ -44,7 +48,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new HeroCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentHero == null)
@@ -54,7 +58,7 @@ namespace Avery16282Generator.Legendary
                     {
                         Factions = ParseHeroFactions(factionText).ToList(),
                         Name = allLines[currentLineIndex],
-                        Set = currentSet.SetName
+                        Expansion = currentSet.Expansion
                     };
                     currentLineIndex++;
                 }
@@ -149,7 +153,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new VillainCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentVillain == null)
@@ -157,7 +161,7 @@ namespace Avery16282Generator.Legendary
                     currentVillain = new Villain
                     {
                         Name = allLines[currentLineIndex],
-                        Set = currentSet.SetName
+                        Expansion = currentSet.Expansion
                     };
                     currentLineIndex++;
                 }
@@ -207,7 +211,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new HenchmenCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentHenchmen == null)
@@ -215,7 +219,7 @@ namespace Avery16282Generator.Legendary
                     currentHenchmen = new Henchmen
                     {
                         Name = allLines[currentLineIndex],
-                        Set = currentSet.SetName
+                        Expansion = currentSet.Expansion
                     };
                 }
                 else
@@ -256,7 +260,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new StartingCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentStartingCard == null)
@@ -264,7 +268,7 @@ namespace Avery16282Generator.Legendary
                     currentStartingCard = new StartingCard
                     {
                         Name = allLines[currentLineIndex],
-                        Set = currentSet.SetName
+                        Expansion = currentSet.Expansion
                     };
                 }
                 else
@@ -305,7 +309,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new SetupCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentSetupCard == null)
@@ -315,7 +319,7 @@ namespace Avery16282Generator.Legendary
                         currentSetupCard = new SetupCard
                         {
                             Name = allLines[currentLineIndex].Substring(3, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal) - 3),
-                            Set = currentSet.SetName,
+                            Expansion = currentSet.Expansion,
                             IsSpecialCard = true
                         };
                     }
@@ -324,7 +328,7 @@ namespace Avery16282Generator.Legendary
                         currentSetupCard = new SetupCard
                         {
                             Name = allLines[currentLineIndex].Substring(0, allLines[currentLineIndex].IndexOf("(", StringComparison.Ordinal)),
-                            Set = currentSet.SetName,
+                            Expansion = currentSet.Expansion,
                             IsSpecialCard = false
                         };
                     }
@@ -367,7 +371,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new VillainSetupCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentVillainSetupCard == null)
@@ -375,7 +379,7 @@ namespace Avery16282Generator.Legendary
                     currentVillainSetupCard = new VillainSetupCard
                     {
                         Name = allLines[currentLineIndex],
-                        Set = currentSet.SetName
+                        Expansion = currentSet.Expansion
                     };
                 }
                 else
@@ -439,7 +443,7 @@ namespace Avery16282Generator.Legendary
                 {
                     currentSet = new MastermindCardSet
                     {
-                        SetName = allLines[currentLineIndex].Replace("==", "").Trim()
+                        Expansion = CardSetsByName[allLines[currentLineIndex].Replace("==", "").Trim().ToLower()]
                     };
                 }
                 else if (currentMastermind == null)
@@ -447,7 +451,7 @@ namespace Avery16282Generator.Legendary
                     currentMastermind = new Mastermind
                     {
                         Name = allLines[currentLineIndex],
-                        Set = currentSet.SetName
+                        Expansion = currentSet.Expansion
                     };
                 }
                 else if (currentTactic == null)

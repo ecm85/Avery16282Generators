@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Avery16282Generator.Legendary.Enums;
 
 namespace Avery16282Generator.Legendary.DTO
 {
@@ -6,7 +7,7 @@ namespace Avery16282Generator.Legendary.DTO
     {
         public IList<string> CardText { get; } = new List<string>();
         public string Name { get; set; }
-        public string Set { get; set; }
+        public Expansion Expansion { get; set; }
         public bool IsSpecialCard { get; set; }
     }
 }
