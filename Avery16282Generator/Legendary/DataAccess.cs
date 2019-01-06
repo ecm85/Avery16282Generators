@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Avery16282Generator.Legendary.DTO;
 using Avery16282Generator.Legendary.Enums;
 
@@ -9,13 +10,15 @@ namespace Avery16282Generator.Legendary
 {
     public class DataAccess
     {
+        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+
         private static IDictionary<string, Expansion> CardSetsByName { get; } = Enum.GetValues(typeof(Expansion))
             .Cast<Expansion>()
             .ToDictionary(cardSet => cardSet.GetExpansionName().ToLower());
 
         public static IEnumerable<HeroCardSet> GetHeroCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\HeroesAndAllies");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\HeroesAndAllies");
             var allSets = new List<HeroCardSet>();
             HeroCardSet currentSet = null;
             Hero currentHero = null;
@@ -121,7 +124,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<VillainCardSet> GetVillainCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\VillainsAndAdversaries");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\VillainsAndAdversaries");
             var allSets = new List<VillainCardSet>();
             VillainCardSet currentSet = null;
             Villain currentVillain = null;
@@ -186,7 +189,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<HenchmenCardSet> GetHenchmenCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\HenchmenAndBackupAdversaries");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\HenchmenAndBackupAdversaries");
             var allSets = new List<HenchmenCardSet>();
             HenchmenCardSet currentSet = null;
             Henchmen currentHenchmen = null;
@@ -235,7 +238,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<StartingCardSet> GetStartingCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\StartingCards");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\StartingCards");
             var allSets = new List<StartingCardSet>();
             StartingCardSet currentSet = null;
             StartingCard currentStartingCard = null;
@@ -284,7 +287,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<SetupCardSet> GetSetupCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\SetupCards");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\SetupCards");
             var allSets = new List<SetupCardSet>();
             SetupCardSet currentSet = null;
             SetupCard currentSetupCard = null;
@@ -346,7 +349,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<VillainSetupCardSet> GetVillainSetupCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\VillainSetupCards");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\VillainSetupCards");
             var allSets = new List<VillainSetupCardSet>();
             VillainSetupCardSet currentSet = null;
             VillainSetupCard currentVillainSetupCard = null;
@@ -395,7 +398,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
         {
-            var allLines = File.ReadAllLines(@"Legendary\Data\MastermindsAndCommanders");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\MastermindsAndCommanders");
             var allSets = new List<MastermindCardSet>();
             MastermindCardSet currentSet = null;
             Mastermind currentMastermind = null;

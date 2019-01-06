@@ -23,21 +23,31 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='home' /> Home
               </NavItem>
             </LinkContainer>
+
             <LinkContainer to={'/Brewcrafters'}>
               <NavItem>
                 Brewcrafters
               </NavItem>
             </LinkContainer>
+
           <LinkContainer to={'/AeonsEnd'}>
           <NavItem>
           Aeon's End
           </NavItem>
           </LinkContainer>
+
+          <LinkContainer to={'/Legendary'}>
+          <NavItem>
+          Legendary
+          </NavItem>
+          </LinkContainer>
+
             <LinkContainer to={'/fetchdata'}>
               <NavItem>
                 <Glyphicon glyph='th-list' /> Fetch data
               </NavItem>
             </LinkContainer>
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>

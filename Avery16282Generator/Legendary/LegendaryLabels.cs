@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Avery16282Generator.Legendary.DTO;
 using Avery16282Generator.Legendary.Enums;
 using iTextSharp.text;
@@ -11,6 +12,8 @@ namespace Avery16282Generator.Legendary
 {
     public static class LegendaryLabels
     {
+        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+
         public static string CreateLabels(string directory, IEnumerable<Expansion> includedSets, bool includeSpecialSetupCards)
         {
             var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(heroCardSet => heroCardSet.Heroes);
@@ -154,13 +157,13 @@ namespace Avery16282Generator.Legendary
             if (heroCardTypes.Count != 2)
                 throw new InvalidOperationException("Cannot have more than two card types for a single card.");
             var orderedTypes = heroCardTypes.OrderBy(type => type).ToList();
-            var imagePath = $"Legendary\\Images\\Types\\{orderedTypes[0]}-{orderedTypes[1]}.png";
+            var imagePath = GetCurrentPath + $"Legendary\\Images\\Types\\{orderedTypes[0]}-{orderedTypes[1]}.png";
             DrawCardType(rectangle, canvas, bottomCursor, imagePath);
         }
 
         private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)
         {
-            var imagePath = $"Legendary\\Images\\Types\\{heroCardType}.png";
+            var imagePath = GetCurrentPath + $"Legendary\\Images\\Types\\{heroCardType}.png";
 
             DrawCardType(rectangle, canvas, bottomCursor, imagePath);
         }
@@ -191,7 +194,7 @@ namespace Avery16282Generator.Legendary
                 topCursor.GetCurrent());
             if (heroFaction != HeroFaction.Unaffiliated)
             {
-                DrawImage(factionRectangle, canvas, $"Legendary\\Images\\Factions\\{heroFaction}.png",
+                DrawImage(factionRectangle, canvas, GetCurrentPath + $"Legendary\\Images\\Factions\\{heroFaction}.png",
                     centerHorizontally: true);
             }
 

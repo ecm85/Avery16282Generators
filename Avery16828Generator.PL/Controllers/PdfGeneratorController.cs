@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Avery16282Generator.AeonsEnd;
 using Avery16282Generator.Brewcrafters;
+using Avery16282Generator.Legendary;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Avery16828Generator.PL.Controllers
@@ -16,6 +17,15 @@ namespace Avery16828Generator.PL.Controllers
         public string GenerateBrewcrafters()
         {
             return BrewcraftersLabels.CreateLabels(Directory);
+        }
+
+        [HttpGet("[action]")]
+        public string GenerateLegendary()
+        {
+            var includedSets = Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
+                .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
+                .ToList();
+            return LegendaryLabels.CreateLabels(Directory, includedSets, true);
         }
 
         [HttpGet("[action]")]
