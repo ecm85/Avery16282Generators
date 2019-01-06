@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Avery16282Generator.AeonsEnd
 {
     public static class DataAccess
     {
+        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+
         public static IEnumerable<Divider> GetDividers()
         {
             //Gotten from https://www.actionphasegames.com/pages/aerandomizer
-            return File.ReadAllLines(@"AeonsEnd\CardList")
+            return File.ReadAllLines(GetCurrentPath + @"AeonsEnd\CardList")
                 .Select(ConvertLineToDivider)
                 .ToList();
         }

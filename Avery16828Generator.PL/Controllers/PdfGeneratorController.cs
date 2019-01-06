@@ -1,4 +1,7 @@
+using System;
 using System.IO;
+using System.Linq;
+using Avery16282Generator.AeonsEnd;
 using Avery16282Generator.Brewcrafters;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +19,12 @@ namespace Avery16828Generator.PL.Controllers
         }
 
         [HttpGet("[action]")]
+        public string GenerateAeonsEnd()
+        {
+            return AeonsEndLabels.CreateLabels(Directory, Enum.GetValues(typeof(Expansion)).Cast<Expansion>().ToList());
+        }
+
+        [HttpGet("[action]")]
         public ActionResult GetFile(string fileName)
         {
             var file = Path.Combine(Directory, fileName);
@@ -23,7 +32,7 @@ namespace Avery16828Generator.PL.Controllers
             {
                 return new NotFoundResult();
             }
-            return File(new FileStream(file, FileMode.Open), "application/pdf", "Brewcrafters.pdf");
+            return File(new FileStream(file, FileMode.Open), "application/pdf", fileName);
         }
     }
 }

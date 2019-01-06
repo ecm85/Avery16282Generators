@@ -28,6 +28,11 @@ export class NavMenu extends Component {
                 Brewcrafters
               </NavItem>
             </LinkContainer>
+          <LinkContainer to={'/AeonsEnd'}>
+          <NavItem>
+          Aeon's End
+          </NavItem>
+          </LinkContainer>
             <LinkContainer to={'/fetchdata'}>
               <NavItem>
                 <Glyphicon glyph='th-list' /> Fetch data

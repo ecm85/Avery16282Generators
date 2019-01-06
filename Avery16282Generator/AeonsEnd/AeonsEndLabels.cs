@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -9,7 +10,9 @@ namespace Avery16282Generator.AeonsEnd
 {
     public static class AeonsEndLabels
     {
-        public static void CreateLabels(string directory, IEnumerable<Expansion> includedSets)
+        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+
+        public static string CreateLabels(string directory, IEnumerable<Expansion> includedSets)
         {
             var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
             var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
@@ -44,7 +47,7 @@ namespace Avery16282Generator.AeonsEnd
         
 
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, directory, "AeonsEnd");
+            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, directory, "AeonsEnd");
         }
 
         private static void DrawName(
@@ -108,13 +111,13 @@ namespace Avery16282Generator.AeonsEnd
                 topCursor.GetCurrent() + 3 - imageHeight,
                 rectangle.Right,
                 topCursor.GetCurrent() + 3);
-            DrawImage(imageRectangle, canvas, @"AeonsEnd\Aether.png", centerHorizontally:true, centerVertically:false);
+            DrawImage(imageRectangle, canvas, GetCurrentPath + @"AeonsEnd\Aether.png", centerHorizontally:true, centerVertically:false);
             topCursor.AdvanceCursor(-imageRectangle.Height);
         }
 
         private static void DrawBackground(PdfContentByte canvas, Rectangle rectangle, string dividerType, Cursor topCursor, Cursor bottomCursor)
         {
-            var image = DrawImage(rectangle, canvas, $@"AeonsEnd\{dividerType}.png", centerHorizontally:true, centerVertically:true);
+            var image = DrawImage(rectangle, canvas, GetCurrentPath + $@"AeonsEnd\{dividerType}.png", centerHorizontally:true, centerVertically:true);
             bottomCursor.AdvanceCursor(image.AbsoluteY);
             topCursor.AdvanceCursor(bottomCursor.GetCurrent() + image.ScaledHeight);
         }
