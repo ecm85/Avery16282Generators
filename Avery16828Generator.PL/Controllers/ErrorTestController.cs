@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Avery16828Generator.PL.Controllers
 {
+    [Route("api/[controller]")]
     public class ErrorTestController : Controller
     {
         [HttpGet("[action]")]
