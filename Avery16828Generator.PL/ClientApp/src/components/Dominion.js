@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Checkbox from "./Checkbox";
 
 export class Dominion extends Component {
     displayName = Dominion.name
@@ -7,6 +8,8 @@ export class Dominion extends Component {
     super(props);
       this.state = { initializing: true, filename: null, loading: false};
       this.generateDominion = this.generateDominion.bind(this);
+      this.createCheckbox = this.createCheckbox.bind(this);
+      this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
       fetch('api/PdfGenerator/GetDominionExpansions')
           .then(response =>
               response.json())
@@ -32,6 +35,23 @@ export class Dominion extends Component {
                 this.setState({ filename: data, loading: false });
             });
     }
+
+    createCheckbox = function(option) {
+        return <Checkbox
+        label = { option.text }
+        isSelected = { option.includeExpansion }
+        onCheckboxChange = { () => this.handleCheckboxChange(option) }
+        key = { option.expansion } /> 
+    }
+
+    handleCheckboxChange = function (option) {
+        this.setState({
+            dominionExpansions: this.state.dominionExpansions.map(expansion =>
+                (expansion === option ?
+                    Object.assign({}, expansion, { includeExpansion: !option.includeExpansion }) :
+                    expansion))
+        });
+    };
  
     render() {
         let contents = null;
@@ -42,13 +62,19 @@ export class Dominion extends Component {
             contents = <p><em>Creating...</em></p>
         }
         else if (this.state.filename === null) {
-                contents = <button onClick={this.generateDominion}>Generate Labels</button>
-                }
+            contents =
+                <div>
+                    <button onClick={this.generateDominion}>Generate Labels</button>
+                    {this.state.dominionExpansions.map(this.createCheckbox)}
+                </div>
+        }
         else {
             contents =
                 <div>
                     <button onClick={this.generateDominion}>Generate Labels</button>
+                    {this.state.dominionExpansions.map(this.createCheckbox)}
                     <div><a download href={"api/PdfGenerator/GetFile?fileName=" + this.state.filename}>Download PDF</a></div>
+                    
                 </div>
             }
         
