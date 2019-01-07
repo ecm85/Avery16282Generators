@@ -7,24 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Avery16828Generator.PL
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly ILogger<Startup> _logger;
 
         public IConfiguration Configuration { get; }
 
+        public Startup(ILogger<Startup> logger, IConfiguration configuration)
+        {
+            _logger = logger;
+            Configuration = configuration;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ErrorHandlingFilter());
+                options.Filters.Add(new ErrorHandlingFilter(_logger));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the React files will be served from this directory
