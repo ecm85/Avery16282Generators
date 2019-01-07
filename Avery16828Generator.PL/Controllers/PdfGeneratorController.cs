@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Avery16282Generator.AeonsEnd;
@@ -30,13 +31,28 @@ namespace Avery16828Generator.PL.Controllers
             return LegendaryLabels.CreateLabels(Directory, includedSets, true);
         }
 
-        [HttpGet("[action]")]
-        public string GenerateDominion()
+        [HttpPost("[action]")]
+        public string GenerateDominion([FromBody]IEnumerable<DominionExpansionModel> expansionModels)
         {
-            var includedSets = Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
-                .Cast<Avery16282Generator.Dominion.Expansion>()
+            var includedSets = expansionModels
+                .Where(model => model.IncludeExpansion)
+                .Select(model => model.Expansion)
                 .ToList();
             return DominionLabels.CreateLabels(Directory, includedSets, true);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<DominionExpansionModel> GetDominionExpansions()
+        {
+            return Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
+                .Cast<Avery16282Generator.Dominion.Expansion>()
+                .Select(expansion => new DominionExpansionModel
+                {
+                    Expansion = expansion,
+                    Text = expansion.GetExpansionName(),
+                    IncludeExpansion = true
+                })
+                .ToList();
         }
 
         [HttpGet("[action]")]
