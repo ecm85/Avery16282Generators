@@ -117,7 +117,7 @@
     <Content Include="Dominion\sets_db.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dominion\types_db.json">
+    <Content Include="Dominion\types_db.notjson">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dominion\bonuses_en_us.json">

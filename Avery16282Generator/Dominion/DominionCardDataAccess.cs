@@ -110,7 +110,7 @@ namespace Avery16282Generator.Dominion
 
         private static IEnumerable<CardSuperType> GetCardTypes()
         {
-            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\types_db.json", FileMode.Open))
+            using (var fileStream = new FileStream(GetCurrentPath + "Dominion\\types_db.notjson", FileMode.Open))
             using (var reader = new StreamReader(fileStream))
             using (var jsonTextReader = new JsonTextReader(reader))
             {
