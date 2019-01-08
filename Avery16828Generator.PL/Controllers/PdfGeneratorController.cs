@@ -16,10 +16,12 @@ namespace Avery16828Generator.PL.Controllers
     {
         private const string Directory = "c:\\Avery\\";
 
-        [HttpGet("[action]")]
-        public string GenerateBrewcrafters()
+        [HttpPost("[action]")]
+        public FileResult GenerateBrewcrafters()
         {
-            return BrewcraftersLabels.CreateLabels(Directory);
+            var fileName = BrewcraftersLabels.CreateLabels(Directory);
+            var filePath = Path.Combine(Directory, fileName);
+            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
         }
 
         [HttpGet("[action]")]

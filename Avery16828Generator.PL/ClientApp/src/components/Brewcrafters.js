@@ -5,31 +5,29 @@ export class Brewcrafters extends Component {
 
   constructor(props) {
     super(props);
-      this.state = { filename: null, loading: false};
+      this.state = { loading: false};
       this.generateBrewcrafters = this.generateBrewcrafters.bind(this);
   }
 
     generateBrewcrafters() {
-        this.setState({ filename: null, loading: true });
+        this.setState({ loading: true });
         fetch('api/PdfGenerator/GenerateBrewcrafters')
-            .then(response =>
-                response.text())
             .then(data => {
-                this.setState({ filename: data, loading: false });
+                this.setState({ loading: false });
             });
     }
  
     render() {
     let contents = this.state.loading ?
         <p><em>Creating...</em></p> :
-        this.state.filename === null ?
-            <div></div> : 
-            <div><a download href={"api/PdfGenerator/GetFile?fileName=" + this.state.filename}>Download PDF</a></div>
+        <div></div>;
     return (
       <div>
         <h1>Brewcrafters</h1>
-        <button onClick={this.generateBrewcrafters}>Generate Labels</button>
+        <form method='post' action='api/PdfGenerator/GenerateBrewcrafters'>
+                <input type='submit' className='btn btn-default' value='Generate Labels'></input>
             {contents}
+        </form>
       </div>
     );
   }
