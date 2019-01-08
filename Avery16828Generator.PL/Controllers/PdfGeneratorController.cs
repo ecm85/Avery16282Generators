@@ -16,7 +16,7 @@ namespace Avery16828Generator.PL.Controllers
     {
         private const string Directory = "c:\\Avery\\";
 
-        [HttpPost("[action]")]
+        [HttpPost("[action]\\")]
         public FileResult GenerateBrewcrafters()
         {
             var fileName = BrewcraftersLabels.CreateLabels(Directory);
