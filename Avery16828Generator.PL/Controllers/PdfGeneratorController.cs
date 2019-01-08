@@ -24,13 +24,27 @@ namespace Avery16828Generator.PL.Controllers
             return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
         }
 
-        [HttpGet("[action]")]
-        public string GenerateLegendary()
+        [HttpPost("[action]")]
+        public FileResult GenerateLegendary(IEnumerable<string> expansionNames, bool includeSpecialSetupCards)
         {
-            var includedSets = Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
+            var expansionsByName = Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
                 .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
+                .ToDictionary(expansion => expansion.GetExpansionName());
+            var includedSets = expansionNames
+                .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            return LegendaryLabels.CreateLabels(Directory, includedSets, true);
+            var fileName = LegendaryLabels.CreateLabels(Directory, includedSets, includeSpecialSetupCards);
+            var filePath = Path.Combine(Directory, fileName);
+            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<string> GetLegendaryExpansions()
+        {
+            return Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
+                .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
+                .Select(expansion => expansion.GetExpansionName())
+                .ToList();
         }
 
         [HttpPost("[action]")]
