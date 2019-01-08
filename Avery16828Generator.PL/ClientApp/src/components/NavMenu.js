@@ -49,12 +49,6 @@ export class NavMenu extends Component {
           </NavItem>
           </LinkContainer>
 
-            <LinkContainer to={'/fetchdata'}>
-              <NavItem>
-                <Glyphicon glyph='th-list' /> Fetch data
-              </NavItem>
-            </LinkContainer>
-
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -6,20 +6,16 @@ export class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+        <h1>Avery 16282 Labels</h1>
+            <p>This site contains generators for PDF files to print onto <a href="https://www.avery.com/products/tabs/16282">https://www.avery.com/products/tabs/16282</a>.</p>
+            <p>They can be attached to plastic dividers or envelopes for various games to provide organization.</p>
+            <p>This site can generate labels for:</p>
+       <ul>
+          <li><strong>Brewcrafters</strong>. To organize the beer tokens along with the gold label and card.</li>
+          <li><strong>Dominion</strong>. Supports choosing which expansions to print labels for.</li>
+          <li><strong>Aeon's End</strong>. Supports choosing which expansions to print labels for. Generates labels for each gem, relic, spell and boss.</li>
+          <li><strong>Legendary</strong>.Supports choosing which expansions to print labels for. Also supports optionally creating labels for special cards (i.e. special wounds, special bystanders, etc).</li>
         </ul>
-        <p>To help you get started, we've also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
       </div>
     );
   }
