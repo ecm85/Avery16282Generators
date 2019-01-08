@@ -5,19 +5,15 @@ namespace Avery16282Generator.Dominion
     public enum Expansion
     {
         Adventures,
-        Adventures_Extras,
         Alchemy,
         Animals,
         Base,
         Cornucopia,
-        Cornucopia_Extras,
         Dark_Ages,
-        Dark_Ages_Extras,
         Dominion_1st_Edition,
         Dominion_2nd_Edition,
         Dominion_2nd_Edition_Upgrade,
         Empires,
-        Empires_Extras,
         Extras,
         Guilds,
         Hinterlands,
@@ -25,7 +21,6 @@ namespace Avery16282Generator.Dominion
         Intrigue_2nd_Edition,
         Intrigue_2nd_Edition_Upgrade,
         Nocturne,
-        Nocturne_Extras,
         Promo,
         Prosperity,
         Seaside
@@ -39,8 +34,6 @@ namespace Avery16282Generator.Dominion
             {
                 case Expansion.Adventures:
                     return "Adventures";
-                case Expansion.Adventures_Extras:
-                    return "Adventures Extras";
                 case Expansion.Alchemy:
                     return "Alchemy";
                 case Expansion.Animals:
@@ -49,12 +42,8 @@ namespace Avery16282Generator.Dominion
                     return "Base";
                 case Expansion.Cornucopia:
                     return "Cornucopia";
-                case Expansion.Cornucopia_Extras:
-                    return "Cornucopia Extras";
                 case Expansion.Dark_Ages:
                     return "Dark Ages";
-                case Expansion.Dark_Ages_Extras:
-                    return "Dark Ages Extras";
                 case Expansion.Dominion_1st_Edition:
                     return "Dominion 1st Edition";
                 case Expansion.Dominion_2nd_Edition:
@@ -63,8 +52,6 @@ namespace Avery16282Generator.Dominion
                     return "Dominion 2nd Edition Upgrade";
                 case Expansion.Empires:
                     return "Empires";
-                case Expansion.Empires_Extras:
-                    return "Empires Extras";
                 case Expansion.Extras:
                     return "Extras";
                 case Expansion.Guilds:
@@ -79,8 +66,6 @@ namespace Avery16282Generator.Dominion
                     return "Intrigue 2nd Edition Upgrade";
                 case Expansion.Nocturne:
                     return "Nocturne";
-                case Expansion.Nocturne_Extras:
-                    return "Nocturne Extras";
                 case Expansion.Promo:
                     return "Promo";
                 case Expansion.Prosperity:

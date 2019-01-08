@@ -34,13 +34,15 @@ namespace Avery16828Generator.PL.Controllers
         }
 
         [HttpPost("[action]")]
-        public string GenerateDominion([FromBody]IEnumerable<DominionExpansionModel> expansionModels)
+        public FileResult GenerateDominion(IEnumerable<string> expansionNames)
         {
-            var includedSets = expansionModels
-                .Where(model => model.IncludeExpansion)
-                .Select(model => model.Expansion)
+            var expansionsByName = GetDominionExpansions().ToDictionary(expansion => expansion.Text, expansion => expansion.Expansion);
+            var includedSets = expansionNames
+                .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            return DominionLabels.CreateLabels(Directory, includedSets, true);
+            var fileName = DominionLabels.CreateLabels(Directory, includedSets);
+            var filePath = Path.Combine(Directory, fileName);
+            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
         }
 
         [HttpGet("[action]")]

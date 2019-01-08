@@ -9,19 +9,16 @@ namespace Avery16282Generator.Dominion
     public static class DominionCardDataAccess
     {
         public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
-        public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint, bool includeExtras)
+        public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint)
         {
             var expansionNamesToPrint = expansionsToPrint.Select(expansion => expansion.GetExpansionName()).ToList();
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
 
-            var setsToPrint = cardSets.Values.Select(set => set.Set_name).ToList();
-            {
-                setsToPrint = setsToPrint.Where(setToPrint => expansionNamesToPrint.Contains(setToPrint)).ToList();
-            }
-            setsToPrint = setsToPrint
-                .Where(setToPrint => includeExtras || !setToPrint.Contains("Extras"))
+            var setsToPrint = cardSets.Values
+                .Select(set => set.Set_name)
+                .Where(setToPrint => expansionNamesToPrint.Contains(setToPrint))
                 .ToList();
 
             var cardFromSetsToPrint = cards

@@ -11,9 +11,9 @@ namespace Avery16282Generator.Dominion
     public static class DominionLabels
     {
         public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
-        public static string CreateLabels(string directory, IEnumerable<Expansion> expansionsToPrint, bool includeExtras)
+        public static string CreateLabels(string directory, IEnumerable<Expansion> expansionsToPrint)
         {
-            var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint, includeExtras);
+            var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint);
 
             var trajan = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Trajan Pro Regular.ttf");
             var trajanBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Trajan Pro Bold.ttf");
