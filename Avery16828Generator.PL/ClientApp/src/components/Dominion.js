@@ -24,7 +24,7 @@ export class Dominion extends Component {
             contents =
                 <form  method='post' action='api/PdfGenerator/GenerateDominion'>
                 <select name='expansionNames' className='selectmultiple form-control' multiple='multiple' size={this.state.expansions.length}>
-                    {this.state.expansions.map((expansion => <option key={expansion.text}>{expansion.text}</option>))}
+                    {this.state.expansions.map((expansion => <option key={expansion}>{expansion}</option>))}
                 </select>
                 <input type='submit' className='btn btn-primary' value='Generate Labels'></input>
                 </form>

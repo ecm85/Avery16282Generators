@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
+//import Checkbox from "./Checkbox";
 
 export class AeonsEnd extends Component {
     displayName = AeonsEnd.name
 
-  constructor(props) {
-    super(props);
-      this.state = { filename: null, loading: false};
-      this.generateAeonsEnd = this.generateAeonsEnd.bind(this);
-  }
-
-    generateAeonsEnd() {
-        this.setState({ filename: null, loading: true });
-        fetch('api/PdfGenerator/GenerateAeonsEnd')
+    constructor(props) {
+        super(props);
+        this.state = { initializing: true, loading: false };
+        fetch('api/PdfGenerator/GetAeonsEndExpansions')
             .then(response =>
-                response.text())
+                response.json())
             .then(data => {
-                this.setState({ filename: data, loading: false });
+                this.setState({ expansions: data, initializing: false });
             });
     }
- 
+
     render() {
-    let contents = this.state.loading ?
-        <p><em>Creating...</em></p> :
-        this.state.filename === null ?
-            <div></div> : 
-            <div><a download href={"api/PdfGenerator/GetFile?fileName=" + this.state.filename}>Download PDF</a></div>
-    return (
-      <div>
-        <h1>AeonsEnd</h1>
-        <button onClick={this.generateAeonsEnd}>Generate Labels</button>
-            {contents}
-      </div>
-    );
-  }
+        let contents = null;
+        if (this.state.initializing) {
+            contents = <p><em>Initializing...</em></p>
+        }
+        else {
+            contents =
+            <form method='post' action='api/PdfGenerator/GenerateAeonsEnd'>
+                <select name='expansionNames' className='selectmultiple form-control' multiple='multiple' size={this.state.expansions.length}>
+                {this.state.expansions.map((expansion => <option key={expansion}>{expansion}</option>))}
+</select>
+    <input type='submit' className='btn btn-primary' value='Generate Labels'></input>
+    </form>
+}
+
+return (
+    <div>
+    <h1>Aeons End</h1>
+    {contents}
+    </div>
+);
+}
 }

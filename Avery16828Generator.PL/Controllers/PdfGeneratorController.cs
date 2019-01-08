@@ -36,7 +36,9 @@ namespace Avery16828Generator.PL.Controllers
         [HttpPost("[action]")]
         public FileResult GenerateDominion(IEnumerable<string> expansionNames)
         {
-            var expansionsByName = GetDominionExpansions().ToDictionary(expansion => expansion.Text, expansion => expansion.Expansion);
+            var expansionsByName = Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
+                .Cast<Avery16282Generator.Dominion.Expansion>()
+                .ToDictionary(expansion => expansion.GetExpansionName());
             var includedSets = expansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
@@ -46,23 +48,35 @@ namespace Avery16828Generator.PL.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<DominionExpansionModel> GetDominionExpansions()
+        public IEnumerable<string> GetDominionExpansions()
         {
             return Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
                 .Cast<Avery16282Generator.Dominion.Expansion>()
-                .Select(expansion => new DominionExpansionModel
-                {
-                    Expansion = expansion,
-                    Text = expansion.GetExpansionName(),
-                    IncludeExpansion = true
-                })
+                .Select(expansion => expansion.GetExpansionName())
                 .ToList();
         }
 
-        [HttpGet("[action]")]
-        public string GenerateAeonsEnd()
+        [HttpPost("[action]")]
+        public FileResult GenerateAeonsEnd(IEnumerable<string> expansionNames)
         {
-            return AeonsEndLabels.CreateLabels(Directory, Enum.GetValues(typeof(Expansion)).Cast<Expansion>().ToList());
+            var expansionsByName = Enum.GetValues(typeof(Expansion))
+                .Cast<Expansion>()
+                .ToDictionary(expansion => expansion.GetFriendlyName());
+            var includedSets = expansionNames
+                .Select(expansionName => expansionsByName[expansionName])
+                .ToList();
+            var fileName = AeonsEndLabels.CreateLabels(Directory, includedSets);
+            var filePath = Path.Combine(Directory, fileName);
+            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<string> GetAeonsEndExpansions()
+        {
+            return Enum.GetValues(typeof(Expansion))
+                .Cast<Expansion>()
+                .Select(expansion => expansion.GetFriendlyName())
+                .ToList();
         }
 
         [HttpGet("[action]")]

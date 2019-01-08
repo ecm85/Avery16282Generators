@@ -14,7 +14,6 @@ namespace Avery16282Generator.Dominion
         Dominion_2nd_Edition,
         Dominion_2nd_Edition_Upgrade,
         Empires,
-        Extras,
         Guilds,
         Hinterlands,
         Intrigue_1st_Edition,
@@ -52,8 +51,6 @@ namespace Avery16282Generator.Dominion
                     return "Dominion 2nd Edition Upgrade";
                 case Expansion.Empires:
                     return "Empires";
-                case Expansion.Extras:
-                    return "Extras";
                 case Expansion.Guilds:
                     return "Guilds";
                 case Expansion.Hinterlands:
