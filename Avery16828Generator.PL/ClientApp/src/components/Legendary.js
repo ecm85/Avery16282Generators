@@ -28,7 +28,7 @@ export class Legendary extends Component {
                 </select>
                 <div className='form-group'>
                     <div className='checkbox'>
-                        <label for='includeSpecialSetupCards'>
+                        <label htmlFor='includeSpecialSetupCards'>
                             <input className='checkboxinput' type='checkbox' name='includeSpecialSetupCards' id='includeSpecialSetupCards' value='true' />
                             Include dividers for special setup cards (Special Bystanders, Special Wounds, etc)
                         </label>
