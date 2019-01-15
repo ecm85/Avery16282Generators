@@ -23,7 +23,7 @@ export class AeonsEnd extends Component {
         else {
             contents =
             <form method='post' action='api/PdfGenerator/GenerateAeonsEnd'>
-                <select name='expansionNames' className='selectmultiple form-control' multiple='multiple' size={this.state.expansions.length}>
+                <select name='expansionNames' className='selectmultiple form-control' defaultValue={['Aeon\'s End']} multiple='multiple' size={this.state.expansions.length}>
                 {this.state.expansions.map((expansion => <option key={expansion}>{expansion}</option>))}
 </select>
     <input type='submit' className='btn btn-primary' value='Generate Labels'></input>

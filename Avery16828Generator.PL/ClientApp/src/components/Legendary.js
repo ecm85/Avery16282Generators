@@ -23,13 +23,13 @@ export class Legendary extends Component {
         else {
             contents =
             <form method='post' action='api/PdfGenerator/GenerateLegendary'>
-                <select name='expansionNames' className='selectmultiple form-control' multiple='multiple' size={this.state.expansions.length}>
-                {this.state.expansions.map((expansion => <option key={expansion}>{expansion}</option>))}
+                <select name='expansionNames' className='selectmultiple form-control' defaultValue={['Legendary']} multiple='multiple' size={this.state.expansions.length}>
+                    {this.state.expansions.map((expansion => <option key={expansion}>{expansion}</option>))}
                 </select>
                 <div className='form-group'>
                     <div className='checkbox'>
                         <label htmlFor='includeSpecialSetupCards'>
-                            <input className='checkboxinput' type='checkbox' name='includeSpecialSetupCards' id='includeSpecialSetupCards' value='true' />
+                            <input className='checkboxinput' type='checkbox' name='includeSpecialSetupCards' id='includeSpecialSetupCards' defaultChecked={false} value='true'/>
                             Include dividers for special setup cards (Special Bystanders, Special Wounds, etc)
                         </label>
                     </div>
