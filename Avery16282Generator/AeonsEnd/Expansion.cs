@@ -9,9 +9,7 @@ namespace Avery16282Generator.AeonsEnd
         TheNameless,
         TheOuterDark,
         TheVoid,
-        TheDepths,
-        BuriedSecrets,
-        Legacy
+        TheDepths
     }
 
     public static class ExpansionExtensions
@@ -32,10 +30,6 @@ namespace Avery16282Generator.AeonsEnd
                     return "The Void";
                 case Expansion.TheDepths:
                     return "The Depths";
-                case Expansion.BuriedSecrets:
-                    return "Buried Secrets";
-                case Expansion.Legacy:
-                    return "Legacy";
                 default:
                     throw new InvalidOperationException();
             }
@@ -57,10 +51,6 @@ namespace Avery16282Generator.AeonsEnd
                     return "V";
                 case Expansion.TheDepths:
                     return "D";
-                case Expansion.BuriedSecrets:
-                    return "BS";
-                case Expansion.Legacy:
-                    return "L";
                 default:
                     throw new InvalidOperationException();
             }
