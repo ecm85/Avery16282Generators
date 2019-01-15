@@ -9,26 +9,20 @@ namespace Avery16282Generator
 {
     public static class PdfGenerator
     {
-        public static string DrawRectangles(
+        public static byte[] DrawRectangles(
             Queue<Action<PdfContentByte, Rectangle>> drawRectangleActions,
-            BaseColor backgroundColor,
-            string directory,
-            string filePrefix)
+            BaseColor backgroundColor)
         {
             const int maxColumnIndex = 3;
             const int maxRowIndex = 4;
-            var filename = $@"{filePrefix}Labels{DateTime.Now.ToFileTime()}.pdf";
-            var fullPath = Path.Combine(directory, filename);
             var documentRectangle = new Rectangle(0, 0, PageWidth, PageHeight);
             using (var document = new Document(documentRectangle))
             {
-                using (var fileStream =
-                    new FileStream(fullPath,
-                        FileMode.Create))
-                {
-                    using (var pdfWriter = PdfWriter.GetInstance(document, fileStream))
+                using (var memoryStream = new MemoryStream())
+                { 
+                    using (var pdfWriter = PdfWriter.GetInstance(document, memoryStream))
                     {
-                        
+
                         var topMargin = Utilities.InchesToPoints(.50f);
                         var labelHeight = Utilities.InchesToPoints(1.60f);
                         var labelWidth = Utilities.InchesToPoints(.40f);
@@ -53,7 +47,7 @@ namespace Avery16282Generator
                             var rectangle = new Rectangle(lowerLeftX, lowerLeftY, upperRightX, upperRightY);
                             var reverseLowerLeftX = lowerLeftX + labelWidth + extraPadding * 2;
                             var reverseLowerLeftY = lowerLeftY;
-                            var reverseUpperRightX = upperRightX + labelWidth + extraPadding * 2; 
+                            var reverseUpperRightX = upperRightX + labelWidth + extraPadding * 2;
                             var reverseUpperRightY = upperRightY;
                             var reverseRectangle = new Rectangle(reverseLowerLeftX, reverseLowerLeftY, reverseUpperRightX, reverseUpperRightY);
                             var templateRectangle = new Rectangle(rectangle.Width, rectangle.Height);
@@ -81,10 +75,10 @@ namespace Avery16282Generator
 
                         document.Close();
                     }
+
+                    return memoryStream.ToArray();
                 }
             }
-
-            return filename;
         }
 
         private static float PageHeight => Utilities.InchesToPoints(11f);

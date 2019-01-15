@@ -14,14 +14,12 @@ namespace Avery16828Generator.PL.Controllers
     [Route("api/[controller]")]
     public class PdfGeneratorController : Controller
     {
-        private const string Directory = "c:\\Avery\\";
 
         [HttpPost("[action]")]
         public FileResult GenerateBrewcrafters()
         {
-            var fileName = BrewcraftersLabels.CreateLabels(Directory);
-            var filePath = Path.Combine(Directory, fileName);
-            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
+            var bytes = BrewcraftersLabels.CreateLabels();
+            return File(bytes, "application/document", "BrewcraftersLabels.pdf");
         }
 
         [HttpPost("[action]")]
@@ -33,9 +31,8 @@ namespace Avery16828Generator.PL.Controllers
             var includedSets = expansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            var fileName = LegendaryLabels.CreateLabels(Directory, includedSets, includeSpecialSetupCards);
-            var filePath = Path.Combine(Directory, fileName);
-            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
+            var bytes = LegendaryLabels.CreateLabels(includedSets, includeSpecialSetupCards);
+            return File(bytes, "application/document", "LegendaryLabels.pdf");
         }
 
         [HttpGet("[action]")]
@@ -56,9 +53,8 @@ namespace Avery16828Generator.PL.Controllers
             var includedSets = expansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            var fileName = DominionLabels.CreateLabels(Directory, includedSets);
-            var filePath = Path.Combine(Directory, fileName);
-            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
+            var bytes = DominionLabels.CreateLabels(includedSets);
+            return File(bytes, "application/document", "DominionLabels.pdf");
         }
 
         [HttpGet("[action]")]
@@ -79,9 +75,8 @@ namespace Avery16828Generator.PL.Controllers
             var includedSets = expansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            var fileName = AeonsEndLabels.CreateLabels(Directory, includedSets);
-            var filePath = Path.Combine(Directory, fileName);
-            return File(new FileStream(filePath, FileMode.Open), "application/document", fileName);
+            var bytes = AeonsEndLabels.CreateLabels(includedSets);
+            return File(bytes, "application/document", "AeonsEndLabels.pdf");
         }
 
         [HttpGet("[action]")]
@@ -91,17 +86,6 @@ namespace Avery16828Generator.PL.Controllers
                 .Cast<Expansion>()
                 .Select(expansion => expansion.GetFriendlyName())
                 .ToList();
-        }
-
-        [HttpGet("[action]")]
-        public ActionResult GetFile(string fileName)
-        {
-            var file = Path.Combine(Directory, fileName);
-            if (!System.IO.File.Exists(file))
-            {
-                return new NotFoundResult();
-            }
-            return File(new FileStream(file, FileMode.Open), "application/pdf", fileName);
         }
     }
 }

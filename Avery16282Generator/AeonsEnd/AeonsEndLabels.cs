@@ -12,7 +12,7 @@ namespace Avery16282Generator.AeonsEnd
     {
         public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
 
-        public static string CreateLabels(string directory, IEnumerable<Expansion> includedSets)
+        public static byte[] CreateLabels(IEnumerable<Expansion> includedSets)
         {
             var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
             var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
@@ -47,7 +47,7 @@ namespace Avery16282Generator.AeonsEnd
         
 
             var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE, directory, "AeonsEnd");
+            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE);
         }
 
         private static void DrawName(
