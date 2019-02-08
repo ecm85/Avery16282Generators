@@ -469,6 +469,7 @@ namespace Avery16282Generator.Legendary
                         Name = allLines[currentLineIndex],
                         Expansion = currentSet.Expansion
                     };
+                    currentLineIndex++;
                 }
                 else if (currentTactic == null)
                 {

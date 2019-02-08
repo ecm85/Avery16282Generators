@@ -259,7 +259,9 @@
     <Content Include="Legendary\Data\2_heroes_and_allies.txt_Sanitized">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Legendary\Data\4_masterminds_and_commanders.txt_Sanitized" />
+    <Content Include="Legendary\Data\4_masterminds_and_commanders.txt_Sanitized">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Legendary\Data\HeroesAndAlliesOriginal" />
     <Content Include="Legendary\images\Types\covert-instinct.pdn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
