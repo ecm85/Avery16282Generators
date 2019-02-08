@@ -250,10 +250,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
-    <Content Include="Legendary\Data\HeroesAndAllies">
+    <Content Include="Legendary\Data\HenchmenAndBackupAdversaries">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Legendary\Data\HenchmenAndBackupAdversaries">
+    <Content Include="Legendary\Data\2_heroes_and_allies.txt_Sanitized">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Legendary\Data\HeroesAndAlliesOriginal" />

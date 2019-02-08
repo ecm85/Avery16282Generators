@@ -18,7 +18,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<HeroCardSet> GetHeroCardSets()
         {
-            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\HeroesAndAllies");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\2_heroes_and_allies.txt_Sanitized");
             var allSets = new List<HeroCardSet>();
             HeroCardSet currentSet = null;
             Hero currentHero = null;
