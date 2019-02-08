@@ -262,7 +262,6 @@
     <Content Include="Legendary\Data\6_henchmen_and_backup.txt_Sanitized">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Legendary\Data\HeroesAndAlliesOriginal" />
     <Content Include="Legendary\images\Types\covert-instinct.pdn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
