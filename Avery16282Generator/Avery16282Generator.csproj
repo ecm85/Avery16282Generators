@@ -298,10 +298,10 @@
     <Content Include="Legendary\Data\StartingCards">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Legendary\Data\VillainsAndAdversaries">
+    <Content Include="Legendary\Data\VillainSetupCards">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Legendary\Data\VillainSetupCards">
+    <Content Include="Legendary\Data\5_villain_and_adversary_groups.txt_Sanitized">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

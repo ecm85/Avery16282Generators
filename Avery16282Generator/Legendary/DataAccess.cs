@@ -137,7 +137,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<VillainCardSet> GetVillainCardSets()
         {
-            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\VillainsAndAdversaries");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\5_villain_and_adversary_groups.txt_Sanitized");
             var allSets = new List<VillainCardSet>();
             VillainCardSet currentSet = null;
             Villain currentVillain = null;
