@@ -1182,7 +1182,7 @@ Zola's Creations
 
 Captain Zolandia (2 copies)
 Abomination
-Fight: You get +1 for each Hero Class you have.
+Fight: You get +1 Recruit for each Hero Class you have.
 Attack: 6+
 VP: 5
 
@@ -1715,6 +1715,7 @@ Dark Angel (2 copies)
 Fight: Gain this as a Hero.
 Attack: 4
 ---------
+Instinct
 X-Gene Instinct: The next Hero you recruit from the HQ has Soaring Flight.
 2 Attack
 
@@ -1722,6 +1723,7 @@ Dark Beast (1 copy)
 Fight: Gain this as a Hero.
 Attack: 5
 ---------
+Tech
 X-Gene Tech: You may KO a card from your hand or discard pile.
 2 Attack
 
@@ -1730,6 +1732,7 @@ Ambush: Each player reveals a Ranged Hero or discards a card.
 Fight: Gain this as a Hero.
 Attack: 7
 ---------
+Ranged
 X-Gene Ranged: Return a Ranged Hero from your discard pile to your hand.
 3 Attack
 
@@ -1737,6 +1740,7 @@ Dark Iceman (2 copies)
 Fight: Gain this as a Hero.
 Attack: 5
 ---------
+Strength
 X-Gene Strength: Draw a card.
 2 Attack
 
@@ -1745,6 +1749,7 @@ Ambush: Dark Marvel Girl Dominates each X-Men Hero that costs 4 or less from the
 Fight: Gain this as a Hero.
 Attack: 4+
 ---------
+Covert
 X-Gene Covert: Rescue a Bystander.
 2 Attack
 
@@ -1838,7 +1843,6 @@ Shi'ar Battlecruiser (5 copies)
 Villain --- Shi'ar Imperial Guard
 Attack: 7
 VP: 5
-
 
 
 
