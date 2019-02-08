@@ -202,7 +202,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<HenchmenCardSet> GetHenchmenCardSets()
         {
-            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\HenchmenAndBackupAdversaries");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\6_henchmen_and_backup.txt_Sanitized");
             var allSets = new List<HenchmenCardSet>();
             HenchmenCardSet currentSet = null;
             Henchmen currentHenchmen = null;
