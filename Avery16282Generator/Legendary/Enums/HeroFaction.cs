@@ -20,6 +20,7 @@
         XMen,
         Unaffiliated,
         MercsForMoney,
-        Champions
+        Champions,
+        Warbound
     }
 }

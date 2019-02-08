@@ -21,7 +21,10 @@ namespace Avery16282Generator.Legendary.Enums
         Secret__Wars__Volume__2,
         Spider_Man__Homecoming,
         Villains,
-        X_Men
+        X_Men,
+        World__War__Hulk,
+        Ant_Man,
+        Marvel__Studios__Phase__1
     }
 }
 
@@ -65,6 +68,12 @@ public static class ExpansionExtensions
                 return "Villains";
             case Expansion.X_Men:
                 return "X-Men";
+            case Expansion.World__War__Hulk:
+                return "World War Hulk";
+            case Expansion.Ant_Man:
+                return "Ant-Man";
+            case Expansion.Marvel__Studios__Phase__1:
+                return "Marvel Studios Phase 1";
             default:
                 throw new InvalidOperationException();
         }

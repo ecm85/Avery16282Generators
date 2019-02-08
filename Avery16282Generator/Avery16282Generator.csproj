@@ -180,6 +180,9 @@
     <Content Include="Legendary\images\Factions\spiderfriends.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Legendary\images\Factions\Warbound.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Legendary\images\Factions\xforce.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

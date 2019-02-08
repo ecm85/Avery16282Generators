@@ -156,9 +156,14 @@ namespace Avery16282Generator.Legendary
         {
             if (heroCardTypes.Count != 2)
                 throw new InvalidOperationException("Cannot have more than two card types for a single card.");
-            var orderedTypes = heroCardTypes.OrderBy(type => type).ToList();
-            var imagePath = GetCurrentPath + $"Legendary\\Images\\Types\\{orderedTypes[0]}-{orderedTypes[1]}.png";
-            DrawCardType(rectangle, canvas, bottomCursor, imagePath);
+            if (heroCardTypes[0] == heroCardTypes[1])
+                DrawSingleCardType(heroCardTypes[0], rectangle, canvas, bottomCursor);
+            else
+            {
+                var orderedTypes = heroCardTypes.OrderBy(type => type).ToList();
+                var imagePath = GetCurrentPath + $"Legendary\\Images\\Types\\{orderedTypes[0]}-{orderedTypes[1]}.png";
+                DrawCardType(rectangle, canvas, bottomCursor, imagePath);
+            }
         }
 
         private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfContentByte canvas, Cursor bottomCursor)

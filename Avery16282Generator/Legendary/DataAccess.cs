@@ -82,6 +82,19 @@ namespace Avery16282Generator.Legendary
                         };
                         currentLineIndex += 3;
                     }
+                    else if (allLines[currentLineIndex].Equals("Transformed", StringComparison.OrdinalIgnoreCase))
+                    {
+                        currentCard = currentHero.Cards.Last();
+                        currentHero.Cards.Remove(currentCard);
+                        heroCardSection = new HeroCardSection
+                        {
+
+                            Name = allLines[currentLineIndex + 1],
+                            HeroCardTypes = ParseHeroCardTypes(allLines[currentLineIndex + 2]).ToList()
+                        };
+                        currentCard.HeroCardSection2 = heroCardSection;
+                        currentLineIndex += 2;
+                    }
                     else
                     {
                         heroCardSection = new HeroCardSection
