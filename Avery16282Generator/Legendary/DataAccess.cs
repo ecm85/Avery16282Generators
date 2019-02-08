@@ -411,7 +411,7 @@ namespace Avery16282Generator.Legendary
 
         public static IEnumerable<MastermindCardSet> GetMastermindCardSets()
         {
-            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\MastermindsAndCommanders");
+            var allLines = File.ReadAllLines(GetCurrentPath + @"Legendary\Data\4_masterminds_and_commanders.txt_Sanitized");
             var allSets = new List<MastermindCardSet>();
             MastermindCardSet currentSet = null;
             Mastermind currentMastermind = null;

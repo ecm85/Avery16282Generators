@@ -259,6 +259,7 @@
     <Content Include="Legendary\Data\2_heroes_and_allies.txt_Sanitized">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Legendary\Data\4_masterminds_and_commanders.txt_Sanitized" />
     <None Include="Legendary\Data\HeroesAndAlliesOriginal" />
     <Content Include="Legendary\images\Types\covert-instinct.pdn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -288,9 +289,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Legendary\images\Types\strength-tech.pdn">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Legendary\Data\MastermindsAndCommanders">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Legendary\Data\SetupCards">
