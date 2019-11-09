@@ -22,6 +22,7 @@ namespace Avery16282Generator.Dominion
         Nocturne,
         Promo,
         Prosperity,
+		Renaissance,
         Seaside
     }
 
@@ -67,6 +68,8 @@ namespace Avery16282Generator.Dominion
                     return "Promo";
                 case Expansion.Prosperity:
                     return "Prosperity";
+				 case Expansion.Renaissance:
+                    return "Renaissance";
                 case Expansion.Seaside:
                     return "Seaside";
                 default:

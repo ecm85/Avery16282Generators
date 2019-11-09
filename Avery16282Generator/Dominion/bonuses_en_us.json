@@ -6,12 +6,15 @@
     "include": [
         "Coins",
         "Coin",
-        "Cards",
+		"Coffer",
+		"Cards",
         "Card",
         "Buys",
         "Buy",
         "Actions",
         "Action",
-        "<VP>"
+        "<VP>",
+		"Villager"
+		
     ]
 }
