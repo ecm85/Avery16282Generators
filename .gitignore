@@ -249,3 +249,5 @@ ModelManifest.xml
 *.dll
 
 published-app/
+
+full.sublime-workspace
