@@ -58,7 +58,7 @@ namespace Avery16282Generator.Dominion
         private static void DrawBackgroundImage(CardSuperType superType, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, Cursor bottomCursor)
         {
             var imageNameTokens = superType.Card_type_image.Split('.');
-            var imagePath = GetCurrentPath + $@"Dominion\{imageNameTokens[0]}_nc.{imageNameTokens[1]}";
+            var imagePath = GetCurrentPath + $@"Dominion\{imageNameTokens[0]}.{imageNameTokens[1]}";
             var image = DrawImage(rectangle, canvas, imagePath, true, true);
             bottomCursor.AdvanceCursor(image.AbsoluteY);
             topCursor.AdvanceCursor(bottomCursor.GetCurrent() + image.ScaledHeight);

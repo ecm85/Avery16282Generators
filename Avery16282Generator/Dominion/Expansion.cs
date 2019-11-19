@@ -22,7 +22,8 @@ namespace Avery16282Generator.Dominion
         Nocturne,
         Promo,
         Prosperity,
-        Seaside
+        Seaside,
+        Renaissance
     }
 
     public static class ExpansionExtensions
@@ -69,6 +70,8 @@ namespace Avery16282Generator.Dominion
                     return "Prosperity";
                 case Expansion.Seaside:
                     return "Seaside";
+                case Expansion.Renaissance:
+                    return "Renaissance";
                 default:
                     throw new InvalidOperationException();
             }
