@@ -18,6 +18,35 @@ Alien Element,Gem,4,The Outer Dark
 Haunted Berylite,Gem,3,The Outer Dark
 Pain Stone,Gem,6,The Outer Dark
 Fossilized Scarab,Gem,3,The Void
+Ancient Cyanolith,Gem,3,Legacy
+Arcing Silicate,Gem,4,Legacy
+Branching Radite,Gem,4,Legacy
+Conductive Grit,Gem,3,Legacy
+Crumbling Compound,Gem,5,Legacy
+Entangled Shard,Gem,4,Legacy
+Fulmite Slab,Gem,6,Legacy
+Gilded Marble,Gem,6,Legacy
+Jolting Crust,Gem,3,Buried Secrets
+Mentite Chunk,Gem,5,Buried Secrets
+Muted Lacosite,Gem,5,Buried Secrets
+Oblivium Resin,Gem,5,Buried Secrets
+Phased Portalite,Gem,4,Legacy
+Refined Lumenium,Gem,5,Legacy
+Shining Tetrite,Gem,6,Buried Secrets
+Soothing Torporene,Gem,3,Legacy
+Summonite,Gem,3,Buried Secrets
+Triplite Core,Gem,4,Buried Secrets
+Voidium Spike,Gem,3,Buried Secrets
+Resonant Pearl,Gem,3,The New Age
+Lurking Sionite,Gem,3,The New Age
+Exogranite,Gem,3,The New Age
+Recurring Jasper,Gem,4,The New Age
+Energized Rubidium,Gem,5,The New Age
+Unrefined Blaststone,Gem,6,The New Age
+Jeweled Brain,Gem,3,Into The Wild
+Olivinite,Gem,3,Shattered Dreams
+Cache Glass,Gem,4,Shattered Dreams
+Shining Fluorite,Gem,7,The Ancients
 Phoenix Flame,Spell,3,Aeon's End
 Spectral Echo,Spell,3,Aeon's End
 Amplify Vision,Spell,4,Aeon's End
@@ -66,6 +95,50 @@ Conflagration,Spell,3,The Void
 Fulminate,Spell,5,The Void
 Inner Fire,Spell,2,The Void
 Thermal Dart,Spell,4,The Void
+Arcane Salvo,Spell,5,Legacy
+Bending Beam,Spell,5,Legacy
+Blade Of Wisdom,Spell,6,Buried Secrets
+Breach Collision,Spell,7,Legacy
+Breach Communion,Spell,4,Legacy
+Breach Flare,Spell,3,Legacy
+Burning Current,Spell,3,Buried Secrets
+Double Tap,Spell,3,Buried Secrets
+Draining Touch,Spell,2,Buried Secrets
+Fiery Conclusion,Spell,5,Legacy
+Fire Chakram,Spell,2,Legacy
+Flash Of Intellect,Spell,4,Buried Secrets
+Force Transfusion,Spell,4,Legacy
+Gravity Node,Spell,5,Legacy
+Incinerating Fist,Spell,4,Legacy
+Nerve Jab,Spell,2,Buried Secrets
+Precision Shot,Spell,3,Buried Secrets
+Psychic Eruption,Spell,8,Buried Secrets
+Pyro Geist,Spell,6,Legacy
+Sparking Siphon,Spell,3,Legacy
+Sphere Of Inversion,Spell,9,Legacy
+Starfire Frenzy,Spell,6,Legacy
+Stunning Force,Spell,5,Buried Secrets
+Thunderous Oath,Spell,8,Legacy
+Warping Haze,Spell,3,Legacy
+Tethered Darts,Spell,3,The New Age
+Force Amplifier,Spell,4,The New Age
+Reverberating Shock,Spell,4,The New Age
+Imbued Smash,Spell,5,The New Age
+Fatal Harmony,Spell,5,The New Age
+Deluge of Power,Spell,6,The New Age
+Bouncing Boom,Spell,6,The New Age
+Patterned Strike,Spell,7,The New Age
+Spirit Lift,Spell,8,The New Age
+Wound Mender,Spell,8,Into The Wild
+Breach Seeker,Spell,5,Shattered Dreams
+Crescendo Ray,Spell,4,Shattered Dreams
+Storm Vapors,Spell,4,Shattered Dreams
+Mantra of Strength,Spell,3,Shattered Dreams
+Embody Flame,Spell,7,Shattered Dreams
+Snap Ritual,Spell,6,Shattered Dreams
+Dual Flash,Spell,3,The Ancients
+Dust Caller,Spell,5,The Ancients
+Symbiotic Synapse,Spell,7,The Ancients
 Flexing Dagger,Relic,2,Aeon's End
 Bottled Vortex,Relic,3,Aeon's End
 Unstable Prism,Relic,3,Aeon's End
@@ -86,6 +159,34 @@ Astral Cube,Relic,5,The Outer Dark
 Riddle Sphere,Relic,3,The Outer Dark
 Dimensional Key,Relic,8,The Void
 Eternity Charm,Relic,3,The Void
+Adrenal Batteries,Relic,7,Legacy
+Bottled Star,Relic,7,Buried Secrets
+Brane Knife,Relic,3,Legacy
+Ethereal Hand,Relic,6,Legacy
+Geophage,Relic,3,Legacy
+Infernal Mirror,Relic,5,Legacy
+Living Gauntlet,Relic,4,Buried Secrets
+Manifold Container,Relic,4,Buried Secrets
+Neural Wreath,Relic,4,Legacy
+Prophetic Lens,Relic,4,Legacy
+Reality Stabilizer,Relic,6,Legacy
+Scholars Opus,Relic,3,Buried Secrets
+Soul Cords,Relic,5,Buried Secrets
+Void Mill,Relic,5,Legacy
+Voltaic Relay,Relic,4,Legacy
+Marble Galaxy,Relic,2,The New Age
+Galvanized Bauble,Relic,3,The New Age
+Caged Fire,Relic,3,The New Age
+Pain Conduit,Relic,3,The New Age
+Aether Conduit,Relic,4,The New Age
+Link Conduit,Relic,6,The New Age
+Well of Energy,Relic,7,The New Age
+Blast Sphere,Relic,8,Into The Wild
+Reflective Conduit,Relic,3,Shattered Dreams
+Will Weaver,Relic,7,Shattered Dreams
+Polyphase Turbine,Relic,3,The Ancients
+Breach Extractor,Relic,5,The Ancients
+Focusing Conduit,Relic,5,The Ancients
 Rageborne,Nemesis,,Aeon's End
 Carapace Queen,Nemesis,,Aeon's End
 Crooked Mask,Nemesis,,Aeon's End
@@ -101,13 +202,44 @@ Knight Of Shackles,Nemesis,,The Void
 Maiden Of Thorns,Nemesis,,The Void
 Wraithmonger,Nemesis,,The Outer Dark
 Thrice Dead Prophet,Nemesis,,The Outer Dark
+Bladius,Nemesis,,Legacy
+Spawning Horror,Nemesis,,Legacy
+Fungal Mesh,Nemesis,,Legacy
+Deathmind,Nemesis,,Legacy
+Maelstrom Risen,Nemesis,,Legacy
+Xaxos Ascended,Nemesis,,Legacy
+Maggoth,Nemesis,,The New Age
+Arachnos,Nemesis,,The New Age
+Ageless Walker,Nemesis,,The New Age
+Fenrix,Nemesis,,The New Age
+Necroswarm,Nemesis,,Into The Wild
+The Wailing,Nemesis,,Shattered Dreams
+The Wanderer,Nemesis,,The Ancients
 Turn Order,Misc,,Aeon's End
 Unique Mage Cards,Misc,,Aeon's End
 Tier 1,Nemesis,,Aeon's End
 Tier 2,Nemesis,,Aeon's End
 Tier 3,Nemesis,,Aeon's End
+Spark,Spell,,Aeon's End
+Crystal,Gem,,Aeon's End
 Turn Order,Misc,,War Eternal
 Unique Mage Cards,Misc,,War Eternal
 Tier 1,Nemesis,,War Eternal
 Tier 2,Nemesis,,War Eternal
 Tier 3,Nemesis,,War Eternal
+Spark,Spell,,War Eternal
+Crystal,Gem,,War Eternal
+Turn Order,Misc,,Legacy
+Unique Mage Cards,Misc,,Legacy
+Tier 1,Nemesis,,Legacy
+Tier 2,Nemesis,,Legacy
+Tier 3,Nemesis,,Legacy
+Spark,Spell,,Legacy
+Crystal,Gem,,Legacy
+Turn Order,Misc,,Legacy
+Unique Mage Cards,Misc,,The New Age
+Tier 1,Nemesis,,The New Age
+Tier 2,Nemesis,,The New Age
+Tier 3,Nemesis,,The New Age
+Spark,Spell,,The New Age
+Crystal,Gem,,The New Age
