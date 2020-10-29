@@ -1,10 +1,13 @@
-﻿using System;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf.Canvas;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+using Path = System.IO.Path;
 
 namespace Avery16282Generator.Brewcrafters
 {
@@ -14,14 +17,14 @@ namespace Avery16282Generator.Brewcrafters
 
         public static byte[] CreateLabels()
         {
-            var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
-            var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
-            var baseFont = BaseFont.CreateFont(garamond, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            var boldBaseFont = BaseFont.CreateFont(garamondBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var garamond = Path.Combine(GetCurrentPath, @"Fonts", "GARA.TTF");
+            var garamondBold = Path.Combine(GetCurrentPath, @"Fonts", "GARABD.TTF");
+            var font = PdfFontFactory.CreateFont(garamond, true);
+            var boldFont = PdfFontFactory.CreateFont(garamondBold, true);
 
             var beers = GetBeers();
-            var labelBackground = new CMYKColor(0, 8, 26, 0);
-            var drawActionRectangles = beers.SelectMany(beer => new List<Action<PdfContentByte, Rectangle>>
+            var labelBackground = new DeviceRgb(254, 246, 229);
+            var drawActionRectangles = beers.SelectMany(beer => new List<Action<PdfCanvas, Rectangle>>
             {
                 (canvas, rectangle) =>
                 {
@@ -30,9 +33,9 @@ namespace Avery16282Generator.Brewcrafters
                     //gold label
                     const float startOfLabelOffset = 4f;
                     var topCursor = new Cursor();
-                    topCursor.AdvanceCursor(rectangle.Top - startOfLabelOffset);
+                    topCursor.AdvanceCursor(rectangle.GetTop() - startOfLabelOffset);
                     if (beer.Points > 0)
-                        DrawPoints(rectangle, topCursor, canvas, beer, boldBaseFont);
+                        DrawPoints(rectangle, topCursor, canvas, beer, boldFont);
                     if (beer.Barrel)
                         DrawBarrel(rectangle, topCursor, canvas);
                     if (beer.Hops)
@@ -40,112 +43,139 @@ namespace Avery16282Generator.Brewcrafters
                     if (!string.IsNullOrEmpty(beer.GoldLabelImageName))
                         DrawGoldLabel(rectangle, topCursor, canvas, beer);
 
-                    DrawBeerName(rectangle, topCursor, canvas, beer, baseFont);
+                    DrawBeerName(rectangle, topCursor, canvas, beer, font);
                 }
             }).ToList();
 
-            var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
+            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
             return PdfGenerator.DrawRectangles(
                 drawActionRectangleQueue,
-                BaseColor.WHITE);
+                ColorConstants.WHITE);
         }
 
-        private static void DrawBeerName(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer,
-            BaseFont baseFont)
+        private static void DrawBeerName(
+            Rectangle rectangle,
+            Cursor topCursor,
+            PdfCanvas canvas,
+            Beer beer,
+            PdfFont font)
         {
-            var textRectangle = new Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Right, topCursor.GetCurrent());
-            var templateTextRectangle = new Rectangle(textRectangle.Height, textRectangle.Width);
-            var template = canvas.CreateTemplate(templateTextRectangle.Width, templateTextRectangle.Height);
-            var fontSize = TextSharpHelpers.GetMultiLineFontSize(canvas, beer.FullName, templateTextRectangle, baseFont, 12,
-                               Element.ALIGN_LEFT, Font.NORMAL) - .5f;
-            var textFont = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
-            TextSharpHelpers.WriteWrappingTextInRectangle(template, beer.FullName, textFont, templateTextRectangle,
-                Element.ALIGN_LEFT);
-            var angle = Math.PI / 2;
-            canvas.AddTemplate(template,
-                (float) Math.Cos(angle), -(float) Math.Sin(angle),
-                (float) Math.Sin(angle), (float) Math.Cos(angle),
-                textRectangle.Left, textRectangle.Top);
+            var textRectangle = new Rectangle(
+                rectangle.GetLeft(),
+                rectangle.GetBottom(),
+                rectangle.GetWidth(),
+                topCursor.GetCurrent() - rectangle.GetBottom());
+            var fontSize = TextSharpHelpers.GetMultiLineFontSize(
+                canvas,
+                beer.FullName,
+                textRectangle,
+                font,
+                12) - .5f;
+            DrawCenteredWrappingText(
+                canvas,
+                beer.FullName,
+                textRectangle,
+                font,
+                ColorConstants.BLACK,
+                fontSize);
         }
 
-        private static void DrawBarrel(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas)
+        private static void DrawBarrel(Rectangle rectangle, Cursor topCursor, PdfCanvas canvas)
         {
             const float barrelImageHeight = 12f;
             const float barrelImageHeightPadding = 3f;
             var barrelRectangle = new Rectangle(
-                rectangle.Left,
+                rectangle.GetLeft(),
                 topCursor.GetCurrent() - barrelImageHeight,
-                rectangle.Right,
-                topCursor.GetCurrent());
+                rectangle.GetWidth(),
+                barrelImageHeight);
             DrawImage(barrelRectangle, canvas, GetCurrentPath + "Brewcrafters\\Barrel.png", centerHorizontally: true);
-            topCursor.AdvanceCursor(-(barrelRectangle.Height + barrelImageHeightPadding));
+            topCursor.AdvanceCursor(-(barrelRectangle.GetHeight() + barrelImageHeightPadding));
         }
 
-        private static void DrawHops(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas)
+        private static void DrawHops(Rectangle rectangle, Cursor topCursor, PdfCanvas canvas)
         {
             const float hopsImageHeight = 10f;
             const float hopsImageHeightPadding = 3f;
             const float hopsImageWidth = 14f;
             const float hopsImageWidthPadding = 7f;
             var hopsRectangle = new Rectangle(
-                rectangle.Left + hopsImageWidthPadding,
+                rectangle.GetLeft() + hopsImageWidthPadding,
                 topCursor.GetCurrent() - hopsImageHeight,
-                rectangle.Left + hopsImageWidthPadding + hopsImageWidth,
-                topCursor.GetCurrent());
+                hopsImageWidth,
+                hopsImageHeight);
             DrawImage(hopsRectangle, canvas, GetCurrentPath + "Brewcrafters\\Hops.png", centerVertically: true);
-            topCursor.AdvanceCursor(-(hopsRectangle.Height + hopsImageHeightPadding));
+            topCursor.AdvanceCursor(-(hopsRectangle.GetHeight() + hopsImageHeightPadding));
         }
 
-        private static void DrawPoints(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer, BaseFont boldBaseFont)
+        private static void DrawPoints(Rectangle rectangle, Cursor topCursor, PdfCanvas canvas, Beer beer, PdfFont font)
         {
             const float pointsImageHeight = 12f;
             const float pointsImageHeightPadding = 3f;
             var pointsRectangle = new Rectangle(
-                rectangle.Left,
+                rectangle.GetLeft(),
                 topCursor.GetCurrent() - pointsImageHeight,
-                rectangle.Right,
-                topCursor.GetCurrent());
+                rectangle.GetWidth(),
+                pointsImageHeight);
             DrawImage(pointsRectangle, canvas, GetCurrentPath + "Brewcrafters\\Points.png", centerHorizontally: true);
-            topCursor.AdvanceCursor(-(pointsRectangle.Height + pointsImageHeightPadding));
-            const float pointsTextWidthOffset = 11.5f;
+            topCursor.AdvanceCursor(-(pointsRectangle.GetHeight() + pointsImageHeightPadding));
+            const float pointsTextWidthOffset = 9f;
             const float pointsTextHeightOffset = 3.5f;
             const float pointsFontSize = 10f;
             var pointsText = beer.Points.ToString();
-            var font = new Font(boldBaseFont, pointsFontSize, Font.BOLD, BaseColor.BLACK);
-            DrawText(canvas, pointsText, pointsRectangle, pointsTextWidthOffset, pointsTextHeightOffset, font);
+            DrawText(canvas, pointsText, pointsRectangle, pointsTextWidthOffset, pointsTextHeightOffset, font, ColorConstants.BLACK, pointsFontSize, FontWeight.Bold);
         }
 
-        private static void DrawGoldLabel(Rectangle rectangle, Cursor topCursor, PdfContentByte canvas, Beer beer)
+        private static void DrawGoldLabel(Rectangle rectangle, Cursor topCursor, PdfCanvas canvas, Beer beer)
         {
             const float goldLabelImageHeight = 12f;
             const float goldLabelImageHeightPadding = 3f;
             var goldLabelRectangle = new Rectangle(
-                rectangle.Left,
+                rectangle.GetLeft(),
                 topCursor.GetCurrent() - goldLabelImageHeight,
-                rectangle.Right,
-                topCursor.GetCurrent());
+                rectangle.GetWidth(),
+                goldLabelImageHeight);
 
             DrawImage(goldLabelRectangle, canvas, GetCurrentPath + "Brewcrafters\\" + beer.GoldLabelImageName, centerHorizontally: true);
-            topCursor.AdvanceCursor(-(goldLabelRectangle.Height + goldLabelImageHeightPadding));
+            topCursor.AdvanceCursor(-(goldLabelRectangle.GetHeight() + goldLabelImageHeightPadding));
         }
 
         private static void DrawImage(
             Rectangle rectangle,
-            PdfContentByte canvas,
+            PdfCanvas canvas,
             string imagePath,
             bool scaleAbsolute = false,
             bool centerVertically = false,
             bool centerHorizontally = false)
         {
-            const float imageRotationInRadians = 4.71239f;
-            TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
+            TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, System.Drawing.RotateFlipType.Rotate90FlipNone, scaleAbsolute, centerVertically, centerHorizontally);
         }
 
-        private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle,
-            float textWidthOffset, float textHeightOffset, Font font)
+        private static void DrawCenteredWrappingText(
+            PdfCanvas canvas,
+            string text,
+            Rectangle rectangle,
+            PdfFont font,
+            Color color,
+            float size)
         {
-            const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
+            const float textRotation = (float)(3 * Math.PI / 2);
+            TextSharpHelpers.WriteWrappingTextInRectangle(canvas, text, rectangle, font, color, size, textRotation);
+        }
+
+        private static void DrawText(
+            PdfCanvas canvas,
+            string text,
+            Rectangle rectangle,
+            float textWidthOffset,
+            float textHeightOffset,
+            PdfFont font,
+            Color color,
+            float size,
+            FontWeight fontWeight)
+        {
+            const float textRotation = (float)(3 * Math.PI / 2);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, color, size, textRotation, fontWeight);
         }
 
         private static IEnumerable<Beer> GetBeers()
@@ -164,7 +194,7 @@ namespace Avery16282Generator.Brewcrafters
                 //BeerType = ParseBeerType(tokens[0]),
                 Name1 = tokens[1],
                 Name2 = tokens[2],
-                Name3  = tokens[3],
+                Name3 = tokens[3],
                 Points = int.Parse(tokens[4]),
                 Barrel = bool.Parse(tokens[5]),
                 Hops = bool.Parse(tokens[6]),

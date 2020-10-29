@@ -1,10 +1,13 @@
-﻿using System;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf.Canvas;
+using iText.Layout.Element;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+using Path = System.IO.Path;
 
 namespace Avery16282Generator.Dominion
 {
@@ -15,57 +18,71 @@ namespace Avery16282Generator.Dominion
         {
             var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint);
 
-            var trajan = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Trajan Pro Regular.ttf");
-            var trajanBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Trajan Pro Bold.ttf");
-            var baseFont = BaseFont.CreateFont(trajan, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            var boldBaseFont = BaseFont.CreateFont(trajanBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            var drawActionRectangles = cardsToPrint.SelectMany(card => new List<Action<PdfContentByte, Rectangle>>
+            var trajan = Path.Combine(GetCurrentPath, @"Fonts", "Trajan Pro Regular.ttf");
+            var trajanBold = Path.Combine(GetCurrentPath, @"Fonts", "Trajan Pro Bold.ttf");
+            var font = PdfFontFactory.CreateFont(trajan, true);
+            var boldFont = PdfFontFactory.CreateFont(trajanBold, true);
+            var drawActionRectangles = cardsToPrint.SelectMany(card => new List<Action<PdfCanvas, Rectangle>>
             {
                 (canvas, rectangle) =>
                 {
                     var topCursor = new Cursor();
                     var bottomCursor = new Cursor();
-                    DrawBackgroundImage(card.SuperType, rectangle, canvas, topCursor, bottomCursor);
-                    DrawCosts(boldBaseFont, card, rectangle, canvas, topCursor);
+                    topCursor.AdvanceCursor(rectangle.GetTop());
+                    bottomCursor.AdvanceCursor(rectangle.GetBottom());
+                    DrawBackgroundImage(card.SuperType, rectangle, canvas);
+                    DrawCosts(boldFont, card, rectangle, canvas, topCursor);
                     DrawSetImageAndReturnTop(rectangle, bottomCursor, card.Set.Image, canvas);
 
                     var cardName = card.GroupName ?? card.Name;
-                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, baseFont, card.SuperType);
+                    DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, font, card.SuperType);
                 }
             }).ToList();
-            var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE);
+            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
+            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, ColorConstants.WHITE);
         }
 
-        private static void DrawCardText(Rectangle rectangle, Cursor topCursor, Cursor bottomCursor,
-            PdfContentByte canvas, string cardName, BaseFont baseFont, CardSuperType cardSuperType)
+        private static void DrawCardText(
+            Rectangle rectangle,
+            Cursor topCursor,
+            Cursor bottomCursor,
+            PdfCanvas canvas,
+            string cardName,
+            PdfFont font,
+            CardSuperType cardSuperType)
         {
             const float textPadding = 2f;
             const float textHeight = 12f;
             const float maxFontSize = 10f;
             var textRectangleHeight = topCursor.GetCurrent() - bottomCursor.GetCurrent() - textPadding * 2;
-            var textFontSize = TextSharpHelpers.GetFontSize(canvas, cardName, textRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
-            var font = GetMainTextFont(baseFont, textFontSize, cardSuperType);
-            var textWidthOffset = 8 + (maxFontSize - font.Size) * .35f;
+            var textFontSize = TextSharpHelpers.GetFontSize(canvas, cardName, textRectangleHeight, font, maxFontSize);
+            var fontWeight = GetMainTextFontWeight(cardSuperType);
+            var fontColor = GetMainTextFontColor(cardSuperType);
+            var textWidthOffset = 8 + (maxFontSize - textFontSize) * .35f;
             var textRectangle = new Rectangle(
-                rectangle.Left + textWidthOffset,
+                rectangle.GetLeft() + textWidthOffset,
                 bottomCursor.GetCurrent() + textPadding,
-                rectangle.Left + textWidthOffset + textHeight,
-                topCursor.GetCurrent() - textPadding);
-            DrawText(canvas, cardName, textRectangle, 0, 0, font);
+                textHeight,
+                topCursor.GetCurrent() - (bottomCursor.GetCurrent() + 2 * textPadding));
+            DrawText(canvas, cardName, textRectangle, -2.5f, 0f, font, fontColor, textFontSize, fontWeight);
         }
 
-        private static void DrawBackgroundImage(CardSuperType superType, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, Cursor bottomCursor)
+        private static void DrawBackgroundImage(
+            CardSuperType superType,
+            Rectangle rectangle,
+            PdfCanvas canvas)
         {
             var imageNameTokens = superType.Card_type_image.Split('.');
             var imagePath = GetCurrentPath + $@"Dominion\{imageNameTokens[0]}.{imageNameTokens[1]}";
-            var image = DrawImage(rectangle, canvas, imagePath, true, true);
-            bottomCursor.AdvanceCursor(image.AbsoluteY);
-            topCursor.AdvanceCursor(bottomCursor.GetCurrent() + image.ScaledHeight);
+            DrawImage(rectangle, canvas, imagePath, true, true);
         }
 
-        private static void DrawCosts(BaseFont boldBaseFont, DominionCard card, Rectangle rectangle,
-            PdfContentByte canvas, Cursor topCursor)
+        private static void DrawCosts(
+            PdfFont boldFont,
+            DominionCard card,
+            Rectangle rectangle,
+            PdfCanvas canvas,
+            Cursor topCursor)
         {
             const float firstCostImageHeightOffset = 3f;
             topCursor.AdvanceCursor(-firstCostImageHeightOffset);
@@ -73,101 +90,119 @@ namespace Avery16282Generator.Dominion
 
             if (!string.IsNullOrWhiteSpace(card.Cost) && (card.Cost != "0" ||
                                                           (card.Cost == "0" && card.Potcost != 1 && !card.Debtcost.HasValue)))
-                DrawCost(boldBaseFont, rectangle, canvas, topCursor, card.Cost, costPadding);
+                DrawCost(boldFont, rectangle, canvas, topCursor, card.Cost, costPadding);
             if (card.Potcost == 1)
                 DrawPotionCost(rectangle, canvas, topCursor, costPadding);
             if (card.Debtcost.HasValue)
-                DrawDebtCost(boldBaseFont, rectangle, canvas, topCursor, card.Debtcost, costPadding);
+                DrawDebtCost(boldFont, rectangle, canvas, topCursor, card.Debtcost, costPadding);
         }
 
-        private static void DrawCost(BaseFont boldBaseFont, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, string cardCost, float costPadding)
+        private static void DrawCost(PdfFont font, Rectangle rectangle, PdfCanvas canvas, Cursor topCursor, string cardCost, float costPadding)
         {
             const float costFontSize = 7.5f;
-            const float costTextWidthOffset = 4.5f;
+            const float costTextWidthOffset = 2.5f;
             const float coinCostImageWidthOffset = 4.5f;
             const float costTextHeightOffset = 4.5f;
             const float coinCostRectangleHeight = 14.5f;
             topCursor.AdvanceCursor(-(coinCostRectangleHeight + costPadding));
-            var currentCostRectangle = new Rectangle(rectangle.Left + coinCostImageWidthOffset, topCursor.GetCurrent(),
-                rectangle.Right, topCursor.GetCurrent() + coinCostRectangleHeight);
+            var currentCostRectangle = new Rectangle(
+                rectangle.GetLeft() + coinCostImageWidthOffset,
+                topCursor.GetCurrent(),
+                rectangle.GetWidth() - coinCostImageWidthOffset,
+                coinCostRectangleHeight);
             DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\coin_small.png");
 
-            var font = new Font(boldBaseFont, costFontSize, Font.BOLD, BaseColor.BLACK);
-            DrawText(canvas, cardCost, currentCostRectangle, costTextWidthOffset, costTextHeightOffset, font);
+            DrawText(canvas, cardCost, currentCostRectangle, costTextWidthOffset, costTextHeightOffset, font, ColorConstants.BLACK, costFontSize, FontWeight.Bold);
         }
 
-        private static void DrawPotionCost(Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, float costPadding)
+        private static void DrawPotionCost(Rectangle rectangle, PdfCanvas canvas, Cursor topCursor, float costPadding)
         {
             const float potionCostRectangleHeight = 6f;
             const float potionCostImageWidthOffset = 6f;
             topCursor.AdvanceCursor(-(potionCostRectangleHeight + costPadding));
-            var currentCostRectangle = new Rectangle(rectangle.Left + potionCostImageWidthOffset, topCursor.GetCurrent(),
-                rectangle.Right, topCursor.GetCurrent() + potionCostRectangleHeight);
+            var currentCostRectangle = new Rectangle(
+                rectangle.GetLeft() + potionCostImageWidthOffset,
+                topCursor.GetCurrent(),
+                rectangle.GetWidth() - potionCostImageWidthOffset,
+                potionCostRectangleHeight);
             DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\potion.png");
         }
 
-        private static void DrawDebtCost(BaseFont boldBaseFont, Rectangle rectangle, PdfContentByte canvas, Cursor topCursor, int? debtCost, float costPadding)
+        private static void DrawDebtCost(PdfFont font, Rectangle rectangle, PdfCanvas canvas, Cursor topCursor, int? debtCost, float costPadding)
         {
             const float debtCostImageWidthOffset = 5f;
             const float debtCostRectangleHeight = 13f;
             const float debtCostFontSize = 7.5f;
 
             topCursor.AdvanceCursor(-(debtCostRectangleHeight + costPadding));
-            var currentCostRectangle = new Rectangle(rectangle.Left + debtCostImageWidthOffset, topCursor.GetCurrent(),
-                rectangle.Right, topCursor.GetCurrent() + debtCostRectangleHeight);
+            var currentCostRectangle = new Rectangle(
+                rectangle.GetLeft() + debtCostImageWidthOffset,
+                topCursor.GetCurrent(),
+                rectangle.GetWidth() - debtCostImageWidthOffset,
+                debtCostRectangleHeight);
             DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\debt.png");
 
             const float debtCostTextWidthOffset = 3.5f;
             const float debtCostTextHeightOffset = 4f;
             var costText = debtCost.ToString();
-            var font = new Font(boldBaseFont, debtCostFontSize, Font.BOLD, BaseColor.BLACK);
-            DrawText(canvas, costText, currentCostRectangle, debtCostTextWidthOffset, debtCostTextHeightOffset, font);
+            DrawText(canvas, costText, currentCostRectangle, debtCostTextWidthOffset, debtCostTextHeightOffset, font, ColorConstants.BLACK, debtCostFontSize, FontWeight.Bold);
         }
 
-        private static void DrawSetImageAndReturnTop(Rectangle rectangle, Cursor bottomCursor, string image, PdfContentByte canvas)
+        private static void DrawSetImageAndReturnTop(Rectangle rectangle, Cursor bottomCursor, string image, PdfCanvas canvas)
         {
             const float setImageHeight = 7f;
             const float setImageWidthOffset = 7f;
             const float setImageHeightOffset = 7f;
-            var setImageRectangle = new Rectangle(rectangle.Left + setImageWidthOffset,
+            var setImageRectangle = new Rectangle(
+                rectangle.GetLeft() + setImageWidthOffset,
                 bottomCursor.GetCurrent() + setImageHeightOffset,
-                rectangle.Right,
-                bottomCursor.GetCurrent() + setImageHeightOffset + setImageHeight);
+                rectangle.GetWidth() - setImageWidthOffset,
+                setImageHeight);
             if (!string.IsNullOrWhiteSpace(image))
                 DrawImage(setImageRectangle, canvas, GetCurrentPath + $@"Dominion\{image}");
-            bottomCursor.AdvanceCursor(setImageRectangle.Height + setImageHeightOffset);
+            bottomCursor.AdvanceCursor(setImageRectangle.GetHeight() + setImageHeightOffset);
         }
 
-        private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle,
-            float textWidthOffset, float textHeightOffset, Font font)
+        private static void DrawText(
+            PdfCanvas canvas,
+            string text,
+            Rectangle rectangle,
+            float textWidthOffset,
+            float textHeightOffset,
+            PdfFont font,
+            Color color,
+            float size,
+            FontWeight fontWeight)
         {
-            const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, textRotation);
+            const float textRotation = (float)(3 * Math.PI / 2);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, textWidthOffset, textHeightOffset, font, color, size, textRotation, fontWeight);
         }
 
         private static Image DrawImage(
             Rectangle rectangle,
-            PdfContentByte canvas,
+            PdfCanvas canvas,
             string imagePath,
             bool scaleAbsolute = false,
             bool centerVertically = false,
             bool centerHorizontally = false)
         {
-            const float imageRotationInRadians = 4.71239f;
-            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
+            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, System.Drawing.RotateFlipType.Rotate90FlipNone, scaleAbsolute, centerVertically, centerHorizontally);
         }
 
-        private static Font GetMainTextFont(BaseFont baseFont, float fontSize, CardSuperType superType)
+        private static Color GetMainTextFontColor(CardSuperType superType)
         {
             var hasBlackBackground = superType.Card_type_image == "night.png";
-            var fontColor = hasBlackBackground
-                ? BaseColor.WHITE
-                : BaseColor.BLACK;
-            var fontStyle = hasBlackBackground
-                ? Font.BOLD
-                : Font.NORMAL;
-            var font = new Font(baseFont, fontSize, fontStyle, fontColor);
-            return font;
+            return hasBlackBackground
+                ? ColorConstants.WHITE
+                : ColorConstants.BLACK;
+        }
+
+        private static FontWeight GetMainTextFontWeight(CardSuperType superType)
+        {
+            var hasBlackBackground = superType.Card_type_image == "night.png";
+            return hasBlackBackground
+                ? FontWeight.Bold
+                : FontWeight.Regular;
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf.Canvas;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+using Path = System.IO.Path;
 
 namespace Avery16282Generator.AeonsEnd
 {
@@ -14,137 +16,128 @@ namespace Avery16282Generator.AeonsEnd
 
         public static byte[] CreateLabels(IEnumerable<Expansion> includedSets)
         {
-            var garamond = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARA.TTF");
-            var garamondBold = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "GARABD.TTF");
-            var baseFont = BaseFont.CreateFont(garamond, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            var boldBaseFont = BaseFont.CreateFont(garamondBold, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var garamond = Path.Combine(GetCurrentPath, @"Fonts", "GARA.TTF");
+            var garamondBold = Path.Combine(GetCurrentPath, @"Fonts", "GARABD.TTF");
+            var font = PdfFontFactory.CreateFont(garamond, true);
+            var boldFont = PdfFontFactory.CreateFont(garamondBold, true);
 
             var dividers = DataAccess.GetDividers()
                 .Where(divider => includedSets.Contains(divider.Expansion))
                 .ToList();
             var drawActionRectangles = dividers
-                .SelectMany(divider => new List<Action<PdfContentByte, Rectangle>>
-                {
+                .Select((divider) => new Action<PdfCanvas, Rectangle>(
                     (canvas, rectangle) =>
                     {
-                        var centeringCursor = new CenteringCursor(rectangle.Top, rectangle.Bottom);
+                        var centeringCursor = new CenteringCursor(rectangle.GetTop(), rectangle.GetBottom());
                         var topCursor = centeringCursor.StartCursor;
                         var bottomCursor = centeringCursor.EndCursor;
-                        const float topPadding = -4f;
                         const float dummyCostPadding = -27f;
-                        topCursor.AdvanceCursor(topPadding);
-                        
-                        DrawBackground(canvas, rectangle, divider.Type, topCursor, bottomCursor);
+                        topCursor.AdvanceCursor(rectangle.GetTop());
+                        bottomCursor.AdvanceCursor(rectangle.GetBottom());
+
+                        DrawBackground(canvas, rectangle, divider.Type);
                         if (divider.Cost != null)
-                            DrawCost(canvas, rectangle, divider.Cost.Value, boldBaseFont, topCursor);
+                            DrawCost(canvas, rectangle, divider.Cost.Value, boldFont, topCursor);
                         else
                             topCursor.AdvanceCursor(dummyCostPadding);
-                        DrawExpansionLogo(canvas, rectangle, divider.Expansion.GetAbbreviation(), boldBaseFont, bottomCursor);
-                        DrawName(canvas, rectangle, divider.Name, baseFont, centeringCursor);
-                    }
-                })
+                        DrawExpansionLogo(canvas, rectangle, divider.Expansion.GetAbbreviation(), boldFont, bottomCursor);
+                        DrawName(canvas, rectangle, divider.Name, font, centeringCursor);
+                    }))
                 .ToList();
         
 
-            var drawActionRectangleQueue = new Queue<Action<PdfContentByte, Rectangle>>(drawActionRectangles);
-            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, BaseColor.WHITE);
+            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
+            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, ColorConstants.WHITE);
         }
 
         private static void DrawName(
-            PdfContentByte canvas,
+            PdfCanvas canvas,
             Rectangle rectangle,
             string name,
-            BaseFont baseFont,
+            PdfFont font,
             CenteringCursor centeringCursor
             )
         {
-            const float maxFontSize = 15f;
+            const float maxFontSize = 10f;
             var potentialTextRectangleHeight = centeringCursor.GetCurrentStartWithCentering() - centeringCursor.GetCurrentEndWithCentering();
-            var textFontSize = TextSharpHelpers.GetFontSize(canvas, name, potentialTextRectangleHeight, baseFont, maxFontSize, Element.ALIGN_LEFT, Font.NORMAL);
-            var font = new Font(baseFont, textFontSize, Font.NORMAL, BaseColor.BLACK);
+            var textFontSize = TextSharpHelpers.GetFontSize(canvas, name, potentialTextRectangleHeight, font, maxFontSize);
             var textRectangleHeight = textFontSize * .9f;
             
-            var textWidthOffsetToCenter = (rectangle.Width / 2.0f - textRectangleHeight / 2.0f);
+            var textWidthOffsetToCenter = (rectangle.GetWidth() / 2.0f - textRectangleHeight / 2.0f) - 3f;
             var extraWidthOffsetForBackgroundImage = textFontSize/3;
             var textRectangle = new Rectangle(
-                rectangle.Left + textWidthOffsetToCenter + extraWidthOffsetForBackgroundImage,
+                rectangle.GetLeft() + textWidthOffsetToCenter + extraWidthOffsetForBackgroundImage,
                 centeringCursor.GetCurrentEndWithCentering(),
-                rectangle.Left + textWidthOffsetToCenter + extraWidthOffsetForBackgroundImage + textRectangleHeight,
-                centeringCursor.GetCurrentStartWithCentering());
-            DrawCenteredText(canvas, name, textRectangle, font);
+                textWidthOffsetToCenter + extraWidthOffsetForBackgroundImage + textRectangleHeight,
+                potentialTextRectangleHeight);
+            DrawCenteredText(canvas, name, textRectangle, font, ColorConstants.BLACK, textFontSize, FontWeight.Regular);
         }
 
-        private static void DrawExpansionLogo(PdfContentByte canvas, Rectangle rectangle, string expansion, BaseFont baseFont, Cursor bottomCursor)
+        private static void DrawExpansionLogo(PdfCanvas canvas, Rectangle rectangle, string expansion, PdfFont font, Cursor bottomCursor)
         {
             const float textHeight = 18f;
             const float fontSize = 8f;
+            const float textWidthPadding = 8f;
             const float textHeightPadding = 1f;
-            const float textWidthPadding = 10f;
-            var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
             var textRectangle = new Rectangle(
-                rectangle.Left + textWidthPadding,
+                rectangle.GetLeft() + textWidthPadding,
                 bottomCursor.GetCurrent() + textHeightPadding,
-                rectangle.Right,
-                bottomCursor.GetCurrent() + textHeightPadding + textHeight);
-            DrawText(canvas, expansion, textRectangle, font);
-            bottomCursor.AdvanceCursor(textRectangle.Height + textHeightPadding);
+                rectangle.GetWidth(),
+                textHeight);
+            DrawText(canvas, expansion, textRectangle,font, ColorConstants.BLACK, fontSize, FontWeight.Regular);
+            bottomCursor.AdvanceCursor(textRectangle.GetHeight() + textHeightPadding);
         }
 
-        private static void DrawCost(PdfContentByte canvas, Rectangle rectangle, int dividerCost, BaseFont baseFont, Cursor topCursor)
+        private static void DrawCost(PdfCanvas canvas, Rectangle rectangle, int dividerCost, PdfFont font, Cursor topCursor)
         {
             const float textHeight = 12f;
             const float fontSize = 14f;
-            const float textHeightPadding = 0f;
-            const float textWidthPadding = 10f;
-            var font = new Font(baseFont, fontSize, Font.NORMAL, BaseColor.BLACK);
+            const float textWidthPadding = 6.5f;
+            const float textHeightPadding = 4f;
             var textRectangle = new Rectangle(
-                rectangle.Left + textWidthPadding,
+                rectangle.GetLeft() + textWidthPadding,
                 topCursor.GetCurrent() - (textHeight + textHeightPadding),
-                rectangle.Right,
-                topCursor.GetCurrent() - textHeightPadding);
-            DrawText(canvas, dividerCost.ToString(), textRectangle, font);
-            topCursor.AdvanceCursor(-(textRectangle.Height + textHeightPadding));
+                rectangle.GetWidth(),
+                textHeight);
+            DrawText(canvas, dividerCost.ToString(), textRectangle, font, ColorConstants.BLACK, fontSize, FontWeight.Regular);
+            topCursor.AdvanceCursor(-(textRectangle.GetHeight() + textHeightPadding));
 
             const float imageHeight = 15f;
             var imageRectangle = new Rectangle(
-                rectangle.Left,
+                rectangle.GetLeft(),
                 topCursor.GetCurrent() + 3 - imageHeight,
-                rectangle.Right,
-                topCursor.GetCurrent() + 3);
-            DrawImage(imageRectangle, canvas, GetCurrentPath + @"AeonsEnd\Aether.png", centerHorizontally:true, centerVertically:false);
-            topCursor.AdvanceCursor(-imageRectangle.Height);
+                rectangle.GetWidth(),
+                imageHeight);
+            DrawImage(imageRectangle, canvas, GetCurrentPath + @"AeonsEnd\Aether.png", centerHorizontally:true, centerVertically:true);
+            topCursor.AdvanceCursor(-imageRectangle.GetHeight());
         }
 
-        private static void DrawBackground(PdfContentByte canvas, Rectangle rectangle, string dividerType, Cursor topCursor, Cursor bottomCursor)
+        private static void DrawBackground(PdfCanvas canvas, Rectangle rectangle, string dividerType)
         {
-            var image = DrawImage(rectangle, canvas, GetCurrentPath + $@"AeonsEnd\{dividerType}.png", centerHorizontally:true, centerVertically:true);
-            bottomCursor.AdvanceCursor(image.AbsoluteY);
-            topCursor.AdvanceCursor(bottomCursor.GetCurrent() + image.ScaledHeight);
+            DrawImage(rectangle, canvas, GetCurrentPath + $@"AeonsEnd\{dividerType}.png", centerHorizontally:true, centerVertically:true);
         }
 
-        private static void DrawText(PdfContentByte canvas, string text, Rectangle rectangle, Font font)
+        private static void DrawText(PdfCanvas canvas, string text, Rectangle rectangle, PdfFont font, Color color, float size, FontWeight fontWeight)
         {
-            const int textRotation = 270;
-            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, 0, 0, font, textRotation);
+            const float textRotation = (float)(3 * Math.PI / 2);
+            TextSharpHelpers.WriteNonWrappingTextInRectangle(canvas, text, rectangle, 0, 0, font, color, size, textRotation, fontWeight);
         }
 
-        private static void DrawCenteredText(PdfContentByte canvas, string text, Rectangle rectangle, Font font)
+        private static void DrawCenteredText(PdfCanvas canvas, string text, Rectangle rectangle, PdfFont font, Color color, float size, FontWeight fontWeight)
         {
-            const int textRotation = 270;
-            TextSharpHelpers.WriteCenteredNonWrappingTextInRectangle(canvas, text, rectangle, font, textRotation);
+            const float textRotation = (float)(3 * Math.PI / 2);
+            TextSharpHelpers.WriteCenteredNonWrappingTextInRectangle(canvas, text, rectangle, font, color, size, textRotation, fontWeight);
         }
 
-
-        private static Image DrawImage(
+        private static void DrawImage(
             Rectangle rectangle,
-            PdfContentByte canvas,
+            PdfCanvas canvas,
             string imagePath,
             bool scaleAbsolute = false,
             bool centerVertically = false,
             bool centerHorizontally = false)
         {
-            const float imageRotationInRadians = 4.71239f;
-            return TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, imageRotationInRadians, scaleAbsolute, centerVertically, centerHorizontally);
+            TextSharpHelpers.DrawImage(rectangle, canvas, imagePath, System.Drawing.RotateFlipType.Rotate90FlipNone, scaleAbsolute, centerVertically, centerHorizontally);
         }
     }
 }
