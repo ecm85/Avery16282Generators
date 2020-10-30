@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import Checkbox from "./Checkbox";
 
 export class AeonsEnd extends Component {
     displayName = AeonsEnd.name
@@ -25,16 +24,16 @@ export class AeonsEnd extends Component {
             <form method='post' action='api/PdfGenerator/GenerateAeonsEnd'>
                 <select name='expansionNames' className='selectmultiple form-control' defaultValue={['Aeon\'s End']} multiple='multiple' size={this.state.expansions.length}>
                 {this.state.expansions.map((expansion => <option key={expansion}>{expansion}</option>))}
-</select>
-    <input type='submit' className='btn btn-primary' value='Generate Labels'></input>
-    </form>
-}
+                </select>
+                <input type='submit' className='btn btn-primary' value='Generate Labels'></input>
+            </form>
+        }
 
-return (
-    <div>
-    <h1>Aeons End</h1>
-    {contents}
-    </div>
-);
-}
+        return (
+            <div>
+            <h1>Aeons End</h1>
+            {contents}
+            </div>
+        );
+    }
 }

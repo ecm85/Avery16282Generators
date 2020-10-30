@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Avery16282Generator.AeonsEnd;
 using Avery16282Generator.Brewcrafters;
 using Avery16282Generator.Dominion;
 using Avery16282Generator.Legendary;
+using Avery16828Generator.PL.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Expansion = Avery16282Generator.AeonsEnd.Expansion;
 
@@ -14,7 +14,6 @@ namespace Avery16828Generator.PL.Controllers
     [Route("api/[controller]")]
     public class PdfGeneratorController : Controller
     {
-
         [HttpPost("[action]")]
         public FileResult GenerateBrewcrafters()
         {
@@ -23,16 +22,17 @@ namespace Avery16828Generator.PL.Controllers
         }
 
         [HttpPost("[action]")]
-        public FileResult GenerateLegendary(IEnumerable<string> expansionNames, bool includeSpecialSetupCards)
+        public ActionResult<string> GenerateLegendary([FromBody]GenerateLegendaryRequest request)
         {
             var expansionsByName = Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
                 .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
                 .ToDictionary(expansion => expansion.GetExpansionName());
-            var includedSets = expansionNames
+            var selectedExpansions = request.SelectedExpansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            var bytes = LegendaryLabels.CreateLabels(includedSets, includeSpecialSetupCards);
-            return File(bytes, "application/document", "LegendaryLabels.pdf");
+            var bytes = LegendaryLabels.CreateLabels(selectedExpansions, request.IncludeSpecialSetupCards);
+
+            return S3Service.UploadPdfToS3(bytes, "LegendaryLabels");
         }
 
         [HttpGet("[action]")]

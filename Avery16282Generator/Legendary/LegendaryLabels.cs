@@ -16,18 +16,18 @@ namespace Avery16282Generator.Legendary
     {
         public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
 
-        public static byte[] CreateLabels(IEnumerable<Expansion> includedSets, bool includeSpecialSetupCards)
+        public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions, bool includeSpecialSetupCards)
         {
-            var allHeroes = DataAccess.GetHeroCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(heroCardSet => heroCardSet.Heroes);
-            var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
-            var allVillains = DataAccess.GetVillainCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(villainCardSet => villainCardSet.Villains);
-            var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
-            var allStartingCards = DataAccess.GetStartingCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(startingCardSet => startingCardSet.StartingCards);
+            var allHeroes = DataAccess.GetHeroCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(heroCardSet => heroCardSet.Heroes);
+            var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
+            var allVillains = DataAccess.GetVillainCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(villainCardSet => villainCardSet.Villains);
+            var allHenchmen = DataAccess.GetHenchmenCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(henchmenCardSet => henchmenCardSet.Henchmen);
+            var allStartingCards = DataAccess.GetStartingCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(startingCardSet => startingCardSet.StartingCards);
             var allSetupCards = DataAccess.GetSetupCardSets()
-                .Where(set => includedSets.Contains(set.Expansion))
+                .Where(set => selectedExpansions.Contains(set.Expansion))
                 .SelectMany(setupCardSet => setupCardSet.SetupCards)
                 .Where(setupCard => includeSpecialSetupCards || !setupCard.IsSpecialCard);
-            var allVillainSetupCards = DataAccess.GetVillainSetupCardSets().Where(set => includedSets.Contains(set.Expansion)).SelectMany(setupCardSet => setupCardSet.VillainSetupCards);
+            var allVillainSetupCards = DataAccess.GetVillainSetupCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(setupCardSet => setupCardSet.VillainSetupCards);
 
             var mastermindBaseColor = new DeviceRgb(255, 61, 83);
             var villainBaseColor = new DeviceRgb(255, 102, 119);
