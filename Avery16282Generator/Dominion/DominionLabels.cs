@@ -142,7 +142,7 @@ namespace Avery16282Generator.Dominion
                 debtCostRectangleHeight);
             DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\debt.png");
 
-            const float debtCostTextWidthOffset = 3.5f;
+            const float debtCostTextWidthOffset = 1f;
             const float debtCostTextHeightOffset = 4f;
             var costText = debtCost.ToString();
             DrawText(canvas, costText, currentCostRectangle, debtCostTextWidthOffset, debtCostTextHeightOffset, font, ColorConstants.BLACK, debtCostFontSize, FontWeight.Bold);
