@@ -4,7 +4,7 @@ using Amazon.S3.Transfer;
 using System;
 using System.IO;
 
-namespace Avery16828Generator.PL
+namespace Avery16282Generator.PL
 {
     public class S3Service
     {

@@ -5,11 +5,11 @@ using Avery16282Generator.AeonsEnd;
 using Avery16282Generator.Brewcrafters;
 using Avery16282Generator.Dominion;
 using Avery16282Generator.Legendary;
-using Avery16828Generator.PL.Requests;
+using Avery16282Generator.PL.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Expansion = Avery16282Generator.AeonsEnd.Expansion;
 
-namespace Avery16828Generator.PL.Controllers
+namespace Avery16282Generator.PL.Controllers
 {
     [Route("api/[controller]")]
     public class PdfGeneratorController : Controller
@@ -24,8 +24,8 @@ namespace Avery16828Generator.PL.Controllers
         [HttpPost("[action]")]
         public ActionResult<string> GenerateLegendary([FromBody]GenerateLegendaryRequest request)
         {
-            var expansionsByName = Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
-                .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
+            var expansionsByName = Enum.GetValues(typeof(Legendary.Enums.Expansion))
+                .Cast<Legendary.Enums.Expansion>()
                 .ToDictionary(expansion => expansion.GetExpansionName());
             var selectedExpansions = request.SelectedExpansionNames
                 .Select(expansionName => expansionsByName[expansionName])
@@ -38,8 +38,8 @@ namespace Avery16828Generator.PL.Controllers
         [HttpGet("[action]")]
         public IEnumerable<string> GetLegendaryExpansions()
         {
-            return Enum.GetValues(typeof(Avery16282Generator.Legendary.Enums.Expansion))
-                .Cast<Avery16282Generator.Legendary.Enums.Expansion>()
+            return Enum.GetValues(typeof(Legendary.Enums.Expansion))
+                .Cast<Legendary.Enums.Expansion>()
                 .Select(expansion => expansion.GetExpansionName())
                 .ToList();
         }
@@ -47,8 +47,8 @@ namespace Avery16828Generator.PL.Controllers
         [HttpPost("[action]")]
         public ActionResult<string> GenerateDominion([FromBody]GenerateDominionRequest request)
         {
-            var expansionsByName = Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
-                .Cast<Avery16282Generator.Dominion.Expansion>()
+            var expansionsByName = Enum.GetValues(typeof(Dominion.Expansion))
+                .Cast<Dominion.Expansion>()
                 .ToDictionary(expansion => expansion.GetExpansionName());
             var selectedExpansions = request.SelectedExpansionNames
                 .Select(expansionName => expansionsByName[expansionName])
@@ -60,8 +60,8 @@ namespace Avery16828Generator.PL.Controllers
         [HttpGet("[action]")]
         public IEnumerable<string> GetDominionExpansions()
         {
-            return Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
-                .Cast<Avery16282Generator.Dominion.Expansion>()
+            return Enum.GetValues(typeof(Dominion.Expansion))
+                .Cast<Dominion.Expansion>()
                 .Select(expansion => expansion.GetExpansionName())
                 .ToList();
         }

@@ -13,7 +13,7 @@ namespace Avery16282Generator.AeonsEnd
         public static IEnumerable<Divider> GetDividers()
         {
             //Gotten from https://www.actionphasegames.com/pages/aerandomizer
-            return File.ReadAllLines(GetCurrentPath + @"AeonsEnd\CardList")
+            return File.ReadAllLines(GetCurrentPath + @"AeonsEnd\CardList.txt")
                 .Select(ConvertLineToDivider)
                 .ToList();
         }

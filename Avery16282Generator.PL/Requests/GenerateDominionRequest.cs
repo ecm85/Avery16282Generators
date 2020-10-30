@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Avery16828Generator.PL.Requests
+namespace Avery16282Generator.PL.Requests
 {
     public class GenerateDominionRequest
     {
