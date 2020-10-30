@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import Checkbox from "./Checkbox";
 
 export class Legendary extends Component {
     displayName = Legendary.name
@@ -16,8 +15,7 @@ export class Legendary extends Component {
             includeSpecialSetupCards: false
         };
         fetch('api/PdfGenerator/GetLegendaryExpansions')
-            .then(response =>
-                response.json())
+            .then(response => response.json())
             .then(data => {
                 this.setState({ allExpansions: data, initializing: false });
             });
@@ -98,7 +96,7 @@ export class Legendary extends Component {
                     </div>
                         {!generating && <button type='button' className='btn btn-primary' onClick={this.handleGenerateClick}>Generate Labels</button>}
                         {generating && <button type='button' className='btn btn-primary disabled'>Generating...</button>}
-                        {downloadLink != null && <div><a target="_blank" href={downloadLink}>Open Generated File</a> (Link valid for 1 day)</div>}
+                        {downloadLink != null && <h3>Generated File: <a target="_blank" href={downloadLink}>Link</a> (Link valid for 1 day)</h3>}
                         {error != null && <div>Error generating file or uploading to S3: {error}</div>}
                     </div>
                 }

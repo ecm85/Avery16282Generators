@@ -14,7 +14,7 @@ namespace Avery16282Generator.AeonsEnd
     {
         public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
 
-        public static byte[] CreateLabels(IEnumerable<Expansion> includedSets)
+        public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions)
         {
             var garamond = Path.Combine(GetCurrentPath, @"Fonts", "GARA.TTF");
             var garamondBold = Path.Combine(GetCurrentPath, @"Fonts", "GARABD.TTF");
@@ -22,7 +22,7 @@ namespace Avery16282Generator.AeonsEnd
             var boldFont = PdfFontFactory.CreateFont(garamondBold, true);
 
             var dividers = DataAccess.GetDividers()
-                .Where(divider => includedSets.Contains(divider.Expansion))
+                .Where(divider => selectedExpansions.Contains(divider.Expansion))
                 .ToList();
             var drawActionRectangles = dividers
                 .Select((divider) => new Action<PdfCanvas, Rectangle>(

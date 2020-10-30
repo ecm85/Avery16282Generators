@@ -15,10 +15,10 @@ namespace Avery16828Generator.PL.Controllers
     public class PdfGeneratorController : Controller
     {
         [HttpPost("[action]")]
-        public FileResult GenerateBrewcrafters()
+        public ActionResult<string> GenerateBrewcrafters()
         {
             var bytes = BrewcraftersLabels.CreateLabels();
-            return File(bytes, "application/document", "BrewcraftersLabels.pdf");
+            return S3Service.UploadPdfToS3(bytes, "BrewcraftersLabels");
         }
 
         [HttpPost("[action]")]
@@ -45,16 +45,16 @@ namespace Avery16828Generator.PL.Controllers
         }
 
         [HttpPost("[action]")]
-        public FileResult GenerateDominion(IEnumerable<string> expansionNames)
+        public ActionResult<string> GenerateDominion([FromBody]GenerateDominionRequest request)
         {
             var expansionsByName = Enum.GetValues(typeof(Avery16282Generator.Dominion.Expansion))
                 .Cast<Avery16282Generator.Dominion.Expansion>()
                 .ToDictionary(expansion => expansion.GetExpansionName());
-            var includedSets = expansionNames
+            var selectedExpansions = request.SelectedExpansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            var bytes = DominionLabels.CreateLabels(includedSets);
-            return File(bytes, "application/document", "DominionLabels.pdf");
+            var bytes = DominionLabels.CreateLabels(selectedExpansions);
+            return S3Service.UploadPdfToS3(bytes, "DominionLabels");
         }
 
         [HttpGet("[action]")]
@@ -67,16 +67,16 @@ namespace Avery16828Generator.PL.Controllers
         }
 
         [HttpPost("[action]")]
-        public FileResult GenerateAeonsEnd(IEnumerable<string> expansionNames)
+        public ActionResult<string> GenerateAeonsEnd([FromBody]GenerateAeonsEndRequest request)
         {
             var expansionsByName = Enum.GetValues(typeof(Expansion))
                 .Cast<Expansion>()
                 .ToDictionary(expansion => expansion.GetFriendlyName());
-            var includedSets = expansionNames
+            var selectedExpansions = request.SelectedExpansionNames
                 .Select(expansionName => expansionsByName[expansionName])
                 .ToList();
-            var bytes = AeonsEndLabels.CreateLabels(includedSets);
-            return File(bytes, "application/document", "AeonsEndLabels.pdf");
+            var bytes = AeonsEndLabels.CreateLabels(selectedExpansions);
+            return S3Service.UploadPdfToS3(bytes, "AeonsEndLabels");
         }
 
         [HttpGet("[action]")]
