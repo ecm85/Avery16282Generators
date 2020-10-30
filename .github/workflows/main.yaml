@@ -29,6 +29,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           dotnet build -c Release -nologo
-          cd ./Avery16282Generator.Pl
+          cd ./Avery16282Generator.PL
           dotnet lambda package -o lambda.zip -c Release --no-build
           aws lambda update-function-code --function-name avery-16282-generators --zip-file fileb://lambda.zip
