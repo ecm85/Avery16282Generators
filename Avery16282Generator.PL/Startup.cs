@@ -32,6 +32,7 @@ namespace Avery16282Generator.PL
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
+            app.UseSpaStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
             app.UseMiddleware<NoCacheMiddleware>();
