@@ -18,8 +18,8 @@ namespace Avery16282Generator.Dominion
         {
             var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint);
 
-            var trajan = Path.Combine(CurrentPath, "Fonts", "Trajan Pro Regular.ttf");
-            var trajanBold = Path.Combine(CurrentPath, "Fonts", "Trajan Pro Bold.ttf");
+            var trajan = Path.Combine(CurrentPath, "Fonts", "TrajanProRegular.ttf");
+            var trajanBold = Path.Combine(CurrentPath, "Fonts", "TrajanProBold.ttf");
             var font = PdfFontFactory.CreateFont(trajan, true);
             var boldFont = PdfFontFactory.CreateFont(trajanBold, true);
             var drawActionRectangles = cardsToPrint.SelectMany(card => new List<Action<PdfCanvas, Rectangle>>
