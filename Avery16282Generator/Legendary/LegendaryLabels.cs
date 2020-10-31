@@ -162,14 +162,14 @@ namespace Avery16282Generator.Legendary
             else
             {
                 var orderedTypes = heroCardTypes.OrderBy(type => type).ToList();
-                var imagePath = Path.Combine(CurrentPath, "Legendary", "Images", "Types", $"{orderedTypes[0]}-{orderedTypes[1]}.png");
+                var imagePath = Path.Combine(CurrentPath, "Legendary", "images", "Types", $"{orderedTypes[0]}-{orderedTypes[1]}.png");
                 DrawCardType(rectangle, canvas, bottomCursor, imagePath);
             }
         }
 
         private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfCanvas canvas, Cursor bottomCursor)
         {
-            var imagePath = Path.Combine(CurrentPath, "Legendary", "Images", "Types", $"{heroCardType}.png");
+            var imagePath = Path.Combine(CurrentPath, "Legendary", "images", "Types", $"{heroCardType}.png");
 
             DrawCardType(rectangle, canvas, bottomCursor, imagePath);
         }
@@ -203,7 +203,7 @@ namespace Avery16282Generator.Legendary
                 DrawImage(
                     factionRectangle,
                     canvas,
-                    Path.Combine(CurrentPath, "Legendary", "Images", "Factions", $"{heroFaction}.png"),
+                    Path.Combine(CurrentPath, "Legendary", "images", "Factions", $"{heroFaction}.png"),
                     centerHorizontally: true);
             }
 
