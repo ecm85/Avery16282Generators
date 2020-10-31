@@ -36,7 +36,7 @@ namespace Avery16282Generator.Legendary
             var setupCardBaseColor = new DeviceRgb(35, 255, 39);
             var villainSetupCardBaseColor = new DeviceRgb(255, 73, 197);
 
-            var fontPath = Path.Combine(CurrentPath, "Fonts", "KOMIKAX.ttf");
+            var fontPath = Path.Combine(CurrentPath, "Fonts", "KOMIKAX.TTF");
             var font = PdfFontFactory.CreateFont(fontPath, true);
             var drawHeroActions = allHeroes.Select(hero => new Action<PdfCanvas, Rectangle>(
                 (canvas, rectangle) =>
