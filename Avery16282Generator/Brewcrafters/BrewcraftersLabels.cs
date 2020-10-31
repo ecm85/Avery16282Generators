@@ -13,12 +13,12 @@ namespace Avery16282Generator.Brewcrafters
 {
     public static class BrewcraftersLabels
     {
-        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+        public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static byte[] CreateLabels()
         {
-            var garamond = Path.Combine(GetCurrentPath, @"Fonts", "GARA.TTF");
-            var garamondBold = Path.Combine(GetCurrentPath, @"Fonts", "GARABD.TTF");
+            var garamond = Path.Combine(CurrentPath, "Fonts", "GARA.TTF");
+            var garamondBold = Path.Combine(CurrentPath, "Fonts", "GARABD.TTF");
             var font = PdfFontFactory.CreateFont(garamond, true);
             var boldFont = PdfFontFactory.CreateFont(garamondBold, true);
 
@@ -89,7 +89,7 @@ namespace Avery16282Generator.Brewcrafters
                 topCursor.GetCurrent() - barrelImageHeight,
                 rectangle.GetWidth(),
                 barrelImageHeight);
-            DrawImage(barrelRectangle, canvas, GetCurrentPath + "Brewcrafters\\Barrel.png", centerHorizontally: true);
+            DrawImage(barrelRectangle, canvas, Path.Combine(CurrentPath, "Brewcrafters", "Barrel.png"), centerHorizontally: true);
             topCursor.AdvanceCursor(-(barrelRectangle.GetHeight() + barrelImageHeightPadding));
         }
 
@@ -104,7 +104,7 @@ namespace Avery16282Generator.Brewcrafters
                 topCursor.GetCurrent() - hopsImageHeight,
                 hopsImageWidth,
                 hopsImageHeight);
-            DrawImage(hopsRectangle, canvas, GetCurrentPath + "Brewcrafters\\Hops.png", centerVertically: true);
+            DrawImage(hopsRectangle, canvas, Path.Combine(CurrentPath, "Brewcrafters", "Hops.png"), centerVertically: true);
             topCursor.AdvanceCursor(-(hopsRectangle.GetHeight() + hopsImageHeightPadding));
         }
 
@@ -117,7 +117,7 @@ namespace Avery16282Generator.Brewcrafters
                 topCursor.GetCurrent() - pointsImageHeight,
                 rectangle.GetWidth(),
                 pointsImageHeight);
-            DrawImage(pointsRectangle, canvas, GetCurrentPath + "Brewcrafters\\Points.png", centerHorizontally: true);
+            DrawImage(pointsRectangle, canvas, Path.Combine(CurrentPath, "Brewcrafters", "Points.png"), centerHorizontally: true);
             topCursor.AdvanceCursor(-(pointsRectangle.GetHeight() + pointsImageHeightPadding));
             const float pointsTextWidthOffset = 9f;
             const float pointsTextHeightOffset = 3.5f;
@@ -136,7 +136,7 @@ namespace Avery16282Generator.Brewcrafters
                 rectangle.GetWidth(),
                 goldLabelImageHeight);
 
-            DrawImage(goldLabelRectangle, canvas, GetCurrentPath + "Brewcrafters\\" + beer.GoldLabelImageName, centerHorizontally: true);
+            DrawImage(goldLabelRectangle, canvas, Path.Combine(CurrentPath, "Brewcrafters", beer.GoldLabelImageName), centerHorizontally: true);
             topCursor.AdvanceCursor(-(goldLabelRectangle.GetHeight() + goldLabelImageHeightPadding));
         }
 
@@ -180,7 +180,7 @@ namespace Avery16282Generator.Brewcrafters
 
         private static IEnumerable<Beer> GetBeers()
         {
-            var beerLines = File.ReadAllLines(GetCurrentPath + "Brewcrafters\\BrewcraftersBeerList.txt");
+            var beerLines = File.ReadAllLines(Path.Combine(CurrentPath, "Brewcrafters", "BrewcraftersBeerList.txt"));
             return beerLines
                 .Select(ConvertLineToBeer)
                 .ToList();

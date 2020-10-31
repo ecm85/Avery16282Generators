@@ -13,13 +13,13 @@ namespace Avery16282Generator.Dominion
 {
     public static class DominionLabels
     {
-        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+        public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static byte[] CreateLabels(IEnumerable<Expansion> expansionsToPrint)
         {
             var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint);
 
-            var trajan = Path.Combine(GetCurrentPath, @"Fonts", "Trajan Pro Regular.ttf");
-            var trajanBold = Path.Combine(GetCurrentPath, @"Fonts", "Trajan Pro Bold.ttf");
+            var trajan = Path.Combine(CurrentPath, "Fonts", "Trajan Pro Regular.ttf");
+            var trajanBold = Path.Combine(CurrentPath, "Fonts", "Trajan Pro Bold.ttf");
             var font = PdfFontFactory.CreateFont(trajan, true);
             var boldFont = PdfFontFactory.CreateFont(trajanBold, true);
             var drawActionRectangles = cardsToPrint.SelectMany(card => new List<Action<PdfCanvas, Rectangle>>
@@ -73,7 +73,7 @@ namespace Avery16282Generator.Dominion
             PdfCanvas canvas)
         {
             var imageNameTokens = superType.Card_type_image.Split('.');
-            var imagePath = GetCurrentPath + $@"Dominion\{imageNameTokens[0]}.{imageNameTokens[1]}";
+            var imagePath = Path.Combine(CurrentPath, "Dominion", $"{imageNameTokens[0]}.{imageNameTokens[1]}");
             DrawImage(rectangle, canvas, imagePath, true, true);
         }
 
@@ -110,7 +110,7 @@ namespace Avery16282Generator.Dominion
                 topCursor.GetCurrent(),
                 rectangle.GetWidth() - coinCostImageWidthOffset,
                 coinCostRectangleHeight);
-            DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\coin_small.png");
+            DrawImage(currentCostRectangle, canvas, Path.Combine(CurrentPath, "Dominion", "coin_small.png"));
 
             DrawText(canvas, cardCost, currentCostRectangle, costTextWidthOffset, costTextHeightOffset, font, ColorConstants.BLACK, costFontSize, FontWeight.Bold);
         }
@@ -125,7 +125,7 @@ namespace Avery16282Generator.Dominion
                 topCursor.GetCurrent(),
                 rectangle.GetWidth() - potionCostImageWidthOffset,
                 potionCostRectangleHeight);
-            DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\potion.png");
+            DrawImage(currentCostRectangle, canvas, Path.Combine(CurrentPath, "Dominion", "potion.png"));
         }
 
         private static void DrawDebtCost(PdfFont font, Rectangle rectangle, PdfCanvas canvas, Cursor topCursor, int? debtCost, float costPadding)
@@ -140,7 +140,7 @@ namespace Avery16282Generator.Dominion
                 topCursor.GetCurrent(),
                 rectangle.GetWidth() - debtCostImageWidthOffset,
                 debtCostRectangleHeight);
-            DrawImage(currentCostRectangle, canvas, GetCurrentPath + @"Dominion\debt.png");
+            DrawImage(currentCostRectangle, canvas, Path.Combine(CurrentPath, "Dominion", "debt.png"));
 
             const float debtCostTextWidthOffset = 1f;
             const float debtCostTextHeightOffset = 4f;
@@ -159,7 +159,7 @@ namespace Avery16282Generator.Dominion
                 rectangle.GetWidth() - setImageWidthOffset,
                 setImageHeight);
             if (!string.IsNullOrWhiteSpace(image))
-                DrawImage(setImageRectangle, canvas, GetCurrentPath + $@"Dominion\{image}");
+                DrawImage(setImageRectangle, canvas, Path.Combine(CurrentPath, "Dominion", $"{image}"));
             bottomCursor.AdvanceCursor(setImageRectangle.GetHeight() + setImageHeightOffset);
         }
 

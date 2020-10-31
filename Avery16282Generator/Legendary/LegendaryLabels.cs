@@ -14,7 +14,7 @@ namespace Avery16282Generator.Legendary
 {
     public static class LegendaryLabels
     {
-        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+        public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions, bool includeSpecialSetupCards)
         {
@@ -36,8 +36,7 @@ namespace Avery16282Generator.Legendary
             var setupCardBaseColor = new DeviceRgb(35, 255, 39);
             var villainSetupCardBaseColor = new DeviceRgb(255, 73, 197);
 
-            var fontName = "KOMIKAX.ttf";
-            var fontPath = Path.Combine(GetCurrentPath, @"Fonts", fontName);
+            var fontPath = Path.Combine(CurrentPath, "Fonts", "KOMIKAX.ttf");
             var font = PdfFontFactory.CreateFont(fontPath, true);
             var drawHeroActions = allHeroes.Select(hero => new Action<PdfCanvas, Rectangle>(
                 (canvas, rectangle) =>
@@ -163,14 +162,14 @@ namespace Avery16282Generator.Legendary
             else
             {
                 var orderedTypes = heroCardTypes.OrderBy(type => type).ToList();
-                var imagePath = GetCurrentPath + $"Legendary\\Images\\Types\\{orderedTypes[0]}-{orderedTypes[1]}.png";
+                var imagePath = Path.Combine(CurrentPath, "Legendary", "Images", "Types", $"{orderedTypes[0]}-{orderedTypes[1]}.png");
                 DrawCardType(rectangle, canvas, bottomCursor, imagePath);
             }
         }
 
         private static void DrawSingleCardType(HeroCardType heroCardType, Rectangle rectangle, PdfCanvas canvas, Cursor bottomCursor)
         {
-            var imagePath = GetCurrentPath + $"Legendary\\Images\\Types\\{heroCardType}.png";
+            var imagePath = Path.Combine(CurrentPath, "Legendary", "Images", "Types", $"{heroCardType}.png");
 
             DrawCardType(rectangle, canvas, bottomCursor, imagePath);
         }
@@ -204,7 +203,7 @@ namespace Avery16282Generator.Legendary
                 DrawImage(
                     factionRectangle,
                     canvas,
-                    GetCurrentPath + $"Legendary\\Images\\Factions\\{heroFaction}.png",
+                    Path.Combine(CurrentPath, "Legendary", "Images", "Factions", $"{heroFaction}.png"),
                     centerHorizontally: true);
             }
 

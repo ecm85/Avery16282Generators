@@ -12,12 +12,12 @@ namespace Avery16282Generator.AeonsEnd
 {
     public static class AeonsEndLabels
     {
-        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+        public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions)
         {
-            var garamond = Path.Combine(GetCurrentPath, @"Fonts", "GARA.TTF");
-            var garamondBold = Path.Combine(GetCurrentPath, @"Fonts", "GARABD.TTF");
+            var garamond = Path.Combine(CurrentPath, "Fonts", "GARA.TTF");
+            var garamondBold = Path.Combine(CurrentPath, "Fonts", "GARABD.TTF");
             var font = PdfFontFactory.CreateFont(garamond, true);
             var boldFont = PdfFontFactory.CreateFont(garamondBold, true);
 
@@ -108,13 +108,13 @@ namespace Avery16282Generator.AeonsEnd
                 topCursor.GetCurrent() + 3 - imageHeight,
                 rectangle.GetWidth(),
                 imageHeight);
-            DrawImage(imageRectangle, canvas, GetCurrentPath + @"AeonsEnd\Aether.png", centerHorizontally:true, centerVertically:true);
+            DrawImage(imageRectangle, canvas, Path.Combine(CurrentPath, "AeonsEnd", "Aether.png"), centerHorizontally:true, centerVertically:true);
             topCursor.AdvanceCursor(-imageRectangle.GetHeight());
         }
 
         private static void DrawBackground(PdfCanvas canvas, Rectangle rectangle, string dividerType)
         {
-            DrawImage(rectangle, canvas, GetCurrentPath + $@"AeonsEnd\{dividerType}.png", centerHorizontally:true, centerVertically:true);
+            DrawImage(rectangle, canvas, Path.Combine(CurrentPath, "AeonsEnd", $"{dividerType}.png"), centerHorizontally:true, centerVertically:true);
         }
 
         private static void DrawText(PdfCanvas canvas, string text, Rectangle rectangle, PdfFont font, Color color, float size, FontWeight fontWeight)

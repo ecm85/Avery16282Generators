@@ -8,12 +8,12 @@ namespace Avery16282Generator.AeonsEnd
 {
     public static class DataAccess
     {
-        public static string GetCurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+        public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static IEnumerable<Divider> GetDividers()
         {
             //Gotten from https://www.actionphasegames.com/pages/aerandomizer
-            return File.ReadAllLines(GetCurrentPath + @"AeonsEnd\CardList.txt")
+            return File.ReadAllLines(Path.Combine(CurrentPath, "AeonsEnd", "CardList.txt"))
                 .Select(ConvertLineToDivider)
                 .ToList();
         }
