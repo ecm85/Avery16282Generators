@@ -62,12 +62,12 @@ namespace Avery16282Generator.Dominion
                         {
                             Group_tag = card.Group_tag,
                             Types = card.Types,
-                            Name = englishCards[card.Card_tag].Name,
+                            Name = StripExtraSuffix(englishCards[card.Card_tag].Name),
                             Card_tag = card.Card_tag,
                             Cardset_tags = card.Cardset_tags,
-                            GroupName = string.IsNullOrWhiteSpace(card.Group_tag) ? null : englishCards[card.Group_tag].Name,
+                            GroupName = string.IsNullOrWhiteSpace(card.Group_tag) ? null : StripExtraSuffix(englishCards[card.Group_tag].Name),
                             Group_top = card.Group_top,
-                            Cost = card.Cost,
+                            Cost = string.IsNullOrWhiteSpace(card.Group_tag) || card.Group_top ? card.Cost : "",
                             Debtcost = card.Debtcost,
                             Potcost = card.Potcost,
                             Set = cardSets[key],
@@ -75,6 +75,13 @@ namespace Avery16282Generator.Dominion
                         })
                         .ToList());
         }
+
+        private static string StripExtraSuffix(string value)
+		{
+            const string delimiter = " - ";
+            var indexOfDelimiter = value.IndexOf(delimiter);
+            return indexOfDelimiter < 0 ? value : value.Substring(0, indexOfDelimiter);
+		}
 
         private static IDictionary<string, CardSet> GetCardSets()
         {
