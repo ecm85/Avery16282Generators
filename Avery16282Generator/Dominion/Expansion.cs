@@ -19,6 +19,7 @@ namespace Avery16282Generator.Dominion
         Intrigue_1st_Edition,
         Intrigue_2nd_Edition,
         Intrigue_2nd_Edition_Upgrade,
+        Menagerie,
         Nocturne,
         Promo,
         Prosperity,
@@ -62,6 +63,8 @@ namespace Avery16282Generator.Dominion
                     return "Intrigue 2nd Edition";
                 case Expansion.Intrigue_2nd_Edition_Upgrade:
                     return "Intrigue 2nd Edition Upgrade";
+                case Expansion.Menagerie:
+                    return "Menagerie";
                 case Expansion.Nocturne:
                     return "Nocturne";
                 case Expansion.Promo:
