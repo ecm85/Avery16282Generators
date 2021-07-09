@@ -100,7 +100,7 @@ namespace Avery16282Generator.Dominion
             if (hasDebtCost)
                 DrawDebtCost(boldFont, rectangle, canvas, topCursor, card.Debtcost, costPadding);
             if (!hasAnyCost)
-                topCursor.AdvanceCursor(-costPadding);
+                topCursor.AdvanceCursor(-4f);
         }
 
         private static void DrawCost(PdfFont font, Rectangle rectangle, PdfCanvas canvas, Cursor topCursor, string cardCost, float costPadding)
