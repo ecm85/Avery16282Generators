@@ -58,30 +58,46 @@ namespace Avery16282Generator.Dominion
                 .SelectMany(key =>
                     cards
                         .Where(card => card.Cardset_tags.Contains(key))
-                        .Select(card => new DominionCard
-                        {
-                            Group_tag = card.Group_tag,
-                            Types = card.Types,
-                            Name = StripExtraSuffix(englishCards[card.Card_tag].Name),
-                            Card_tag = card.Card_tag,
-                            Cardset_tags = card.Cardset_tags,
-                            GroupName = string.IsNullOrWhiteSpace(card.Group_tag) ? null : StripExtraSuffix(englishCards[card.Group_tag].Name),
-                            Group_top = card.Group_top,
-                            Cost = string.IsNullOrWhiteSpace(card.Group_tag) || card.Group_top ? card.Cost : "",
-                            Debtcost = card.Debtcost,
-                            Potcost = card.Potcost,
-                            Set = cardSets[key],
-                            SuperType = cardSuperTypes.Single(cardSuperType => cardSuperType.Card_type.OrderBy(i => i).SequenceEqual(card.Types.OrderBy(i => i)))
-                        })
-                        .ToList());
+                        .Select(card => CreateDominionCard(cardSets[key], cardSuperTypes, card, englishCards))
+                        .ToList())
+                .ToList();
+        }
+
+        private static DominionCard CreateDominionCard(
+            CardSet cardSet,
+            IList<CardSuperType> cardSuperTypes,
+            DominionCard baseCard,
+            IDictionary<string, DominionCard> englishCards)
+        {
+            var superType = cardSuperTypes.First(cardSuperType => cardSuperType.Card_type.OrderBy(i => i).SequenceEqual(baseCard.Types.OrderBy(i => i)));
+            var hasGroupTag = !string.IsNullOrWhiteSpace(baseCard.Group_tag);
+            return new DominionCard
+            {
+                Group_tag = baseCard.Group_tag,
+                Types = baseCard.Types,
+                Name = StripExtraSuffix(englishCards[baseCard.Card_tag].Name),
+                Card_tag = baseCard.Card_tag,
+                Cardset_tags = baseCard.Cardset_tags,
+                GroupName = !hasGroupTag ?
+                    null :
+                    StripExtraSuffix(englishCards[baseCard.Group_tag].Name),
+                Group_top = baseCard.Group_top,
+                Cost = !hasGroupTag || baseCard.Group_top ?
+                    baseCard.Cost :
+                    "",
+                Debtcost = baseCard.Debtcost,
+                Potcost = baseCard.Potcost,
+                Set = cardSet,
+                SuperType = superType
+            };
         }
 
         private static string StripExtraSuffix(string value)
-		{
+        {
             const string delimiter = " - ";
             var indexOfDelimiter = value.IndexOf(delimiter);
             return indexOfDelimiter < 0 ? value : value.Substring(0, indexOfDelimiter);
-		}
+        }
 
         private static IDictionary<string, CardSet> GetCardSets()
         {
