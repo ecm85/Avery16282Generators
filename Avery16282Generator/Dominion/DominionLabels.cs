@@ -87,14 +87,20 @@ namespace Avery16282Generator.Dominion
             const float firstCostImageHeightOffset = 3f;
             topCursor.AdvanceCursor(-firstCostImageHeightOffset);
             const float costPadding = 1f;
-
-            if (!string.IsNullOrWhiteSpace(card.Cost) && (card.Cost != "0" ||
-                                                          (card.Cost == "0" && card.Potcost != 1 && !card.Debtcost.HasValue)))
+            var hasAnyCoinCost = !string.IsNullOrWhiteSpace(card.Cost);
+            var hasZeroCoinCost = card.Cost == "0";
+            var hasPotionCost = card.Potcost == 1;
+            var hasDebtCost = card.Debtcost.HasValue;
+            var hasAnyCost = hasAnyCoinCost || hasPotionCost || hasDebtCost;
+            var hasOnlyZeroCoinCost = hasZeroCoinCost && !hasPotionCost && !hasDebtCost;
+            if (hasAnyCoinCost && (!hasZeroCoinCost || hasOnlyZeroCoinCost))
                 DrawCost(boldFont, rectangle, canvas, topCursor, card.Cost, costPadding);
-            if (card.Potcost == 1)
+            if (hasPotionCost)
                 DrawPotionCost(rectangle, canvas, topCursor, costPadding);
-            if (card.Debtcost.HasValue)
+            if (hasDebtCost)
                 DrawDebtCost(boldFont, rectangle, canvas, topCursor, card.Debtcost, costPadding);
+            if (!hasAnyCost)
+                topCursor.AdvanceCursor(costPadding);
         }
 
         private static void DrawCost(PdfFont font, Rectangle rectangle, PdfCanvas canvas, Cursor topCursor, string cardCost, float costPadding)

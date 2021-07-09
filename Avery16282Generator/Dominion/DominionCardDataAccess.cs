@@ -74,17 +74,16 @@ namespace Avery16282Generator.Dominion
             var cost = !hasGroupTag || baseCard.Group_top ?
                 baseCard.Cost :
                 "";
-            var hasCost = string.IsNullOrWhiteSpace(cost);
             return new DominionCard
             {
                 Group_tag = baseCard.Group_tag,
                 Types = baseCard.Types,
-                Name = FormatName(englishCards[baseCard.Card_tag].Name, hasCost),
+                Name = FormatName(englishCards[baseCard.Card_tag].Name),
                 Card_tag = baseCard.Card_tag,
                 Cardset_tags = baseCard.Cardset_tags,
                 GroupName = !hasGroupTag ?
                     null :
-                    FormatName(englishCards[baseCard.Group_tag].Name, hasCost),
+                    FormatName(englishCards[baseCard.Group_tag].Name),
                 Group_top = baseCard.Group_top,
                 Cost = cost,
                 Debtcost = baseCard.Debtcost,
@@ -94,12 +93,11 @@ namespace Avery16282Generator.Dominion
             };
         }
 
-        private static string FormatName(string value, bool hasCost)
+        private static string FormatName(string value)
         {
             const string delimiter = " - ";
             var indexOfDelimiter = value.IndexOf(delimiter);
-            var nameWithoutDelimiter = indexOfDelimiter < 0 ? value : value.Substring(0, indexOfDelimiter);
-            return hasCost ? nameWithoutDelimiter : $"  {nameWithoutDelimiter}";
+            return indexOfDelimiter < 0 ? value : value.Substring(0, indexOfDelimiter);
         }
 
         private static IDictionary<string, CardSet> GetCardSets()
