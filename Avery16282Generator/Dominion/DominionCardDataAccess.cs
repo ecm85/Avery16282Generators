@@ -71,20 +71,22 @@ namespace Avery16282Generator.Dominion
         {
             var superType = cardSuperTypes.First(cardSuperType => cardSuperType.Card_type.OrderBy(i => i).SequenceEqual(baseCard.Types.OrderBy(i => i)));
             var hasGroupTag = !string.IsNullOrWhiteSpace(baseCard.Group_tag);
+            var cost = !hasGroupTag || baseCard.Group_top ?
+                baseCard.Cost :
+                "";
+            var hasCost = string.IsNullOrWhiteSpace(cost);
             return new DominionCard
             {
                 Group_tag = baseCard.Group_tag,
                 Types = baseCard.Types,
-                Name = StripExtraSuffix(englishCards[baseCard.Card_tag].Name),
+                Name = FormatName(englishCards[baseCard.Card_tag].Name, hasCost),
                 Card_tag = baseCard.Card_tag,
                 Cardset_tags = baseCard.Cardset_tags,
                 GroupName = !hasGroupTag ?
                     null :
-                    StripExtraSuffix(englishCards[baseCard.Group_tag].Name),
+                    FormatName(englishCards[baseCard.Group_tag].Name, hasCost),
                 Group_top = baseCard.Group_top,
-                Cost = !hasGroupTag || baseCard.Group_top ?
-                    baseCard.Cost :
-                    "",
+                Cost = cost,
                 Debtcost = baseCard.Debtcost,
                 Potcost = baseCard.Potcost,
                 Set = cardSet,
@@ -92,11 +94,12 @@ namespace Avery16282Generator.Dominion
             };
         }
 
-        private static string StripExtraSuffix(string value)
+        private static string FormatName(string value, bool hasCost)
         {
             const string delimiter = " - ";
             var indexOfDelimiter = value.IndexOf(delimiter);
-            return indexOfDelimiter < 0 ? value : value.Substring(0, indexOfDelimiter);
+            var nameWithoutDelimiter = indexOfDelimiter < 0 ? value : value.Substring(0, indexOfDelimiter);
+            return hasCost ? nameWithoutDelimiter : $"  {nameWithoutDelimiter}";
         }
 
         private static IDictionary<string, CardSet> GetCardSets()
