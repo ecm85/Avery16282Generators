@@ -76,6 +76,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\DK Snemand.otf" />
+    <None Remove="SpiritIsland\backgroundImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Fonts\DK Snemand.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpiritIsland\backgroundImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="itext7" Version="7.1.13" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0-rc.2.20475.5" />
   </ItemGroup>

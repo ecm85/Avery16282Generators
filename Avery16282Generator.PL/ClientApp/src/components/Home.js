@@ -36,6 +36,12 @@ export class Home extends Component {
                         <p className='list-group-item-text'>Generates labels for each Mastermind, Hero, Villan, Henchmen, and each type of setup and starting card. Supports choosing which expansions to include. Also supports optionally creating labels for special cards (i.e. special wounds, special bystanders, etc).</p>
                     </a>
                 </LinkContainer>
+                <LinkContainer to={'/SpiritIsland'}>
+                    <a className='list-group-item'>
+                        <h4 className='list-group-item-heading'>Spirit Island</h4>
+                        <p className='list-group-item-text'>Generates labels for each type of card in Spirit Island.</p>
+                    </a>
+                </LinkContainer>
           </div>
         </div>
     );
