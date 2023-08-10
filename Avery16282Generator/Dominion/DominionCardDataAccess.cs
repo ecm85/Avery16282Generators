@@ -31,7 +31,9 @@ namespace Avery16282Generator.Dominion
                 .Select(cardGroup => cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First())
                 .ToList();
             var cardsToPrint = nonGroupedCards.Concat(groupedCardsToPrint).ToList();
-            return cardsToPrint;
+            return cardsToPrint
+                .OrderBy(card => card.GroupName ?? card.Name)
+                .ToList();
         }
 
         private static IEnumerable<DominionCard> GetCards(IDictionary<string, CardSet> cardSets, IList<CardSuperType> cardSuperTypes)
@@ -74,16 +76,18 @@ namespace Avery16282Generator.Dominion
             var cost = !hasGroupTag || baseCard.Group_top ?
                 baseCard.Cost :
                 "";
+            var englishCard = englishCards.ContainsKey(baseCard.Card_tag) ? englishCards[baseCard.Card_tag] : null;
+            var englishGroupCard = hasGroupTag && englishCards.ContainsKey(baseCard.Group_tag) ? englishCards[baseCard.Group_tag] : null;
             return new DominionCard
             {
                 Group_tag = baseCard.Group_tag,
                 Types = baseCard.Types,
-                Name = FormatName(englishCards[baseCard.Card_tag].Name),
+                Name = FormatName(englishCard?.Name ?? ""),
                 Card_tag = baseCard.Card_tag,
                 Cardset_tags = baseCard.Cardset_tags,
-                GroupName = !hasGroupTag ?
+                GroupName = englishGroupCard == null ?
                     null :
-                    FormatName(englishCards[baseCard.Group_tag].Name),
+                    FormatName(englishGroupCard.Name),
                 Group_top = baseCard.Group_top,
                 Cost = cost,
                 Debtcost = baseCard.Debtcost,
@@ -122,9 +126,9 @@ namespace Avery16282Generator.Dominion
 
             foreach (var cardSetName in cardSets.Keys)
             {
-                cardSets[cardSetName].Set_name = englishCardSets[cardSetName].Set_name;
-                cardSets[cardSetName].Set_text = englishCardSets[cardSetName].Set_text;
-                cardSets[cardSetName].Text_icon = englishCardSets[cardSetName].Text_icon;
+                cardSets[cardSetName].Set_name = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Set_name : "";
+                cardSets[cardSetName].Set_text = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Set_text : "";
+                cardSets[cardSetName].Text_icon = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Text_icon : "";
             }
             return cardSets;
         }

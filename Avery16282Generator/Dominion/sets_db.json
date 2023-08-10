@@ -19,6 +19,16 @@
         "set_text": "",
         "text_icon": "*"
     },
+    "allies": {
+        "edition": [
+            "1",
+            "latest"
+        ],
+        "image": "allies_set.png",
+        "set_name": "*allies*",
+        "set_text": "",
+        "text_icon": "*"
+    },
     "animals": {
         "edition": [
             "1",
@@ -36,9 +46,9 @@
             "2",
             "latest"
         ],
+        "has_extras": false,
         "image": "",
         "no_randomizer": true,
-        "has_extras": false,
         "set_name": "*base*",
         "set_text": "",
         "text_icon": "*"
@@ -73,6 +83,17 @@
         "short_name": "Dominion",
         "text_icon": "*"
     },
+    "dominion1stEditionRemoved": {
+        "edition": [
+            "1",
+            "removed"
+        ],
+        "has_extras": false,
+        "image": "dominion1stEdition_set.png",
+        "set_name": "*dominion1stEditionRemoved*",
+        "set_text": "",
+        "text_icon": "*"
+    },
     "dominion2ndEdition": {
         "edition": [
             "2",
@@ -86,14 +107,15 @@
     },
     "dominion2ndEditionUpgrade": {
         "edition": [
-            "1"
+            "1",
+            "upgrade"
         ],
-        "image": "dominion2ndEdition_set.png",
         "has_extras": false,
-        "upgrades": "dominion1stEdition",
+        "image": "dominion2ndEdition_set.png",
         "set_name": "*dominion2ndEditionUpgrade*",
         "set_text": "",
-        "text_icon": "*"
+        "text_icon": "*",
+        "upgrades": "dominion1stEdition"
     },
     "empires": {
         "edition": [
@@ -110,9 +132,9 @@
             "1",
             "latest"
         ],
+        "has_extras": false,
         "image": "",
         "no_randomizer": true,
-        "has_extras": false,
         "set_name": "*extras*",
         "set_text": "",
         "text_icon": "*"
@@ -127,15 +149,61 @@
         "set_text": "",
         "text_icon": "*"
     },
-    "hinterlands": {
+    "guilds-bigbox2-de": {
         "edition": [
             "1",
             "latest"
         ],
-        "image": "hinterlands_set.png",
-        "set_name": "*hinterlands*",
+        "image": "guilds_set.png",
+        "set_name": "*guilds-bigbox2-de*",
         "set_text": "",
         "text_icon": "*"
+    },
+    "hinterlands1stEdition": {
+        "edition": [
+            "1"
+        ],
+        "image": "hinterlands1stEdition_set.png",
+        "set_name": "*hinterlands1stEdition*",
+        "set_text": "",
+        "short_name": "Hinterlands",
+        "text_icon": "*"
+    },
+    "hinterlands1stEditionRemoved": {
+        "edition": [
+            "1",
+            "removed"
+        ],
+        "has_extras": false,
+        "image": "hinterlands1stEdition_set.png",
+        "set_name": "*hinterlands1stEditionRemoved*",
+        "set_text": "",
+        "short_name": "Hinterlands",
+        "text_icon": "*"
+    },
+    "hinterlands2ndEdition": {
+        "edition": [
+            "2",
+            "latest"
+        ],
+        "image": "hinterlands2ndEdition_set.png",
+        "set_name": "*hinterlands2ndEdition*",
+        "set_text": "",
+        "short_name": "Hinterlands",
+        "text_icon": "*"
+    },
+    "hinterlands2ndEditionUpgrade": {
+        "edition": [
+            "1",
+            "upgrade"
+        ],
+        "has_extras": false,
+        "image": "hinterlands2ndEdition_set.png",
+        "set_name": "*hinterlands2ndEditionUpgrade*",
+        "set_text": "",
+        "short_name": "Hinterlands",
+        "text_icon": "*",
+        "upgrades": "hinterlands1stEdition"
     },
     "intrigue1stEdition": {
         "edition": [
@@ -145,6 +213,17 @@
         "set_name": "*intrigue1stEdition*",
         "set_text": "",
         "short_name": "Intrigue",
+        "text_icon": "*"
+    },
+    "intrigue1stEditionRemoved": {
+        "edition": [
+            "1",
+            "removed"
+        ],
+        "has_extras": false,
+        "image": "intrigue1stEdition_set.png",
+        "set_name": "*intrigue1stEditionRemoved*",
+        "set_text": "",
         "text_icon": "*"
     },
     "intrigue2ndEdition": {
@@ -160,14 +239,15 @@
     },
     "intrigue2ndEditionUpgrade": {
         "edition": [
-            "1"
+            "1",
+            "upgrade"
         ],
-        "image": "intrigue2ndEdition_set.png",
         "has_extras": false,
-        "upgrades": "intrigue1stEdition",
+        "image": "intrigue2ndEdition_set.png",
         "set_name": "*intrigue2ndEditionUpgrade*",
         "set_text": "",
-        "text_icon": "*"
+        "text_icon": "*",
+        "upgrades": "intrigue1stEdition"
     },
     "menagerie": {
         "edition": [
@@ -189,26 +269,78 @@
         "set_text": "",
         "text_icon": "*"
     },
+    "plunder": {
+        "edition": [
+            "1",
+            "latest"
+        ],
+        "image": "plunder_set.png",
+        "set_name": "*plunder*",
+        "set_text": "",
+        "text_icon": "*"
+    },
     "promo": {
         "edition": [
             "1",
             "latest"
         ],
-        "image": "promo_set.png",
         "has_extras": false,
+        "image": "promo_set.png",
         "set_name": "*promo*",
         "set_text": "",
         "text_icon": "*"
     },
-    "prosperity": {
+    "promo-bigbox2-de": {
         "edition": [
             "1",
             "latest"
         ],
-        "image": "prosperity_set.png",
-        "set_name": "*prosperity*",
+        "image": "promo_set.png",
+        "set_name": "*promo-bigbox2-de*",
         "set_text": "",
         "text_icon": "*"
+    },
+    "prosperity1stEdition": {
+        "edition": [
+            "1"
+        ],
+        "image": "prosperity1stEdition_set.png",
+        "set_name": "*prosperity1stEdition*",
+        "set_text": "",
+        "text_icon": "*"
+    },
+    "prosperity1stEditionRemoved": {
+        "edition": [
+            "1",
+            "removed"
+        ],
+        "has_extras": false,
+        "image": "prosperity1stEdition_set.png",
+        "set_name": "*prosperity1stEditionRemoved*",
+        "set_text": "",
+        "text_icon": "*"
+    },
+    "prosperity2ndEdition": {
+        "edition": [
+            "2",
+            "latest"
+        ],
+        "image": "prosperity2ndEdition_set.png",
+        "set_name": "*prosperity2ndEdition*",
+        "set_text": "",
+        "text_icon": "*"
+    },
+    "prosperity2ndEditionUpgrade": {
+        "edition": [
+            "1",
+            "upgrade"
+        ],
+        "has_extras": false,
+        "image": "prosperity2ndEdition_set.png",
+        "set_name": "*prosperity2ndEditionUpgrade*",
+        "set_text": "",
+        "text_icon": "*",
+        "upgrades": "prosperity1stEdition"
     },
     "renaissance": {
         "edition": [
@@ -220,14 +352,48 @@
         "set_text": "",
         "text_icon": "*"
     },
-    "seaside": {
+    "seaside1stEdition": {
         "edition": [
-            "1",
-            "latest"
+            "1"
         ],
-        "image": "seaside_set.png",
+        "image": "seaside1stEdition_set.png",
         "set_name": "*seaside*",
         "set_text": "",
+        "short_name": "Seaside",
         "text_icon": "*"
+    },
+    "seaside1stEditionRemoved": {
+        "edition": [
+            "1",
+            "removed"
+        ],
+        "has_extras": false,
+        "image": "seaside1stEdition_set.png",
+        "set_name": "*seaside1stEditionRemoved*",
+        "set_text": "",
+        "text_icon": "*"
+    },
+    "seaside2ndEdition": {
+        "edition": [
+            "2",
+            "latest"
+        ],
+        "image": "seaside2ndEdition_set.png",
+        "set_name": "*seaside2ndEdition*",
+        "set_text": "",
+        "short_name": "Seaside",
+        "text_icon": "*"
+    },
+    "seaside2ndEditionUpgrade": {
+        "edition": [
+            "1",
+            "upgrade"
+        ],
+        "has_extras": false,
+        "image": "seaside2ndEdition_set.png",
+        "set_name": "*seaside2ndEditionUpgrade*",
+        "set_text": "",
+        "text_icon": "*",
+        "upgrades": "seaside1stEdition"
     }
 }

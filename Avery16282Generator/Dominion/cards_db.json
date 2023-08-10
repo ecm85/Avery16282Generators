@@ -812,6 +812,701 @@
         ]
     },
     {
+        "card_tag": "acolyte",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "count": "4",
+        "group_tag": "Augurs",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Augur"
+        ]
+    },
+    {
+        "card_tag": "archer",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "count": "4",
+        "group_tag": "Clashes",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Attack",
+            "Clash"
+        ]
+    },
+    {
+        "card_tag": "Augurs",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3*",
+        "count": "0",
+        "group_tag": "Augurs",
+        "group_top": true,
+        "types": [
+            "Action",
+            "Augur"
+        ]
+    },
+    {
+        "card_tag": "barbarian",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "battle_plan",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "count": "4",
+        "group_tag": "Clashes",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Clash"
+        ]
+    },
+    {
+        "card_tag": "bauble",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "2",
+        "types": [
+            "Treasure",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "blacksmith",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "count": "4",
+        "group_tag": "Townsfolk",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Townsfolk"
+        ]
+    },
+    {
+        "card_tag": "broker",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "capital_city",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "carpenter",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Clashes",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3*",
+        "count": "0",
+        "group_tag": "Clashes",
+        "group_top": true,
+        "types": [
+            "Action",
+            "Clash"
+        ]
+    },
+    {
+        "card_tag": "conjurer",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "count": "4",
+        "group_tag": "Wizards",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Duration",
+            "Wizard"
+        ]
+    },
+    {
+        "card_tag": "contract",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure",
+            "Duration",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "courier",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "distant_shore",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "6",
+        "count": "4",
+        "group_tag": "Odysseys",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Victory",
+            "Odyssey"
+        ]
+    },
+    {
+        "card_tag": "elder",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "count": "4",
+        "group_tag": "Townsfolk",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Townsfolk"
+        ]
+    },
+    {
+        "card_tag": "emissary",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "Forts",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3*",
+        "count": "0",
+        "group_tag": "Forts",
+        "group_top": true,
+        "types": [
+            "Action",
+            "Fort"
+        ]
+    },
+    {
+        "card_tag": "galleria",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "garrison",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "count": "4",
+        "group_tag": "Forts",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Duration",
+            "Fort"
+        ]
+    },
+    {
+        "card_tag": "guildmaster",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "herb_gatherer",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "count": "4",
+        "group_tag": "Augurs",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Augur"
+        ]
+    },
+    {
+        "card_tag": "highwayman",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "hill_fort",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "count": "4",
+        "group_tag": "Forts",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Fort"
+        ]
+    },
+    {
+        "card_tag": "hunter",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "importer",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "innkeeper",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "lich",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "6",
+        "count": "4",
+        "group_tag": "Wizards",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Wizard"
+        ]
+    },
+    {
+        "card_tag": "marquis",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "6",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "merchant_camp",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "miller",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "count": "4",
+        "group_tag": "Townsfolk",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Townsfolk"
+        ]
+    },
+    {
+        "card_tag": "modify",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Odysseys",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3*",
+        "count": "0",
+        "group_tag": "Odysseys",
+        "group_top": true,
+        "types": [
+            "Action",
+            "Odyssey"
+        ]
+    },
+    {
+        "card_tag": "old_map",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "count": "4",
+        "group_tag": "Odysseys",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Odyssey"
+        ]
+    },
+    {
+        "card_tag": "royal_galley",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "sentinel",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "sibyl",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "6",
+        "count": "4",
+        "group_tag": "Augurs",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Augur"
+        ]
+    },
+    {
+        "card_tag": "skirmisher",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "sorcerer",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "count": "4",
+        "group_tag": "Wizards",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Attack",
+            "Wizard"
+        ]
+    },
+    {
+        "card_tag": "sorceress",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "count": "4",
+        "group_tag": "Augurs",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Attack",
+            "Augur"
+        ]
+    },
+    {
+        "card_tag": "specialist",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "stronghold",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "6",
+        "count": "4",
+        "group_tag": "Forts",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Victory",
+            "Duration",
+            "Fort"
+        ]
+    },
+    {
+        "card_tag": "student",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "count": "4",
+        "group_tag": "Wizards",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Wizard"
+        ]
+    },
+    {
+        "card_tag": "sunken_treasure",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "count": "4",
+        "group_tag": "Odysseys",
+        "randomizer": false,
+        "types": [
+            "Treasure",
+            "Odyssey"
+        ]
+    },
+    {
+        "card_tag": "swap",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "sycophant",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "2",
+        "types": [
+            "Action",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "tent",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "count": "4",
+        "group_tag": "Forts",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Fort"
+        ]
+    },
+    {
+        "card_tag": "territory",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "6",
+        "count": "4",
+        "group_tag": "Clashes",
+        "randomizer": false,
+        "types": [
+            "Victory",
+            "Clash"
+        ]
+    },
+    {
+        "card_tag": "town",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "town_crier",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "2",
+        "count": "4",
+        "group_tag": "Townsfolk",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Townsfolk"
+        ]
+    },
+    {
+        "card_tag": "Townsfolk",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "2*",
+        "count": "0",
+        "group_tag": "Townsfolk",
+        "group_top": true,
+        "types": [
+            "Action",
+            "Townsfolk"
+        ]
+    },
+    {
+        "card_tag": "underling",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Liaison"
+        ]
+    },
+    {
+        "card_tag": "voyage",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "4",
+        "count": "4",
+        "group_tag": "Odysseys",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Duration",
+            "Odyssey"
+        ]
+    },
+    {
+        "card_tag": "warlord",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "5",
+        "count": "4",
+        "group_tag": "Clashes",
+        "randomizer": false,
+        "types": [
+            "Action",
+            "Duration",
+            "Attack",
+            "Clash"
+        ]
+    },
+    {
+        "card_tag": "Wizards",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "3*",
+        "count": "0",
+        "group_tag": "Wizards",
+        "group_top": true,
+        "types": [
+            "Action",
+            "Wizard"
+        ]
+    },
+    {
         "card_tag": "Grey Mustang",
         "cardset_tags": [
             "animals"
@@ -993,7 +1688,8 @@
         "card_tag": "Colony",
         "cardset_tags": [
             "base",
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "11",
         "randomizer": false,
@@ -1005,7 +1701,8 @@
         "card_tag": "Platinum",
         "cardset_tags": [
             "base",
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "9",
         "count": "12",
@@ -1243,7 +1940,8 @@
         ],
         "cost": "5",
         "types": [
-            "Action"
+            "Action",
+            "Command"
         ]
     },
     {
@@ -1674,7 +2372,8 @@
     {
         "card_tag": "Adventurer",
         "cardset_tags": [
-            "dominion1stEdition"
+            "dominion1stEdition",
+            "dominion1stEditionRemoved"
         ],
         "cost": "6",
         "types": [
@@ -1684,7 +2383,8 @@
     {
         "card_tag": "Chancellor",
         "cardset_tags": [
-            "dominion1stEdition"
+            "dominion1stEdition",
+            "dominion1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -1694,7 +2394,8 @@
     {
         "card_tag": "Feast",
         "cardset_tags": [
-            "dominion1stEdition"
+            "dominion1stEdition",
+            "dominion1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -1704,7 +2405,8 @@
     {
         "card_tag": "Spy",
         "cardset_tags": [
-            "dominion1stEdition"
+            "dominion1stEdition",
+            "dominion1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -1715,7 +2417,8 @@
     {
         "card_tag": "Thief",
         "cardset_tags": [
-            "dominion1stEdition"
+            "dominion1stEdition",
+            "dominion1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -1726,7 +2429,8 @@
     {
         "card_tag": "Woodcutter",
         "cardset_tags": [
-            "dominion1stEdition"
+            "dominion1stEdition",
+            "dominion1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -2519,7 +3223,8 @@
         "cost": "0",
         "debtcost": "8",
         "types": [
-            "Action"
+            "Action",
+            "Command"
         ]
     },
     {
@@ -2774,9 +3479,286 @@
         ]
     },
     {
+        "card_tag": "architects_guild",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "band_of_nomads",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "cave_dwellers",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "circle_of_witches",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "city_state",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "coastal_haven",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "crafters_guild",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "desert_guides",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "family_of_inventors",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "fellowship_of_scribes",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "forest_dweller",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "gang_of_pickpockets",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "island_folk",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "league_of_bankers",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "league_of_shopkeepers",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "market_towns",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "mountain_folk",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "order_of_astrologers",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "order_of_masons",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "peaceful_cult",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "plateau_shepherds",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "trappers_lodge",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
+        "card_tag": "woodworkers_guild",
+        "cardset_tags": [
+            "allies"
+        ],
+        "cost": "",
+        "group_tag": "allies allies",
+        "randomizer": false,
+        "types": [
+            "Ally"
+        ]
+    },
+    {
         "card_tag": "Advisor",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "4",
         "types": [
@@ -2786,7 +3768,8 @@
     {
         "card_tag": "Baker",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "5",
         "types": [
@@ -2796,7 +3779,8 @@
     {
         "card_tag": "Butcher",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "5",
         "types": [
@@ -2806,7 +3790,8 @@
     {
         "card_tag": "Candlestick Maker",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "2",
         "types": [
@@ -2816,7 +3801,8 @@
     {
         "card_tag": "Doctor",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "3+",
         "types": [
@@ -2826,7 +3812,8 @@
     {
         "card_tag": "Herald",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "4+",
         "types": [
@@ -2836,7 +3823,8 @@
     {
         "card_tag": "Journeyman",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "5",
         "types": [
@@ -2846,7 +3834,8 @@
     {
         "card_tag": "Masterpiece",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "3+",
         "types": [
@@ -2856,7 +3845,8 @@
     {
         "card_tag": "Merchant Guild",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "5",
         "types": [
@@ -2866,7 +3856,8 @@
     {
         "card_tag": "Plaza",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "4",
         "types": [
@@ -2885,9 +3876,21 @@
         ]
     },
     {
+        "card_tag": "Soothsayer BB2DE",
+        "cardset_tags": [
+            "guilds-bigbox2-de"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Attack"
+        ]
+    },
+    {
         "card_tag": "Stonemason",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "2+",
         "types": [
@@ -2897,7 +3900,8 @@
     {
         "card_tag": "Taxman",
         "cardset_tags": [
-            "guilds"
+            "guilds",
+            "guilds-bigbox2-de"
         ],
         "cost": "4",
         "types": [
@@ -2908,7 +3912,8 @@
     {
         "card_tag": "Border Village",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "6",
         "types": [
@@ -2918,7 +3923,8 @@
     {
         "card_tag": "Cache",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -2928,7 +3934,8 @@
     {
         "card_tag": "Cartographer",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -2938,7 +3945,8 @@
     {
         "card_tag": "Crossroads",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "2",
         "types": [
@@ -2948,7 +3956,8 @@
     {
         "card_tag": "Develop",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -2958,7 +3967,8 @@
     {
         "card_tag": "Duchess",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "2",
         "types": [
@@ -2968,7 +3978,8 @@
     {
         "card_tag": "Embassy",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -2978,7 +3989,8 @@
     {
         "card_tag": "Farmland",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "6",
         "types": [
@@ -2988,7 +4000,8 @@
     {
         "card_tag": "Fool's Gold",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "2",
         "types": [
@@ -2999,7 +4012,8 @@
     {
         "card_tag": "Haggler",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -3009,7 +4023,8 @@
     {
         "card_tag": "Highway",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -3019,7 +4034,8 @@
     {
         "card_tag": "Ill-Gotten Gains",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -3029,7 +4045,8 @@
     {
         "card_tag": "Inn",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -3039,7 +4056,8 @@
     {
         "card_tag": "Jack of all Trades",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -3049,7 +4067,8 @@
     {
         "card_tag": "Mandarin",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -3059,7 +4078,8 @@
     {
         "card_tag": "Margrave",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -3070,7 +4090,8 @@
     {
         "card_tag": "Noble Brigand",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -3081,7 +4102,8 @@
     {
         "card_tag": "Nomad Camp",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -3091,7 +4113,8 @@
     {
         "card_tag": "Oasis",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -3101,7 +4124,8 @@
     {
         "card_tag": "Oracle",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -3112,7 +4136,8 @@
     {
         "card_tag": "Scheme",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -3122,7 +4147,8 @@
     {
         "card_tag": "Silk Road",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -3132,7 +4158,8 @@
     {
         "card_tag": "Spice Merchant",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -3142,7 +4169,8 @@
     {
         "card_tag": "Stables",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -3152,7 +4180,8 @@
     {
         "card_tag": "Trader",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -3163,7 +4192,8 @@
     {
         "card_tag": "Tunnel",
         "cardset_tags": [
-            "hinterlands"
+            "hinterlands1stEdition",
+            "hinterlands2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -3172,9 +4202,115 @@
         ]
     },
     {
+        "card_tag": "Guard Dog",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Reaction"
+        ]
+    },
+    {
+        "card_tag": "Nomads",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Trail",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Reaction"
+        ]
+    },
+    {
+        "card_tag": "Weaver",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Reaction"
+        ]
+    },
+    {
+        "card_tag": "Berserker",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Cauldron",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Souk",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Wheelwright",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Witch's Hut",
+        "cardset_tags": [
+            "hinterlands2ndEdition",
+            "hinterlands2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Attack"
+        ]
+    },
+    {
         "card_tag": "Coppersmith",
         "cardset_tags": [
-            "intrigue1stEdition"
+            "intrigue1stEdition",
+            "intrigue1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -3184,7 +4320,8 @@
     {
         "card_tag": "Great Hall",
         "cardset_tags": [
-            "intrigue1stEdition"
+            "intrigue1stEdition",
+            "intrigue1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -3195,7 +4332,8 @@
     {
         "card_tag": "Saboteur",
         "cardset_tags": [
-            "intrigue1stEdition"
+            "intrigue1stEdition",
+            "intrigue1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -3206,7 +4344,8 @@
     {
         "card_tag": "Scout",
         "cardset_tags": [
-            "intrigue1stEdition"
+            "intrigue1stEdition",
+            "intrigue1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -3216,7 +4355,8 @@
     {
         "card_tag": "Secret Chamber",
         "cardset_tags": [
-            "intrigue1stEdition"
+            "intrigue1stEdition",
+            "intrigue1stEditionRemoved"
         ],
         "cost": "2",
         "types": [
@@ -3227,7 +4367,8 @@
     {
         "card_tag": "Tribute",
         "cardset_tags": [
-            "intrigue1stEdition"
+            "intrigue1stEdition",
+            "intrigue1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -3534,12 +4675,12 @@
             "menagerie"
         ],
         "cost": "10",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Animal Fair",
@@ -3557,12 +4698,12 @@
             "menagerie"
         ],
         "cost": "4",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Bargain",
@@ -3570,12 +4711,12 @@
             "menagerie"
         ],
         "cost": "4",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Barge",
@@ -3647,12 +4788,12 @@
             "menagerie"
         ],
         "cost": "5",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Coven",
@@ -3671,12 +4812,12 @@
             "menagerie"
         ],
         "cost": "0",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Demand",
@@ -3684,12 +4825,12 @@
             "menagerie"
         ],
         "cost": "5",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Desperation",
@@ -3697,12 +4838,12 @@
             "menagerie"
         ],
         "cost": "0",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Destrier",
@@ -3730,12 +4871,12 @@
             "menagerie"
         ],
         "cost": "8",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Enhance",
@@ -3743,12 +4884,12 @@
             "menagerie"
         ],
         "cost": "3",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Falconer",
@@ -3777,12 +4918,12 @@
             "menagerie"
         ],
         "cost": "2",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "GateKeeper",
@@ -3822,11 +4963,11 @@
             "menagerie"
         ],
         "cost": "3*",
+        "count": "30",
+        "randomizer": false,
         "types": [
             "Action"
-        ],
-        "randomizer": false,
-        "count": "30"
+        ]
     },
     {
         "card_tag": "Hostelry",
@@ -3854,12 +4995,12 @@
             "menagerie"
         ],
         "cost": "4",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Kiln",
@@ -3887,12 +5028,12 @@
             "menagerie"
         ],
         "cost": "3",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Mastermind",
@@ -3921,12 +5062,12 @@
             "menagerie"
         ],
         "cost": "10",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Pursue",
@@ -3934,12 +5075,12 @@
             "menagerie"
         ],
         "cost": "2",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Reap",
@@ -3947,12 +5088,12 @@
             "menagerie"
         ],
         "cost": "7",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Ride",
@@ -3960,12 +5101,12 @@
             "menagerie"
         ],
         "cost": "2",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Sanctuary",
@@ -3993,12 +5134,12 @@
             "menagerie"
         ],
         "cost": "4",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Sheepdog",
@@ -4038,12 +5179,12 @@
             "menagerie"
         ],
         "cost": "5",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Stockpile",
@@ -4071,12 +5212,12 @@
             "menagerie"
         ],
         "cost": "2",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Transport",
@@ -4084,12 +5225,12 @@
             "menagerie"
         ],
         "cost": "3",
+        "count": "1",
+        "group_tag": "menagerie events",
+        "randomizer": false,
         "types": [
             "Event"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie events"
+        ]
     },
     {
         "card_tag": "Village Green",
@@ -4109,12 +5250,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Camel",
@@ -4122,12 +5263,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Chameleon",
@@ -4135,12 +5276,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Frog",
@@ -4148,12 +5289,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Goat",
@@ -4161,12 +5302,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Horse",
@@ -4174,12 +5315,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Mole",
@@ -4187,12 +5328,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Monkey",
@@ -4200,12 +5341,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Mouse",
@@ -4213,12 +5354,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Mule",
@@ -4226,12 +5367,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Otter",
@@ -4239,12 +5380,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Owl",
@@ -4252,12 +5393,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Ox",
@@ -4265,12 +5406,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Pig",
@@ -4278,12 +5419,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Rat",
@@ -4291,12 +5432,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Seal",
@@ -4304,12 +5445,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Sheep",
@@ -4317,12 +5458,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Squirrel",
@@ -4330,12 +5471,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Turtle",
@@ -4343,12 +5484,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Way of the Worm",
@@ -4356,12 +5497,12 @@
             "menagerie"
         ],
         "cost": "",
+        "count": "1",
+        "group_tag": "menagerie ways",
+        "randomizer": false,
         "types": [
             "Way"
-        ],
-        "randomizer": false,
-        "count": "1",
-        "group_tag": "menagerie ways"
+        ]
     },
     {
         "card_tag": "Wayfarer",
@@ -5277,6 +6418,806 @@
         ]
     },
     {
+        "card_tag": "Abundance",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Avoid",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Buried Treasure",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Bury",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "1",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Cabin Boy",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Cage",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "types": [
+            "Treasure",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Crew",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Crucible",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Cutthroat",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Deliver",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Enlarge",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Figurine",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "First Mate",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Flagship",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Duration",
+            "Command"
+        ]
+    },
+    {
+        "card_tag": "Foray",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Fortune Hunter",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Frigate",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Gondola",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Grotto",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Harbor Village",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Invasion",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "10",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Jewelled Egg",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Journey",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "King's Cache",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "7",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Landing Party",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Launch",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Longship",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Loot",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "7*",
+        "count": "30",
+        "randomizer": false,
+        "types": [
+            "Treasure",
+            "Loot"
+        ]
+    },
+    {
+        "card_tag": "Looting",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "6",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Maelstrom",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Mapmaker",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Reaction"
+        ]
+    },
+    {
+        "card_tag": "Maroon",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Mining Road",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Mirror",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Pendant",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Peril",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Pickaxe",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Pilgrim",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Prepare",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Prosper",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "10",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Quartermaster",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Rope",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Rush",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Sack of Loot",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "6",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Scrounge",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "group_tag": "plunder events",
+        "randomizer": false,
+        "types": [
+            "Event"
+        ]
+    },
+    {
+        "card_tag": "Search",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Secluded Shrine",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Shaman",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "2",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Silver Mine",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Siren",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Stowaway",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration",
+            "Reaction"
+        ]
+    },
+    {
+        "card_tag": "Swamp Shacks",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Taskmaster",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Tools",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Trickster",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Wealthy Village",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Cheap",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Cursed",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Fated",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Fawning",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Friendly",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Hasty",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Inherited",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Inspiring",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Nearby",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Patient",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Pious",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Reckless",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Rich",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Shy",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
+        "card_tag": "Tireless",
+        "cardset_tags": [
+            "plunder"
+        ],
+        "cost": "",
+        "group_tag": "plunder traits",
+        "randomizer": false,
+        "types": [
+            "Trait"
+        ]
+    },
+    {
         "card_tag": "Avanto",
         "cardset_tags": [
             "promo"
@@ -5292,7 +7233,8 @@
     {
         "card_tag": "Black Market",
         "cardset_tags": [
-            "promo"
+            "promo",
+            "promo-bigbox2-de"
         ],
         "cost": "3",
         "image": "black_market_set.png",
@@ -5382,7 +7324,8 @@
     {
         "card_tag": "Stash",
         "cardset_tags": [
-            "promo"
+            "promo",
+            "promo-bigbox2-de"
         ],
         "cost": "5",
         "image": "stash_set.png",
@@ -5414,9 +7357,21 @@
         ]
     },
     {
+        "card_tag": "Walled Village BB2DE",
+        "cardset_tags": [
+            "promo-bigbox2-de"
+        ],
+        "cost": "4",
+        "image": "walled_village_set.png",
+        "types": [
+            "Action"
+        ]
+    },
+    {
         "card_tag": "Bank",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "7",
         "types": [
@@ -5426,7 +7381,8 @@
     {
         "card_tag": "Bishop",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -5436,7 +7392,8 @@
     {
         "card_tag": "City",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -5446,7 +7403,8 @@
     {
         "card_tag": "Contraband",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -5456,7 +7414,8 @@
     {
         "card_tag": "Counting House",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -5466,7 +7425,8 @@
     {
         "card_tag": "Expand",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "7",
         "types": [
@@ -5476,7 +7436,8 @@
     {
         "card_tag": "Forge",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "7",
         "types": [
@@ -5486,7 +7447,8 @@
     {
         "card_tag": "Goons",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "6",
         "types": [
@@ -5497,7 +7459,8 @@
     {
         "card_tag": "Grand Market",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "6",
         "types": [
@@ -5507,7 +7470,8 @@
     {
         "card_tag": "Hoard",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "6",
         "types": [
@@ -5517,7 +7481,8 @@
     {
         "card_tag": "King's Court",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "7",
         "types": [
@@ -5527,7 +7492,8 @@
     {
         "card_tag": "Loan",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -5537,7 +7503,8 @@
     {
         "card_tag": "Mint",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -5547,7 +7514,8 @@
     {
         "card_tag": "Monument",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -5557,7 +7525,8 @@
     {
         "card_tag": "Mountebank",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -5568,7 +7537,8 @@
     {
         "card_tag": "Peddler",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "8*",
         "types": [
@@ -5578,7 +7548,8 @@
     {
         "card_tag": "Quarry",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -5588,7 +7559,8 @@
     {
         "card_tag": "Rabble",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -5599,7 +7571,8 @@
     {
         "card_tag": "Royal Seal",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -5609,7 +7582,8 @@
     {
         "card_tag": "Talisman",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -5619,7 +7593,8 @@
     {
         "card_tag": "Trade Route",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -5629,7 +7604,8 @@
     {
         "card_tag": "Vault",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -5639,7 +7615,110 @@
     {
         "card_tag": "Venture",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity1stEditionRemoved"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Anvil",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "3",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Clerk",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Reaction",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Investment",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Tiara",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Charlatan",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Collection",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Crystal Ball",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Treasure"
+        ]
+    },
+    {
+        "card_tag": "Magnate",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "War Chest",
+        "cardset_tags": [
+            "prosperity2ndEdition",
+            "prosperity2ndEditionUpgrade"
         ],
         "cost": "5",
         "types": [
@@ -5649,7 +7728,8 @@
     {
         "card_tag": "Watchtower",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -5660,7 +7740,8 @@
     {
         "card_tag": "Worker's Village",
         "cardset_tags": [
-            "prosperity"
+            "prosperity1stEdition",
+            "prosperity2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -6233,7 +8314,8 @@
     {
         "card_tag": "Ambassador",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "3",
         "types": [
@@ -6244,7 +8326,8 @@
     {
         "card_tag": "Bazaar",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -6254,7 +8337,9 @@
     {
         "card_tag": "Caravan",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition",
+            "promo-bigbox2-de"
         ],
         "cost": "4",
         "types": [
@@ -6265,7 +8350,8 @@
     {
         "card_tag": "Cutpurse",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -6276,7 +8362,8 @@
     {
         "card_tag": "Embargo",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "2",
         "types": [
@@ -6286,7 +8373,8 @@
     {
         "card_tag": "Explorer",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -6296,7 +8384,8 @@
     {
         "card_tag": "Fishing Village",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -6307,7 +8396,8 @@
     {
         "card_tag": "Ghost Ship",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "5",
         "types": [
@@ -6318,7 +8408,8 @@
     {
         "card_tag": "Haven",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "2",
         "types": [
@@ -6329,7 +8420,8 @@
     {
         "card_tag": "Island",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -6340,7 +8432,8 @@
     {
         "card_tag": "Lighthouse",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "2",
         "types": [
@@ -6351,7 +8444,8 @@
     {
         "card_tag": "Lookout",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -6361,7 +8455,8 @@
     {
         "card_tag": "Merchant Ship",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -6372,7 +8467,8 @@
     {
         "card_tag": "Native Village",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "2",
         "types": [
@@ -6382,7 +8478,8 @@
     {
         "card_tag": "Navigator",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -6392,7 +8489,8 @@
     {
         "card_tag": "Outpost",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -6403,7 +8501,8 @@
     {
         "card_tag": "Pearl Diver",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "2",
         "types": [
@@ -6413,7 +8512,8 @@
     {
         "card_tag": "Pirate Ship",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -6424,7 +8524,8 @@
     {
         "card_tag": "Salvager",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -6434,7 +8535,8 @@
     {
         "card_tag": "Sea Hag",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside1stEditionRemoved"
         ],
         "cost": "4",
         "types": [
@@ -6445,7 +8547,8 @@
     {
         "card_tag": "Smugglers",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -6455,7 +8558,8 @@
     {
         "card_tag": "Tactician",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -6466,7 +8570,8 @@
     {
         "card_tag": "Treasure Map",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "4",
         "types": [
@@ -6476,7 +8581,8 @@
     {
         "card_tag": "Treasury",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "5",
         "types": [
@@ -6486,7 +8592,8 @@
     {
         "card_tag": "Warehouse",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "3",
         "types": [
@@ -6496,12 +8603,124 @@
     {
         "card_tag": "Wharf",
         "cardset_tags": [
-            "seaside"
+            "seaside1stEdition",
+            "seaside2ndEdition"
         ],
         "cost": "5",
         "types": [
             "Action",
             "Duration"
+        ]
+    },
+    {
+        "card_tag": "Astrolabe",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "3",
+        "types": [
+            "Treasure",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Monkey",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Sea Chart",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "3",
+        "types": [
+            "Action"
+        ]
+    },
+    {
+        "card_tag": "Blockade",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Sailor",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "4",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Tide Pools",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "3",
+        "types": [
+            "Action",
+            "Duration"
+        ]
+    },
+    {
+        "card_tag": "Corsair",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
+        ]
+    },
+    {
+        "card_tag": "Pirate",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration",
+            "Reaction"
+        ]
+    },
+    {
+        "card_tag": "Sea Witch",
+        "cardset_tags": [
+            "seaside2ndEdition",
+            "seaside2ndEditionUpgrade"
+        ],
+        "cost": "5",
+        "types": [
+            "Action",
+            "Duration",
+            "Attack"
         ]
     }
 ]
