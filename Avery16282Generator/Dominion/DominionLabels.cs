@@ -77,11 +77,12 @@ namespace Avery16282Generator.Dominion
 			PdfFont font,
 			CardSuperType cardSuperType)
 		{
+			var text = cardName.Replace("→", "»");
 			const float textPadding = 2f;
 			const float textHeight = 12f;
 			const float maxFontSize = 10f;
 			var textRectangleHeight = topCursor.GetCurrent() - bottomCursor.GetCurrent() - textPadding * 2;
-			var textFontSize = TextSharpHelpers.GetFontSize(canvas, cardName, textRectangleHeight, font, maxFontSize);
+			var textFontSize = TextSharpHelpers.GetFontSize(canvas, text, textRectangleHeight, font, maxFontSize);
 			var fontWeight = GetMainTextFontWeight(cardSuperType);
 			var fontColor = GetMainTextFontColor(cardSuperType);
 			var textWidthOffset = 8 + (maxFontSize - textFontSize) * .35f;
@@ -90,7 +91,7 @@ namespace Avery16282Generator.Dominion
 				bottomCursor.GetCurrent() + textPadding,
 				textHeight,
 				topCursor.GetCurrent() - (bottomCursor.GetCurrent() + 2 * textPadding));
-			DrawText(canvas, cardName, textRectangle, -2.5f, 0f, font, fontColor, textFontSize, fontWeight);
+			DrawText(canvas, text, textRectangle, -2.5f, 0f, font, fontColor, textFontSize, fontWeight);
 		}
 
 		private static void DrawBackgroundImage(
