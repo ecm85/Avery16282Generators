@@ -55,6 +55,11 @@ export class NavMenu extends Component {
                           </NavItem>
                       </LinkContainer>
 
+                      <LinkContainer to={'/ArkhamHorrorLCG'}>
+                          <NavItem>
+                              Arkham Horror LCG
+                          </NavItem>
+                      </LinkContainer>
                   </Nav>
               </Navbar.Collapse>
           </Navbar>

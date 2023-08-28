@@ -42,6 +42,12 @@ export class Home extends Component {
                         <p className='list-group-item-text'>Generates labels for each type of card in Spirit Island.</p>
                     </a>
                 </LinkContainer>
+                <LinkContainer to={'/ArkhamHorrorLCG'}>
+                    <a className='list-group-item'>
+                        <h4 className='list-group-item-heading'>Arkham Horror LCG</h4>
+                        <p className='list-group-item-text'>Generates labels for each scenario, encounter, and class in the Arkham Horror LCG.</p>
+                    </a>
+                </LinkContainer>
           </div>
         </div>
     );

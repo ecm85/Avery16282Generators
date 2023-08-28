@@ -17,6 +17,10 @@
     <None Remove="Dominion\**\*.png" />
     <None Remove="Dominion\**\*.json" />
     <None Remove="Dominion\**\*.txt" />
+
+    <None Remove="ArkhamHorrorLCG\**\*.png" />
+    <None Remove="ArkhamHorrorLCG\**\*.json" />
+    <None Remove="ArkhamHorrorLCG\**\*.txt" />
     
     <None Remove="Legendary\**\*.png" />
     <None Remove="Legendary\**\*.json" />
@@ -51,6 +55,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dominion\**\*.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="ArkhamHorrorLCG\**\*.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArkhamHorrorLCG\**\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArkhamHorrorLCG\**\*.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
 

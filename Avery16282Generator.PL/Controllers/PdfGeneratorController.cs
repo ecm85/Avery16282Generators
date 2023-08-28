@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Avery16282Generator.AeonsEnd;
+using Avery16282Generator.ArkhamHorrorLCG;
 using Avery16282Generator.Brewcrafters;
 using Avery16282Generator.Dominion;
 using Avery16282Generator.Legendary;
@@ -63,6 +64,19 @@ namespace Avery16282Generator.PL.Controllers
 				.ToList();
 			var bytes = DominionLabels.CreateLabels(selectedExpansions);
 			return S3Service.UploadPdfToS3(bytes, "DominionLabels");
+		}
+
+		[HttpGet("[action]")]
+		public IEnumerable<string> GetArkhamHorrorLcgCycles()
+		{
+			return ArkhamHorrorLcgLabels.GetCycles().Select(cycle => cycle.Name).ToList();
+		}
+		
+		[HttpPost("[action]")]
+		public ActionResult<string> GenerateArkhamHorrorLcg([FromBody]GenerateArkhamHorrorLcgRequest request)
+		{
+			var bytes = ArkhamHorrorLcgLabels.CreateLabels(request.SelectedCycles.ToList());
+			return S3Service.UploadPdfToS3(bytes, "ArkhamHorrorLCGLabels");
 		}
 
 		[HttpGet("[action]")]

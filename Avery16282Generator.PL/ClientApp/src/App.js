@@ -7,6 +7,7 @@ import { SpiritIsland } from './components/SpiritIsland';
 import { AeonsEnd } from './components/AeonsEnd';
 import { Legendary } from './components/Legendary';
 import { Dominion } from './components/Dominion';
+import { ArkhamHorrorLCG } from './components/ArkhamHorrorLCG';
 import { ErrorTest } from './components/ErrorTest';
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
         <Route path='/aeonsend' component={AeonsEnd} />
         <Route path='/legendary' component={Legendary} />
         <Route path='/dominion' component={Dominion} />
+        <Route path='/arkhamhorrorlcg' component={ArkhamHorrorLCG} />
         <Route path='/errorTest' component={ErrorTest} />
       </Layout>
     );
