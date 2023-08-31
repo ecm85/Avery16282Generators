@@ -17,9 +17,26 @@ namespace Avery16282Generator.Dominion
 	public static class DominionLabels
 	{
 		public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-		public static byte[] CreateLabels(IEnumerable<Expansion> expansionsToPrint)
+
+		public static IEnumerable<DominionCardIdentifier> LabelsInExpansions(IEnumerable<Expansion> expansionsToPrint)
 		{
-			var cardsToPrint = DominionCardDataAccess.GetCardsToPrint(expansionsToPrint);
+			return DominionCardDataAccess.GetCardsToPrint(expansionsToPrint)
+				.Select(card => new DominionCardIdentifier
+				{
+					Text = card.GroupName ?? card.Name,
+					CardSetName = card.Set.Set_name
+				})
+				.ToList();
+		}
+
+		public static byte[] CreateLabels(IEnumerable<DominionCardIdentifier> cardIdentifiersToPrint, int labelsToSkip)
+		{
+			var allCards = DominionCardDataAccess.GetCardsToPrint().ToDictionary(card => new DominionCardIdentifier
+			{
+				Text = card.GroupName ?? card.Name,
+				CardSetName = card.Set.Set_name
+			});
+			var cardsToPrint = cardIdentifiersToPrint.Select(label => allCards[label]).ToList();
 			var allCardTypeImages = cardsToPrint
 				.Select(card => card.SuperType.Card_type_image)
 				.Distinct();
@@ -32,24 +49,27 @@ namespace Avery16282Generator.Dominion
 			var trajanBold = Path.Combine(CurrentPath, "Fonts", "TRAJANPROBOLD.TTF");
 			var font = PdfFontFactory.CreateFont(trajan, true);
 			var boldFont = PdfFontFactory.CreateFont(trajanBold, true);
-			var drawActionRectangles = cardsToPrint.SelectMany(card => new List<Action<PdfCanvas, Rectangle>>
-			{
-				(canvas, rectangle) =>
+			var drawActionRectangles = cardsToPrint
+				.SelectMany(card => new List<Action<PdfCanvas, Rectangle>>
 				{
-					var topCursor = new Cursor();
-					var bottomCursor = new Cursor();
-					topCursor.AdvanceCursor(rectangle.GetTop());
-					bottomCursor.AdvanceCursor(rectangle.GetBottom());
-					DrawBackgroundImage(cardTypeImageObjectsByImage[card.SuperType.Card_type_image], rectangle, canvas);
-					DrawCosts(boldFont, card, rectangle, canvas, topCursor);
-					DrawSetImageAndReturnTop(rectangle, bottomCursor, card.Set.Image, canvas);
+					(canvas, rectangle) =>
+					{
+						var topCursor = new Cursor();
+						var bottomCursor = new Cursor();
+						topCursor.AdvanceCursor(rectangle.GetTop());
+						bottomCursor.AdvanceCursor(rectangle.GetBottom());
+						DrawBackgroundImage(cardTypeImageObjectsByImage[card.SuperType.Card_type_image], rectangle,
+							canvas);
+						DrawCosts(boldFont, card, rectangle, canvas, topCursor);
+						DrawSetImageAndReturnTop(rectangle, bottomCursor, card.Set.Image, canvas);
 
-					var cardName = card.GroupName ?? card.Name;
-					DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, font, card.SuperType);
-				}
-			}).ToList();
-			var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
-			return PdfGenerator.DrawRectangles(drawActionRectangleQueue, ColorConstants.WHITE);
+						var cardName = card.GroupName ?? card.Name;
+						DrawCardText(rectangle, topCursor, bottomCursor, canvas, cardName, font, card.SuperType);
+					}
+				})
+				.ToList();
+			
+			return PdfGenerator.DrawRectangles(drawActionRectangles, labelsToSkip, ColorConstants.WHITE);
 		}
 
 		private static PdfImageXObject CreateCardTypeXObject(string cardTypeImage)
@@ -176,7 +196,7 @@ namespace Avery16282Generator.Dominion
 			const float debtCostTextWidthOffset = 1f;
 			const float debtCostTextHeightOffset = 4f;
 			var costText = debtCost.ToString();
-			DrawText(canvas, costText, currentCostRectangle, debtCostTextWidthOffset, debtCostTextHeightOffset, font, ColorConstants.BLACK, debtCostFontSize, FontWeight.Bold);
+			DrawText(canvas, costText, currentCostRectangle, debtCostTextWidthOffset, debtCostTextHeightOffset, font, ColorConstants.WHITE, debtCostFontSize, FontWeight.Bold);
 		}
 
 		private static void DrawSetImageAndReturnTop(Rectangle rectangle, Cursor bottomCursor, string image, PdfCanvas canvas)

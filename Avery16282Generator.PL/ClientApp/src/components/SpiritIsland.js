@@ -13,9 +13,14 @@ export class SpiritIsland extends Component {
     }
 
     handleGenerateClick = () => {
+        const { labelsToSkip } = this.state;
         this.setState({ generating: true, error: null, downloadLink: null });
+        const body = JSON.stringify({
+            labelsToSkip
+        });
         fetch('api/PdfGenerator/GenerateSpiritIsland', {
             method: 'POST',
+            body,
             headers: { 'Content-Type': 'application/json', },
         }).then(response => {
             if (response.ok) {
@@ -32,11 +37,16 @@ export class SpiritIsland extends Component {
         const {
             generating,
             downloadLink,
-            error
+            error,
+            labelsToSkip
         } = this.state;
         return (
             <div>
                 <h1>SpiritIsland</h1>
+                <div>
+                    <h3>Label Spots to Skip</h3>
+                    <input type={'number'} onChange={(event) => this.setState({ labelsToSkip: +event.target.value })} value={labelsToSkip} />
+                </div>
                 <div>
                     {!generating && <button type='button' className='btn btn-primary' onClick={this.handleGenerateClick}>Generate Labels</button>}
                     {generating && <button type='button' className='btn btn-primary disabled'>Generating...</button>}

@@ -18,7 +18,7 @@ namespace Avery16282Generator.SpiritIsland
 	{
 		public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-		public static byte[] CreateLabels()
+		public static byte[] CreateLabels(int labelsToSkip)
 		{
 			var dkSnemand = Path.Combine(CurrentPath, "Fonts", "DK Snemand.otf");
 			var font = PdfFontFactory.CreateFont(dkSnemand, true);
@@ -47,9 +47,9 @@ namespace Avery16282Generator.SpiritIsland
 				}
 			)).ToList();
 
-			var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
 			return PdfGenerator.DrawRectangles(
-				drawActionRectangleQueue,
+				drawActionRectangles,
+				labelsToSkip,
 				ColorConstants.WHITE);
 		}
 

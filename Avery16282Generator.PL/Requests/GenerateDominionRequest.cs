@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Avery16282Generator.Dominion;
 
 namespace Avery16282Generator.PL.Requests
 {
-    public class GenerateDominionRequest
+    public class GenerateDominionRequest : GenerateLabelsRequest
     {
-        public IEnumerable<string> SelectedExpansionNames { get; set; }
+        public IEnumerable<DominionCardIdentifier> SelectedCardIdentifiers { get; set; }
     }
 }

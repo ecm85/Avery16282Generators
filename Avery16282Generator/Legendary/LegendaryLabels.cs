@@ -16,7 +16,7 @@ namespace Avery16282Generator.Legendary
     {
         public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions, bool includeSpecialSetupCards)
+        public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions, bool includeSpecialSetupCards, int labelsToSkip)
         {
             var allHeroes = DataAccess.GetHeroCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(heroCardSet => heroCardSet.Heroes);
             var allMasterminds = DataAccess.GetMastermindCardSets().Where(set => selectedExpansions.Contains(set.Expansion)).SelectMany(mastermindCardSet => mastermindCardSet.Masterminds);
@@ -106,8 +106,7 @@ namespace Avery16282Generator.Legendary
                 .Concat(drawSetupCardsActions)
                 .Concat(drawVillainSetupCardsActions);
 
-            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(allActions);
-            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, ColorConstants.WHITE);
+            return PdfGenerator.DrawRectangles(allActions, labelsToSkip, ColorConstants.WHITE);
         }
 
         private static Action<PdfCanvas, Rectangle> CreateActionToDrawNameAndSet(string name, string set, PdfFont baseFont, Color color)

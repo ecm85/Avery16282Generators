@@ -11,7 +11,8 @@ export class AeonsEnd extends Component {
             error: null,
             downloadLink: null,
             allExpansions: [],
-            selectedExpansions: ['Base']
+            selectedExpansions: ['Base'],
+            labelsToSkip: 0
         };
         fetch('api/PdfGenerator/GetAeonsEndExpansions')
             .then(response => response.json())
@@ -26,10 +27,11 @@ export class AeonsEnd extends Component {
     }
 
     handleGenerateClick = () => {
-        const { selectedExpansions } = this.state;
+        const { selectedExpansions, labelsToSkip } = this.state;
         this.setState({ generating: true, error: null, downloadLink: null });
         const body = JSON.stringify({
-            selectedExpansionNames: selectedExpansions
+            selectedExpansionNames: selectedExpansions,
+            labelsToSkip
         });
         fetch('api/PdfGenerator/GenerateAeonsEnd', {
             method: 'POST',
@@ -53,7 +55,8 @@ export class AeonsEnd extends Component {
             allExpansions,
             selectedExpansions,
             downloadLink,
-            error
+            error,
+            labelsToSkip
         } = this.state;
         return (
             <div>
@@ -70,6 +73,10 @@ export class AeonsEnd extends Component {
                             value={selectedExpansions}>
                             {allExpansions.map((expansion => <option key={expansion}>{expansion}</option>))}
                         </select>
+                        <div>
+                            <h3>Label Spots to Skip</h3>
+                            <input type={'number'} onChange={(event) => this.setState({ labelsToSkip: +event.target.value })} value={labelsToSkip} />
+                        </div>
                         {!generating && <button type='button' className='btn btn-primary' onClick={this.handleGenerateClick}>Generate Labels</button>}
                         {generating && <button type='button' className='btn btn-primary disabled'>Generating...</button>}
                         {downloadLink != null && <h3>Generated File: <a target="_blank" href={downloadLink}>Link</a> (Link valid for 1 day)</h3>}

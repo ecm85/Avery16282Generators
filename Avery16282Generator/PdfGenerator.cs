@@ -14,7 +14,8 @@ namespace Avery16282Generator
     public static class PdfGenerator
     {
         public static byte[] DrawRectangles(
-            Queue<Action<PdfCanvas, Rectangle>> drawRectangleActions,
+            IEnumerable<Action<PdfCanvas, Rectangle>> drawRectangleActions,
+            int labelsToSkip,
             Color backgroundColor)
         {
             const int maxColumnIndex = 3;
@@ -22,6 +23,12 @@ namespace Avery16282Generator
             var pageHeight = Utilities.InchesToPoints(11f);
             var pageWidth = Utilities.InchesToPoints(8.5f);
             var documentRectangle = new Rectangle(0, 0, pageWidth, pageHeight);
+            var drawActionRectanglesWithSkips = Enumerable
+                .Repeat(new Action<PdfCanvas, Rectangle>((_, _) => { }), labelsToSkip)
+                .Concat(drawRectangleActions)
+                .ToList();
+            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectanglesWithSkips);
+
             using (var memoryStream = new MemoryStream())
             {
                 using (var pdfWriter = new PdfWriter(memoryStream))
@@ -41,7 +48,7 @@ namespace Avery16282Generator
                             var rowIndex = 0;
                             var columnIndex = 0;
                             var createNewPage = false;
-                            while (drawRectangleActions.Any())
+                            while (drawActionRectangleQueue.Any())
                             {
                                 if (createNewPage)
                                 {
@@ -57,7 +64,7 @@ namespace Avery16282Generator
                                 var reverseLowerLeftY = lowerLeftY;
                                 var reverseRectangle = new Rectangle(reverseLowerLeftX, reverseLowerLeftY, labelWidth, labelHeight);
                                 
-                                var nextAction = drawRectangleActions.Dequeue();
+                                var nextAction = drawActionRectangleQueue.Dequeue();
 
                                 var canvas = new PdfCanvas(page);
 

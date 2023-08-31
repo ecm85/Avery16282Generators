@@ -12,7 +12,8 @@ export class Legendary extends Component {
             downloadLink: null,
             allExpansions: [],
             selectedExpansions: ['Legendary'],
-            includeSpecialSetupCards: false
+            includeSpecialSetupCards: false,
+            labelsToSkip: 0
         };
         fetch('api/PdfGenerator/GetLegendaryExpansions')
             .then(response => response.json())
@@ -32,11 +33,12 @@ export class Legendary extends Component {
     }
 
     handleGenerateClick = () => {
-        const { selectedExpansions, includeSpecialSetupCards } = this.state;
+        const { selectedExpansions, includeSpecialSetupCards, labelsToSkip } = this.state;
         this.setState({ generating: true, error: null, downloadLink: null });
         const body = JSON.stringify({
             selectedExpansionNames: selectedExpansions,
-            includeSpecialSetupCards
+            includeSpecialSetupCards,
+            labelsToSkip
         });
         fetch('api/PdfGenerator/GenerateLegendary', {
             method: 'POST',
@@ -61,7 +63,8 @@ export class Legendary extends Component {
             selectedExpansions,
             includeSpecialSetupCards,
             downloadLink,
-            error
+            error,
+            labelsToSkip
         } = this.state;
         return (
             <div>
@@ -93,7 +96,11 @@ export class Legendary extends Component {
                                     Include dividers for special setup cards (Special Bystanders, Special Wounds, etc)
                                 </label>
                             </div>
-                    </div>
+                        </div>
+                        <div>
+                            <h3>Label Spots to Skip</h3>
+                            <input type={'number'} onChange={(event) => this.setState({ labelsToSkip: +event.target.value })} value={labelsToSkip} />
+                        </div>
                         {!generating && <button type='button' className='btn btn-primary' onClick={this.handleGenerateClick}>Generate Labels</button>}
                         {generating && <button type='button' className='btn btn-primary disabled'>Generating...</button>}
                         {downloadLink != null && <h3>Generated File: <a target="_blank" href={downloadLink}>Link</a> (Link valid for 1 day)</h3>}

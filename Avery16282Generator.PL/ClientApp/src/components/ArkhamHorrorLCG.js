@@ -11,7 +11,8 @@ export class ArkhamHorrorLCG extends Component {
             error: null,
             downloadLink: null,
             allCycles: [],
-            selectedCycles: ['Base']
+            selectedCycles: ['Base'],
+            labelsToSkip: 0
         };
         fetch('api/PdfGenerator/GetArkhamHorrorLcgCycles')
             .then(response => response.json())
@@ -26,10 +27,11 @@ export class ArkhamHorrorLCG extends Component {
     }
 
     handleGenerateClick = () => {
-        const { selectedCycles } = this.state;
+        const { selectedCycles, labelsToSkip } = this.state;
         this.setState({ generating: true, error: null, downloadLink: null });
         const body = JSON.stringify({
-            selectedCycles
+            selectedCycles,
+            labelsToSkip
         });
         fetch('api/PdfGenerator/GenerateArkhamHorrorLcg', {
             method: 'POST',
@@ -53,7 +55,8 @@ export class ArkhamHorrorLCG extends Component {
             allCycles,
             selectedCycles,
             downloadLink,
-            error
+            error,
+            labelsToSkip
         } = this.state;
         return (
             <div>
@@ -70,6 +73,10 @@ export class ArkhamHorrorLCG extends Component {
                             value={selectedCycles}>
                             {allCycles.map((cycle => <option key={cycle}>{cycle}</option>))}
                         </select>
+                        <div>
+                            <h3>Label Spots to Skip</h3>
+                            <input type={'number'} onChange={(event) => this.setState({ labelsToSkip: +event.target.value })} value={labelsToSkip} />
+                        </div>
                         {!generating && <button type='button' className='btn btn-primary' onClick={this.handleGenerateClick}>Generate Labels</button>}
                         {generating && <button type='button' className='btn btn-primary disabled'>Generating...</button>}
                         {downloadLink != null && <h3>Generated File: <a target="_blank" href={downloadLink}>Link</a> (Link valid for 1 day)</h3>}

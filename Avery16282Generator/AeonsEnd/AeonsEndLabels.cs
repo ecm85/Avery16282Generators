@@ -14,7 +14,7 @@ namespace Avery16282Generator.AeonsEnd
     {
         public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions)
+        public static byte[] CreateLabels(IEnumerable<Expansion> selectedExpansions, int labelsToSkip)
         {
             var garamond = Path.Combine(CurrentPath, "Fonts", "GARA.TTF");
             var garamondBold = Path.Combine(CurrentPath, "Fonts", "GARABD.TTF");
@@ -46,8 +46,7 @@ namespace Avery16282Generator.AeonsEnd
                 .ToList();
         
 
-            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
-            return PdfGenerator.DrawRectangles(drawActionRectangleQueue, ColorConstants.WHITE);
+            return PdfGenerator.DrawRectangles(drawActionRectangles, labelsToSkip, ColorConstants.WHITE);
         }
 
         private static void DrawName(

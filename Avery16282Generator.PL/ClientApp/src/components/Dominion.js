@@ -1,35 +1,57 @@
 import React, { Component } from 'react';
 
+const State = {
+    Initializing: 0,
+    Selecting: 1,
+    Generating: 3,
+    Generated: 4,
+    Error: 5
+}
+
 export class Dominion extends Component {
     displayName = Dominion.name
 
     constructor(props) {
         super(props);
         this.state = {
-            initializing: true,
-            generating: false,
+            state: State.Initializing,
             error: null,
             downloadLink: null,
             allExpansions: [],
-            selectedExpansions: ['Base']
+            selectedExpansions: [],
+            useAllCards: true,
+            selectedCards: [],
+            labelsToSkip: 0
         };
         fetch('api/PdfGenerator/GetDominionExpansions')
             .then(response => response.json())
             .then(data => {
-                this.setState({ allExpansions: data, initializing: false });
+                this.setState({ allExpansions: data, state: State.Selecting });
             });
     }
 
-    handleExpansionsChange = (event) => {
-        const selectedExpansions = Array.from(event.target.selectedOptions).map(option => option.value);
-        this.setState({ selectedExpansions });
+    handleExpansionsChanged = (event) => {
+        const { selectedExpansions: oldSelectedExpansions } = this.state;
+        const newSelectedExpansions = Array.from(event.target.selectedOptions).map(option => option.value);
+        const addedExpansions = newSelectedExpansions.filter(selectedExpansion => !oldSelectedExpansions.includes(selectedExpansion));
+        const addedCards = addedExpansions.flatMap(addedExpansion => this.state.allExpansions.find(expansion => expansion.name === addedExpansion).cards.map(card => this.formatCardIdentifier(card)));
+        const removedExpansions = oldSelectedExpansions.filter(selectedExpansion => !newSelectedExpansions.includes(selectedExpansion));
+        const removedCards = removedExpansions.flatMap(removedExpansion => this.state.allExpansions.find(expansion => expansion.name === removedExpansion).cards.map(card => this.formatCardIdentifier(card)));
+        const newSelectedCards = this.state.selectedCards.filter(selectedCard => !removedCards.includes(selectedCard)).concat(addedCards);
+        
+        this.setState({ selectedExpansions: newSelectedExpansions, selectedCards: newSelectedCards });
     }
 
-    handleGenerateClick = () => {
-        const { selectedExpansions } = this.state;
-        this.setState({ generating: true, error: null, downloadLink: null });
+    handleGenerateClicked = () => {
+        const { selectedCards, allExpansions, selectedExpansions, labelsToSkip } = this.state;
+        const availableCardIdentifiers = allExpansions
+            .filter(expansion => selectedExpansions.includes(expansion.name))
+            .flatMap(expansion => expansion.cards);
+        this.setState({ state: State.Generating, error: null, downloadLink: null });
+        const selectedCardIdentifiers = selectedCards.map(selectedCard => availableCardIdentifiers.find(availableCardIdentifier => this.formatCardIdentifier(availableCardIdentifier) === selectedCard));
         const body = JSON.stringify({
-            selectedExpansionNames: selectedExpansions
+            selectedCardIdentifiers,
+            labelsToSkip
         });
         fetch('api/PdfGenerator/GenerateDominion', {
             method: 'POST',
@@ -37,41 +59,74 @@ export class Dominion extends Component {
             headers: { 'Content-Type': 'application/json', },
         }).then(response => {
             if (response.ok) {
-                response.text().then(data => this.setState({ generating: false, downloadLink: data }));
+                response.text().then(data => this.setState({ state: State.Generated, downloadLink: data }));
             }
             else
-                this.setState({ generating: false, error: response.statusText });
+                this.setState({ state: State.Error, error: response.statusText });
         }, error => {
-            this.setState({ generating: false, error });
+            this.setState({ state: State.Error, error });
         });
+    }
+    
+    handleSelectedCardsChanged = (event) => {
+        const selectedCards = Array.from(event.target.selectedOptions).map(option => option.value);
+        this.setState({ selectedCards });
+    }
+    
+    formatCardIdentifier = (cardIdentifier) => {
+        return `${cardIdentifier.cardSetName} - ${cardIdentifier.text}`;
     }
 
     render() {
         const {
-            initializing,
-            generating,
+            state,
             allExpansions,
             selectedExpansions,
+            selectedCards,
             downloadLink,
-            error
+            error,
+            labelsToSkip
         } = this.state;
+        const availableCardIdentifiers = allExpansions
+            .filter(expansion => selectedExpansions.includes(expansion.name))
+            .flatMap(expansion => expansion.cards);
+        const buttonClass = (state === State.Generating || selectedCards.length === 0) ? 'btn btn-primary disabled' : 'btn btn-primary';
         return (
             <div>
                 <h1>Dominion</h1>
-                {initializing && <p><em>Initializing...</em></p>}
-                {!initializing &&
+                {state === State.Initializing && <p><em>Initializing...</em></p>}
+                {state !== State.Initializing &&
                     <div>
+                        <h3>Expansions</h3>
                         <select
+                            disabled={state === State.Generating}
                             className='selectmultiple form-control'
                             multiple={true}
                             size={allExpansions.length}
-                            disabled={generating}
-                            onChange={this.handleExpansionsChange}
+                            onChange={this.handleExpansionsChanged}
                             value={selectedExpansions}>
-                            {allExpansions.map((expansion => <option key={expansion}>{expansion}</option>))}
+                            {allExpansions.map((expansion => <option key={expansion.name}>{expansion.name}</option>))}
                         </select>
-                        {!generating && <button type='button' className='btn btn-primary' onClick={this.handleGenerateClick}>Generate Labels</button>}
-                        {generating && <button type='button' className='btn btn-primary disabled'>Generating...</button>}
+                        <h3>Cards</h3>
+                        <select
+                            disabled={state === State.Generating}
+                            className='selectmultiple form-control'
+                            multiple={true}
+                            size={allExpansions.length}
+                            onChange={this.handleSelectedCardsChanged}
+                            value={selectedCards}>
+                            {availableCardIdentifiers.map((availableCardIdentifier => <option key={this.formatCardIdentifier(availableCardIdentifier)}>{this.formatCardIdentifier(availableCardIdentifier)}</option>))}
+                        </select>
+                        <div>
+                            <h3>Label Spots to Skip</h3>
+                            <input type={'number'} onChange={(event) => this.setState({ labelsToSkip: +event.target.value })} value={labelsToSkip} />
+                        </div>
+                        <div>
+                            <button type='button' className={buttonClass} onClick={this.handleGenerateClicked}>
+                                {state === state.Generated && <div>Generating...</div>}
+                                {state !== state.Generating && <div>Generate Labels</div>}
+                            </button>
+                        </div>
                         {downloadLink != null && <h3>Generated File: <a target="_blank" href={downloadLink}>Link</a> (Link valid for 1 day)</h3>}
                         {error != null && <div>Error generating file or uploading to S3: {error}</div>}
                     </div>

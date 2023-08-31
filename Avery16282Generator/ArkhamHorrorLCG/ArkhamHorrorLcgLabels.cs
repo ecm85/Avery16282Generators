@@ -68,7 +68,7 @@ public class ArkhamHorrorLcgLabels
             .ToList();
     }
 
-    public static byte[] CreateLabels(IList<string> selectedCycleNames)
+    public static byte[] CreateLabels(IList<string> selectedCycleNames, int labelsToSkip)
     {
         var teutonic = Path.Combine(CurrentPath, "Fonts", "TEUTONIC2.TTF");
         var font = PdfFontFactory.CreateFont(teutonic, true);
@@ -176,8 +176,7 @@ public class ArkhamHorrorLcgLabels
             DrawText(canvas, foo.Text, textRectangle, font, ColorConstants.BLACK, textFontSize);
         }));
 
-        var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
-        return PdfGenerator.DrawRectangles(drawActionRectangleQueue, ColorConstants.WHITE);
+        return PdfGenerator.DrawRectangles(drawActionRectangles, labelsToSkip, ColorConstants.WHITE);
     }
 
     private static string GetDirectoryWithPrefix(string directoryParent, string prefix)

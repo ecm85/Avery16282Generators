@@ -17,16 +17,16 @@ namespace Avery16282Generator.PL.Controllers
 	public class PdfGeneratorController : Controller
 	{
 		[HttpPost("[action]")]
-		public ActionResult<string> GenerateBrewcrafters()
+		public ActionResult<string> GenerateBrewcrafters([FromBody]GenerateLabelsRequest request)
 		{
-			var bytes = BrewcraftersLabels.CreateLabels();
+			var bytes = BrewcraftersLabels.CreateLabels(request.LabelsToSkip);
 			return S3Service.UploadPdfToS3(bytes, "BrewcraftersLabels");
 		}
 
 		[HttpPost("[action]")]
-		public ActionResult<string> GenerateSpiritIsland()
+		public ActionResult<string> GenerateSpiritIsland([FromBody]GenerateLabelsRequest request)
 		{
-			var bytes = SpiritIslandLabels.CreateLabels();
+			var bytes = SpiritIslandLabels.CreateLabels(request.LabelsToSkip);
 			return S3Service.UploadPdfToS3(bytes, "SpiritIslandLabels");
 		}
 
@@ -39,7 +39,7 @@ namespace Avery16282Generator.PL.Controllers
 			var selectedExpansions = request.SelectedExpansionNames
 				.Select(expansionName => expansionsByName[expansionName])
 				.ToList();
-			var bytes = LegendaryLabels.CreateLabels(selectedExpansions, request.IncludeSpecialSetupCards);
+			var bytes = LegendaryLabels.CreateLabels(selectedExpansions, request.IncludeSpecialSetupCards, request.LabelsToSkip);
 
 			return S3Service.UploadPdfToS3(bytes, "LegendaryLabels");
 		}
@@ -56,13 +56,7 @@ namespace Avery16282Generator.PL.Controllers
 		[HttpPost("[action]")]
 		public ActionResult<string> GenerateDominion([FromBody]GenerateDominionRequest request)
 		{
-			var expansionsByName = Enum.GetValues(typeof(Dominion.Expansion))
-				.Cast<Dominion.Expansion>()
-				.ToDictionary(expansion => expansion.GetExpansionName());
-			var selectedExpansions = request.SelectedExpansionNames
-				.Select(expansionName => expansionsByName[expansionName])
-				.ToList();
-			var bytes = DominionLabels.CreateLabels(selectedExpansions);
+			var bytes = DominionLabels.CreateLabels(request.SelectedCardIdentifiers, request.LabelsToSkip);
 			return S3Service.UploadPdfToS3(bytes, "DominionLabels");
 		}
 
@@ -75,16 +69,25 @@ namespace Avery16282Generator.PL.Controllers
 		[HttpPost("[action]")]
 		public ActionResult<string> GenerateArkhamHorrorLcg([FromBody]GenerateArkhamHorrorLcgRequest request)
 		{
-			var bytes = ArkhamHorrorLcgLabels.CreateLabels(request.SelectedCycles.ToList());
+			var bytes = ArkhamHorrorLcgLabels.CreateLabels(request.SelectedCycles.ToList(), request.LabelsToSkip);
 			return S3Service.UploadPdfToS3(bytes, "ArkhamHorrorLCGLabels");
 		}
 
 		[HttpGet("[action]")]
-		public IEnumerable<string> GetDominionExpansions()
+		public IEnumerable<DominionExpansionWithCards> GetDominionExpansions()
 		{
-			return Enum.GetValues(typeof(Dominion.Expansion))
+			var allExpansions = Enum
+				.GetValues(typeof(Dominion.Expansion))
 				.Cast<Dominion.Expansion>()
-				.Select(expansion => expansion.GetExpansionName())
+				.ToList();
+			var allLabelsInAllExpansions = DominionLabels.LabelsInExpansions(allExpansions).ToLookup(label => label.CardSetName);
+			return allExpansions
+				.Select(expansion =>
+					new DominionExpansionWithCards
+					{
+						Name = expansion.GetExpansionName(),
+						Cards = allLabelsInAllExpansions[expansion.GetExpansionName()]
+					})
 				.ToList();
 		}
 
@@ -97,7 +100,7 @@ namespace Avery16282Generator.PL.Controllers
 			var selectedExpansions = request.SelectedExpansionNames
 				.Select(expansionName => expansionsByName[expansionName])
 				.ToList();
-			var bytes = AeonsEndLabels.CreateLabels(selectedExpansions);
+			var bytes = AeonsEndLabels.CreateLabels(selectedExpansions, request.LabelsToSkip);
 			return S3Service.UploadPdfToS3(bytes, "AeonsEndLabels");
 		}
 

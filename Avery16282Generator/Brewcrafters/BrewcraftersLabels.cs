@@ -15,7 +15,7 @@ namespace Avery16282Generator.Brewcrafters
     {
         public static string CurrentPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        public static byte[] CreateLabels()
+        public static byte[] CreateLabels(int labelsToSkip)
         {
             var garamond = Path.Combine(CurrentPath, "Fonts", "GARA.TTF");
             var garamondBold = Path.Combine(CurrentPath, "Fonts", "GARABD.TTF");
@@ -47,9 +47,9 @@ namespace Avery16282Generator.Brewcrafters
                 }
             }).ToList();
 
-            var drawActionRectangleQueue = new Queue<Action<PdfCanvas, Rectangle>>(drawActionRectangles);
             return PdfGenerator.DrawRectangles(
-                drawActionRectangleQueue,
+                drawActionRectangles,
+                labelsToSkip,
                 ColorConstants.WHITE);
         }
 
