@@ -32,10 +32,10 @@ namespace Avery16282Generator.Dominion
 		Prosperity_2nd_Edition,
 		Prosperity_2nd_Edition_Upgrade,
 		Renaissance,
-		Rising_Sun
+		Rising_Sun,
 		Seaside_1st_Edition,
 		Seaside_2nd_Edition,
-		Seaside_2nd_Edition_Upgrade,
+		Seaside_2nd_Edition_Upgrade
 	}
 
 	public static class ExpansionExtensions
