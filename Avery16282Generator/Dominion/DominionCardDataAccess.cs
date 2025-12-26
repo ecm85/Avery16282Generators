@@ -13,7 +13,6 @@ namespace Avery16282Generator.Dominion
         public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint = null)
         {
             var expansionNamesToPrint = expansionsToPrint?.Select(expansion => expansion.GetExpansionName()).ToList();
-            if (expansionNamesToPrint != null) { Console.WriteLine($"Printing cards from sets {string.Join(",", expansionNamesToPrint)}"); }
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
@@ -29,17 +28,8 @@ namespace Avery16282Generator.Dominion
 
             var groupedCards = cardFromSetsToPrint.Where(card => !string.IsNullOrWhiteSpace(card.Group_tag)).ToList();
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
-            // Console.WriteLine(JsonConvert.SerializeObject(groupedCards));
-            var groupedCardsToPrint = groupedCards.GroupBy(card => card.Group_tag)
-                .Select(cardGroup => {
-                    if (cardGroup.Count(card => card.Group_top) > 1)
-                    {
-                        Console.WriteLine($"Key: {cardGroup.Key}");
-                        Console.WriteLine($"CardGroup: {JsonConvert.SerializeObject(cardGroup)}");
-                        // Console.WriteLine($"cardGroup: {string.Join(",", cardGroup.Select(card => JsonConvert.SerializeObject(card)))}");
-                    }
-                    return cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First();
-                })
+            var groupedCardsToPrint = groupedCards.GroupBy(card => $"{card.Group_tag}:{card.Set.Set_name}")
+                .Select(cardGroup => cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First())
                 .ToList();
             var cardsToPrint = nonGroupedCards.Concat(groupedCardsToPrint).ToList();
             return cardsToPrint
