@@ -199,7 +199,7 @@ namespace Avery16282Generator.Dominion
 				topCursor.GetCurrent(),
 				rectangle.GetWidth() - debtCostImageWidthOffset,
 				debtCostRectangleHeight);
-			DrawImage(currentCostRectangle, canvas, Path.Combine(CurrentPath, "Dominion", "images", "debt.png"));
+			DrawImage(currentCostRectangle, canvas, Path.Combine(CurrentPath, "Dominion", "images", "debt-fixed.png"));
 
 			const float debtCostTextWidthOffset = 1f;
 			const float debtCostTextHeightOffset = 4f;
