@@ -30,7 +30,7 @@ namespace Avery16282Generator.Dominion
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
             var groupedCardsToPrint = groupedCards.GroupBy(card => card.Group_tag)
                 .Select(cardGroup => {
-                    if (cardGroup.Count(card => card.Group_top)) {
+                    if (cardGroup.Count(card => card.Group_top) > 1) {
                         Console.WriteLine(cardGroup.Key);
                     }
                     return cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First();
