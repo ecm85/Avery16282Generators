@@ -34,8 +34,8 @@ namespace Avery16282Generator.Dominion
                 .Select(cardGroup => {
                     if (cardGroup.Count(card => card.Group_top) > 1)
                     {
-                        Console.WriteLine(cardGroup.Key);
-                        Console.WriteLine(JsonConvert.SerializeObject(cardGroup));
+                        Console.WriteLine($"Key: {cardGroup.Key}");
+                        Console.WriteLine($"CardGroup: {JsonConvert.SerializeObject(cardGroup)}");
                         // Console.WriteLine($"cardGroup: {string.Join(",", cardGroup.Select(card => JsonConvert.SerializeObject(card)))}");
                     }
                     return cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First();
