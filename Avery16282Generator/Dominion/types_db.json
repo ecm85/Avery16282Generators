@@ -67,6 +67,17 @@
         "card_type": [
             "Action",
             "Attack",
+            "Omen"
+        ],
+        "card_type_image": "action.png",
+        "defaultCardCount": 10,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
+            "Attack",
             "Prize"
         ],
         "card_type_image": "action.png",
@@ -92,6 +103,17 @@
             "Attack"
         ],
         "card_type_image": "reaction.png",
+        "defaultCardCount": 10,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
+            "Attack",
+            "Shadow"
+        ],
+        "card_type_image": "action.png",
         "defaultCardCount": 10,
         "tabCostHeightOffset": -1,
         "tabTextHeightOffset": 0
@@ -203,6 +225,16 @@
     {
         "card_type": [
             "Action",
+            "Omen"
+        ],
+        "card_type_image": "action.png",
+        "defaultCardCount": 10,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
             "Prize"
         ],
         "card_type_image": "action.png",
@@ -244,9 +276,29 @@
     {
         "card_type": [
             "Action",
+            "Reward"
+        ],
+        "card_type_image": "action.png",
+        "defaultCardCount": 2,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
             "Ruins"
         ],
         "card_type_image": "ruins.png",
+        "defaultCardCount": 10,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
+            "Shadow"
+        ],
+        "card_type_image": "action.png",
         "defaultCardCount": 10,
         "tabCostHeightOffset": -1,
         "tabTextHeightOffset": 0
@@ -294,10 +346,32 @@
     {
         "card_type": [
             "Action",
+            "Treasure",
+            "Reward"
+        ],
+        "card_type_image": "action-treasure.png",
+        "defaultCardCount": 2,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
             "Victory"
         ],
         "card_type_image": "action-victory.png",
         "defaultCardCount": 12,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Action",
+            "Victory",
+            "Reward"
+        ],
+        "card_type_image": "action-victory.png",
+        "defaultCardCount": 2,
         "tabCostHeightOffset": -1,
         "tabTextHeightOffset": 0
     },
@@ -780,6 +854,27 @@
     },
     {
         "card_type": [
+            "Prophecy"
+        ],
+        "card_type_image": "prophecy.png",
+        "defaultCardCount": 1,
+        "group_cost": "*",
+        "group_global_type": "Prophecies",
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Prophecies"
+        ],
+        "card_type_image": "prophecy.png",
+        "defaultCardCount": 0,
+        "group_cost": "*",
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
             "Reaction"
         ],
         "card_type_image": "reaction.png",
@@ -794,6 +889,24 @@
         ],
         "card_type_image": "reaction-shelter.png",
         "defaultCardCount": 6,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Reward"
+        ],
+        "card_type_image": "action.png",
+        "defaultCardCount": 1,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Rewards"
+        ],
+        "card_type_image": "action.png",
+        "defaultCardCount": 0,
         "tabCostHeightOffset": -1,
         "tabTextHeightOffset": 0
     },
@@ -975,6 +1088,16 @@
         ],
         "card_type_image": "reserve-treasure.png",
         "defaultCardCount": 10,
+        "tabCostHeightOffset": -1,
+        "tabTextHeightOffset": 0
+    },
+    {
+        "card_type": [
+            "Treasure",
+            "Reward"
+        ],
+        "card_type_image": "treasure.png",
+        "defaultCardCount": 2,
         "tabCostHeightOffset": -1,
         "tabTextHeightOffset": 0
     },

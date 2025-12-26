@@ -32,7 +32,8 @@ namespace Avery16282Generator.Dominion
 		Seaside_1st_Edition,
 		Seaside_2nd_Edition,
 		Seaside_2nd_Edition_Upgrade,
-		Renaissance
+		Renaissance,
+		Rising_Sun
 	}
 
 	public static class ExpansionExtensions
@@ -99,6 +100,8 @@ namespace Avery16282Generator.Dominion
 					return "Seaside 2nd Edition Upgrade";
 				case Expansion.Renaissance:
 					return "Renaissance";
+				case Expansion.Rising_Sun:
+					return "Rising Sun";
 				default:
 					throw new InvalidOperationException();
 			}
