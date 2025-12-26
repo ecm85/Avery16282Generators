@@ -29,12 +29,13 @@ namespace Avery16282Generator.Dominion
 
             var groupedCards = cardFromSetsToPrint.Where(card => !string.IsNullOrWhiteSpace(card.Group_tag)).ToList();
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
-            Console.WriteLine(JsonConvert.SerializeObject(groupedCards));
+            // Console.WriteLine(JsonConvert.SerializeObject(groupedCards));
             var groupedCardsToPrint = groupedCards.GroupBy(card => card.Group_tag)
                 .Select(cardGroup => {
                     if (cardGroup.Count(card => card.Group_top) > 1)
                     {
                         Console.WriteLine(cardGroup.Key);
+                        Console.WriteLine(JsonConvert.SerializeObject(cardGroup));
                         // Console.WriteLine($"cardGroup: {string.Join(",", cardGroup.Select(card => JsonConvert.SerializeObject(card)))}");
                     }
                     return cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First();
