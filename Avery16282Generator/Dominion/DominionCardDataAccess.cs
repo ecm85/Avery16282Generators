@@ -13,7 +13,7 @@ namespace Avery16282Generator.Dominion
         public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint = null)
         {
             var expansionNamesToPrint = expansionsToPrint?.Select(expansion => expansion.GetExpansionName()).ToList();
-            Console.WriteLine($"Printing cards from sets {string.Join(",", expansionNamesToPrint)}");
+            if (expansionNamesToPrint != null) { Console.WriteLine($"Printing cards from sets {string.Join(",", expansionNamesToPrint)}"); }
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
