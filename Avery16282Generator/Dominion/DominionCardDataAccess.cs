@@ -28,7 +28,12 @@ namespace Avery16282Generator.Dominion
             var groupedCards = cardFromSetsToPrint.Where(card => !string.IsNullOrWhiteSpace(card.Group_tag)).ToList();
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
             var groupedCardsToPrint = groupedCards.GroupBy(card => card.Group_tag)
-                .Select(cardGroup => cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First())
+                .Select(cardGroup => {
+                    if (cardGroup.Count(card => card.Group_top)) {
+                        Console.WriteLine(cardGroup.Key);
+                    }
+                    return cardGroup.SingleOrDefault(card => card.Group_top) ?? cardGroup.First();
+                })
                 .ToList();
             var cardsToPrint = nonGroupedCards.Concat(groupedCardsToPrint).ToList();
             return cardsToPrint
