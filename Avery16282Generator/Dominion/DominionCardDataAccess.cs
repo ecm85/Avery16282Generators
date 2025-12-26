@@ -13,7 +13,7 @@ namespace Avery16282Generator.Dominion
         public static IEnumerable<DominionCard> GetCardsToPrint(IEnumerable<Expansion> expansionsToPrint = null)
         {
             var expansionNamesToPrint = expansionsToPrint?.Select(expansion => expansion.GetExpansionName()).ToList();
-            Console.WriteLine($"Printing cards from sets {string.join(expansionNamesToPrint, ",")}");
+            Console.WriteLine($"Printing cards from sets {string.Join(",", expansionNamesToPrint)}");
             var cardTypes = GetCardTypes().ToList();
             var cardSets = GetCardSets();
             var cards = GetCards(cardSets, cardTypes);
@@ -31,7 +31,7 @@ namespace Avery16282Generator.Dominion
             var nonGroupedCards = cardFromSetsToPrint.Except(groupedCards);
             var groupedCardsToPrint = groupedCards.GroupBy(card => card.Group_tag)
                 .Select(cardGroup => {
-                    Console.WriteLine($"cardGroup: {string.join(cardGroup, ",")}");
+                    Console.WriteLine($"cardGroup: {string.Join(",", cardGroup)}");
                     if (cardGroup.Count(card => card.Group_top) > 1) {
                         Console.WriteLine(cardGroup.Key);
                     }
