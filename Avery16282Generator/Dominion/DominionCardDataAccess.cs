@@ -128,9 +128,9 @@ namespace Avery16282Generator.Dominion
 
             foreach (var cardSetName in cardSets.Keys)
             {
-                cardSets[cardSetName].Set_name = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Set_name : "";
-                cardSets[cardSetName].Set_text = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Set_text : "";
-                cardSets[cardSetName].Text_icon = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Text_icon : "";
+                cardSets[cardSetName].Set_name = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Set_name : "cardSetName";
+                cardSets[cardSetName].Set_text = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Set_text : "cardSetName";
+                cardSets[cardSetName].Text_icon = englishCardSets.ContainsKey(cardSetName) ? englishCardSets[cardSetName].Text_icon : "cardSetName";
             }
             return cardSets;
         }

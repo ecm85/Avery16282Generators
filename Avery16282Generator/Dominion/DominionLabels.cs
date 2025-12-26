@@ -38,7 +38,7 @@ namespace Avery16282Generator.Dominion
 				Text = card.GroupName ?? card.Name,
 				CardSetName = card.Set.Set_name
 			}).Where(group => group.Count() > 1);
-			 Console.WriteLine($"CardGroup: {JsonConvert.SerializeObject(duplicateCards)}");
+			//  Console.WriteLine($"CardGroup: {JsonConvert.SerializeObject(duplicateCards)}");
 			var allCardsById = allCards.ToDictionary(card => new DominionCardIdentifier
 			{
 				Text = card.GroupName ?? card.Name,
