@@ -10,12 +10,14 @@ namespace Avery16282Generator.Dominion
 		Animals,
 		Base,
 		Cornucopia,
+		Cornucopia_2nd_Edition_Upgrade,
 		Dark_Ages,
 		Dominion_1st_Edition,
 		Dominion_2nd_Edition,
 		Dominion_2nd_Edition_Upgrade,
 		Empires,
 		Guilds,
+		Guilds_2nd_Edition_Upgrade,
 		Hinterlands_1st_Edition,
 		Hinterlands_2nd_Edition,
 		Hinterlands_2nd_Edition_Upgrade,
@@ -29,11 +31,11 @@ namespace Avery16282Generator.Dominion
 		Prosperity_1st_Edition,
 		Prosperity_2nd_Edition,
 		Prosperity_2nd_Edition_Upgrade,
+		Renaissance,
+		Rising_Sun
 		Seaside_1st_Edition,
 		Seaside_2nd_Edition,
 		Seaside_2nd_Edition_Upgrade,
-		Renaissance,
-		Rising_Sun
 	}
 
 	public static class ExpansionExtensions
@@ -54,6 +56,8 @@ namespace Avery16282Generator.Dominion
 					return "Base";
 				case Expansion.Cornucopia:
 					return "Cornucopia";
+				case Expansion.Cornucopia_2nd_Edition_Upgrade:
+					return "Cornucopia 2nd Edition Upgrade";
 				case Expansion.Dark_Ages:
 					return "Dark Ages";
 				case Expansion.Dominion_1st_Edition:
@@ -66,6 +70,8 @@ namespace Avery16282Generator.Dominion
 					return "Empires";
 				case Expansion.Guilds:
 					return "Guilds";
+				case Expansion.Guilds_2nd_Edition_Upgrade:
+					return "Guilds 2nd Edition Upgrade";
 				case Expansion.Hinterlands_1st_Edition:
 					return "Hinterlands 1st Edition";
 				case Expansion.Hinterlands_2nd_Edition:
@@ -92,16 +98,16 @@ namespace Avery16282Generator.Dominion
 					return "Prosperity 2nd Edition";
 				case Expansion.Prosperity_2nd_Edition_Upgrade:
 					return "Prosperity 2nd Edition Upgrade";
+				case Expansion.Renaissance:
+					return "Renaissance";
+				case Expansion.Rising_Sun:
+					return "Rising Sun";
 				case Expansion.Seaside_1st_Edition:
 					return "Seaside 1st Edition";
 				case Expansion.Seaside_2nd_Edition:
 					return "Seaside 2nd Edition";
 				case Expansion.Seaside_2nd_Edition_Upgrade:
 					return "Seaside 2nd Edition Upgrade";
-				case Expansion.Renaissance:
-					return "Renaissance";
-				case Expansion.Rising_Sun:
-					return "Rising Sun";
 				default:
 					throw new InvalidOperationException();
 			}
