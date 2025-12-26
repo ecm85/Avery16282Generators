@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Path = System.IO.Path;
+using Newtonsoft.Json;
 
 namespace Avery16282Generator.Dominion
 {
@@ -31,12 +32,19 @@ namespace Avery16282Generator.Dominion
 
 		public static byte[] CreateLabels(IEnumerable<DominionCardIdentifier> cardIdentifiersToPrint, int labelsToSkip)
 		{
-			var allCards = DominionCardDataAccess.GetCardsToPrint().ToDictionary(card => new DominionCardIdentifier
+			var allCards = DominionCardDataAccess.GetCardsToPrint();
+			var duplicateCards = allCards.GroupBy(card => new DominionCardIdentifier
+			{
+				Text = card.GroupName ?? card.Name,
+				CardSetName = card.Set.Set_name
+			}).Where(group => group.Count() > 1);
+			 Console.WriteLine($"CardGroup: {JsonConvert.SerializeObject(duplicateCards)}");
+			var allCardsById = allCards.ToDictionary(card => new DominionCardIdentifier
 			{
 				Text = card.GroupName ?? card.Name,
 				CardSetName = card.Set.Set_name
 			});
-			var cardsToPrint = cardIdentifiersToPrint.Select(label => allCards[label]).ToList();
+			var cardsToPrint = cardIdentifiersToPrint.Select(identifier => allCardsById[identifier]).ToList();
 			var allCardTypeImages = cardsToPrint
 				.Select(card => card.SuperType.Card_type_image)
 				.Distinct();
